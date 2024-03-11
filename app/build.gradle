@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -34,7 +35,12 @@ android {
 }
 
 dependencies {
+    //import firebase bom
+    implementation platform('com.google.firebase:firebase-bom:32.7.4')
+    // import firebase auth (this is like 99% what we are gonna use, but not 100% sure yet)
+    implementation 'com.google.firebase:firebase-auth'
 
+    //spotify
     implementation 'com.spotify.android:auth:2.1.1'
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 

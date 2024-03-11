@@ -13,6 +13,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.project2.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    // could rebuild this to the login page and once logged in & verified through firebase then it builds the main 3 fragments?
+    // would write all of this in the onCreate method still
 
     private ActivityMainBinding binding;
 
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_profile)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
