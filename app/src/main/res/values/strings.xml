@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">project2</string>
+    <string name="app_name">Spotify Wrapped</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+<!--    were definitely changing "dashboard" btw-->
+    <string name="title_profile">Profile</string>
+    <string name="title_authentication">Authentication</string>
+    <string name="create_account">Create Account</string>
+    <string name="login">Login</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>
