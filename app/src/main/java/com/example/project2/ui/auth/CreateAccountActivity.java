@@ -7,12 +7,19 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project2.MainActivity;
 import com.example.project2.R;
 import com.example.project2.databinding.ActivityCreateAccountBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
@@ -35,6 +42,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private String mAccessToken, mAccessCode;
     private Call mCall;
     private TextView tokenTextView, codeTextView;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,27 +62,67 @@ public class CreateAccountActivity extends AppCompatActivity {
             //getCode();
         });
 
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
         createAccount.setOnClickListener((v) -> {
             EditText fullName = findViewById(R.id.create_account_name);
             EditText email = findViewById(R.id.create_account_email);
             EditText password = findViewById(R.id.create_account_password);
 
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            Map<String, Object> user = new HashMap<>();
-            user.put("name", fullName.getText().toString());
-            user.put("email", email.getText().toString());
-            user.put("password", password.getText().toString());
-            user.put("spotifyToken", mAccessToken);
+            // Firebase authentication
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-            // need checks for all the fields to be filled and for spotify account to be connected properly (i.e. the mAccessToken is some recognized value)
-            // should probably show a toast for like "account created!"
+            // before this, also need to check if the spotify account is connected to another exisiting account already
+            // to do this, prob just try to read from firestore if the spotify token exists in one of the elements already, then throw error
+            mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = mAuth.getCurrentUser();
 
-            db.collection("users").add(user);
+                                String uid = user.getUid();
+                                // honestly, i dont know whether to store the uid or the email/pw combo ig we'll see what to use later
 
-            Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
+                                // Firestore
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                Map<String, Object> newUser = new HashMap<>();
+                                newUser.put("uid", uid);
+                                newUser.put("name", fullName.getText().toString());
+                                newUser.put("email", email.getText().toString());
+                                newUser.put("password", password.getText().toString());
+                                newUser.put("spotifyToken", mAccessToken);
+
+                                // need checks for all the fields to be filled and for spotify account to be connected properly (i.e. the mAccessToken is some recognized value)
+                                // should probably show a toast for like "account created!"
+
+                                db.collection("users").add(newUser);
+
+                                Intent i = new Intent(CreateAccountActivity.this, MainActivity.class);
+                                startActivity(i);
+                            } else { // user already exists, probably
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(CreateAccountActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+//                                updateUI(null);
+                            }
+                        }
+                    });
         });
     }
+
+    // method copied from firebase documentation lol
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if (currentUser != null){
+//            reload(); // not sure what this is supposed to be
+//        }
+//    }
 
     public void getToken() {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
