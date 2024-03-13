@@ -24,38 +24,38 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
-    <fragment
-        android:id="@+id/navigation_authentication"
-        android:name="com.example.project2.ui.auth.AuthenticationFragment"
-        android:label="@string/title_authentication"
-        tools:layout="@layout/fragment_authentication">
-        <action
-            android:id="@+id/action_authFragment_to_createAccountFragment"
-            app:destination="@id/navigation_create_account" />
-        <action
-            android:id="@+id/action_authFragment_to_loginFragment"
-            app:destination="@id/navigation_login" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_authentication"-->
+<!--        android:name="com.example.project2.ui.auth.AuthenticationActivity"-->
+<!--        android:label="@string/title_authentication"-->
+<!--        tools:layout="@layout/activity_authentication">-->
+<!--        <action-->
+<!--            android:id="@+id/action_authFragment_to_createAccountFragment"-->
+<!--            app:destination="@id/navigation_create_account" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_authFragment_to_loginFragment"-->
+<!--            app:destination="@id/navigation_login" />-->
+<!--    </fragment>-->
 
-    <activity
-        android:id="@+id/navigation_create_account"
-        android:name="com.example.project2.ui.auth.CreateAccountActivity"
-        android:label="@string/create_account"
-        tools:layout="@layout/activity_create_account" >
-        <!--<action
-            android:id="@+id/action_createAccountFragment_to_authFragment"
-            app:destination="@id/navigation_authentication" />-->
-    </activity>
+<!--    <activity-->
+<!--        android:id="@+id/navigation_create_account"-->
+<!--        android:name="com.example.project2.ui.auth.CreateAccountActivity"-->
+<!--        android:label="@string/create_account"-->
+<!--        tools:layout="@layout/activity_create_account" >-->
+<!--        &lt;!&ndash;<action-->
+<!--            android:id="@+id/action_createAccountFragment_to_authFragment"-->
+<!--            app:destination="@id/navigation_authentication" />&ndash;&gt;-->
+<!--    </activity>-->
 
-    <activity
-        android:id="@+id/navigation_login"
-        android:name="com.example.project2.ui.auth.LoginActivity"
-        android:label="@string/login"
-        tools:layout="@layout/activity_login" >
-        <!--<action
-            android:id="@+id/action_loginFragment_to_authFragment"
-            app:destination="@id/navigation_authentication" />-->
-    </activity>
+<!--    <activity-->
+<!--        android:id="@+id/navigation_login"-->
+<!--        android:name="com.example.project2.ui.auth.LoginActivity"-->
+<!--        android:label="@string/login"-->
+<!--        tools:layout="@layout/activity_login" >-->
+<!--        &lt;!&ndash;<action-->
+<!--            android:id="@+id/action_loginFragment_to_authFragment"-->
+<!--            app:destination="@id/navigation_authentication" />&ndash;&gt;-->
+<!--    </activity>-->
 
 
 </navigation>

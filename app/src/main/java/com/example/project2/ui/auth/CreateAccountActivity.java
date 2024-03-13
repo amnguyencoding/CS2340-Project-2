@@ -3,7 +3,9 @@ package com.example.project2.ui.auth;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.project2.MainActivity;
 import com.example.project2.R;
 import com.example.project2.databinding.ActivityCreateAccountBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -41,10 +47,32 @@ public class CreateAccountActivity extends AppCompatActivity {
         codeTextView = (TextView) findViewById(R.id.code_text_view);
 
         Button connectSpotify = (Button) findViewById(R.id.connect_spotify);
+        Button createAccount = (Button) findViewById(R.id.create_account_button);
 
         connectSpotify.setOnClickListener((v) -> {
             getToken();
             //getCode();
+        });
+
+        createAccount.setOnClickListener((v) -> {
+            EditText fullName = findViewById(R.id.create_account_name);
+            EditText email = findViewById(R.id.create_account_email);
+            EditText password = findViewById(R.id.create_account_password);
+
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            Map<String, Object> user = new HashMap<>();
+            user.put("name", fullName.getText().toString());
+            user.put("email", email.getText().toString());
+            user.put("password", password.getText().toString());
+            user.put("spotifyToken", mAccessToken);
+
+            // need checks for all the fields to be filled and for spotify account to be connected properly (i.e. the mAccessToken is some recognized value)
+            // should probably show a toast for like "account created!"
+
+            db.collection("users").add(user);
+
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
         });
     }
 
