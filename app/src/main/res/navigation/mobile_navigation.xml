@@ -38,25 +38,25 @@
             app:destination="@id/navigation_login" />
     </fragment>
 
-    <fragment
+    <activity
         android:id="@+id/navigation_create_account"
-        android:name="com.example.project2.ui.auth.CreateAccountFragment"
+        android:name="com.example.project2.ui.auth.CreateAccountActivity"
         android:label="@string/create_account"
-        tools:layout="@layout/fragment_create_account" >
-        <action
+        tools:layout="@layout/activity_create_account" >
+        <!--<action
             android:id="@+id/action_createAccountFragment_to_authFragment"
-            app:destination="@id/navigation_authentication" />
-    </fragment>
+            app:destination="@id/navigation_authentication" />-->
+    </activity>
 
-    <fragment
+    <activity
         android:id="@+id/navigation_login"
-        android:name="com.example.project2.ui.auth.LoginFragment"
+        android:name="com.example.project2.ui.auth.LoginActivity"
         android:label="@string/login"
-        tools:layout="@layout/fragment_login" >
-        <action
+        tools:layout="@layout/activity_login" >
+        <!--<action
             android:id="@+id/action_loginFragment_to_authFragment"
-            app:destination="@id/navigation_authentication" />
-    </fragment>
+            app:destination="@id/navigation_authentication" />-->
+    </activity>
 
 
 </navigation>
