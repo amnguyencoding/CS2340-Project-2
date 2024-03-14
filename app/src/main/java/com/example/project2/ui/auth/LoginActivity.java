@@ -56,35 +56,11 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                // should pass this user into main activity
-
-//                                FirebaseFirestore db = FirebaseFirestore.getInstance();
-//                                db.collection("users").get()
-//                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                                            @Override
-//                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                                                if (task.isSuccessful()) {
-//                                                    for (QueryDocumentSnapshot document : task.getResult()) {
-//                                                        Log.i("HIIII IT WORKED", document.getId() + " => " + document.getData());
-////                                                        Log.i("secondary", db.collection("users").toString());
-//                                                        Log.i("third", "" + (String) document.get("Cduyr4FTM2QR4DyzndVf"));
-////                                                        Log.i("fourth",document.getString("spotifyToken"));
-//                                                    }
-//                                                } else {
-//                                                    Log.i("oops", "Error getting documents.", task.getException());
-//                                                }
-//                                            }
-//                                        });
-
-//                                String mAccessToken = user.getSpotifyToken();
-                                // should pass the spotify access token to the main activity prob right
 
                                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(i);
                             } else {
-                                // If sign in fails, display a message to the user.
                                 Toast.makeText(LoginActivity.this, "Username or password is invalid.",
                                         Toast.LENGTH_SHORT).show();
                             }
