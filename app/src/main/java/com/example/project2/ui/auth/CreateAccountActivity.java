@@ -42,6 +42,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class CreateAccountActivity extends AppCompatActivity {
+    // think about encapsulation also btw
 
     private ActivityCreateAccountBinding binding;
     public static final String CLIENT_ID = "14c60e61b15243e3ad38b5dbcb57b6b2";
@@ -50,7 +51,6 @@ public class CreateAccountActivity extends AppCompatActivity {
     public static final int AUTH_CODE_REQUEST_CODE = 1;
     private final OkHttpClient mOkHttpClient = new OkHttpClient();
     private String mAccessToken, mAccessCode;
-    private static ArrayList<String> topData = new ArrayList<>();
     private Call mCall;
     private TextView tokenTextView, codeTextView;
     private FirebaseAuth mAuth;
@@ -79,7 +79,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         createAccount.setOnClickListener((v) -> {
             //fetching spotify top data
             //getUserProfileData("https://api.spotify.com/v1/me/top/artists");
-            getUserProfileData("https://api.spotify.com/v1/me/top/tracks");
+//            getUserProfileData("https://api.spotify.com/v1/me/top/tracks");
 
             EditText fullName = findViewById(R.id.create_account_name);
             EditText email = findViewById(R.id.create_account_email);
@@ -147,48 +147,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.CODE);
         AuthorizationClient.openLoginActivity(CreateAccountActivity.this, AUTH_CODE_REQUEST_CODE, request);
     }
-    public void getUserProfileData(String url) {
-        if (mAccessToken == null) {
-            Toast.makeText(this, "Connect to Spotify first!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //User profile request -- change URL to get different data
-        final Request request = new Request.Builder()
-                .url(url)
-                .addHeader("Authorization", "Bearer " + mAccessToken)
-                .build();
-
-        cancelCall();
-        mCall = mOkHttpClient.newCall(request);
-
-        //Log.i("request status", reque)
-
-        mCall.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("HTTP", "Failed to fetch data: " + e);
-                Log.i("ur a", "loser");
-//                Toast.makeText(CreateAccountActivity.this, "Failed to fetch data, watch Logcat for more details",
-//                        Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    final JSONObject jsonObject = new JSONObject(response.body().string());
-                    final JSONArray jsonArray = jsonObject.getJSONArray("items");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        topData.add(jsonArray.getJSONObject(i).getString("name"));
-                    }
-                } catch (JSONException e) {
-                    Log.d("JSON", "Failed to parse data: " + e);
-                    Toast.makeText(CreateAccountActivity.this, "Failed to parse data, watch Logcat for more details",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
 
     private Uri getRedirectUri() {
         return Uri.parse(REDIRECT_URI);
@@ -222,19 +180,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         runOnUiThread(() -> textView.setText(text));
     }
 
-    private void cancelCall() {
-        if (mCall != null) {
-            mCall.cancel();
-        }
-    }
-
-    public static ArrayList<String> getTopData(Context context) {
-        return topData;
-    }
-
     @Override
     public void onDestroy() {
-        cancelCall();
         super.onDestroy();
         binding = null;
     }
