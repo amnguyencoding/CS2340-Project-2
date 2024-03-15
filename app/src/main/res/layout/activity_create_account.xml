@@ -29,7 +29,7 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_account_fragment_text"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintVertical_bias="0.332" />
 
     <EditText
         android:id="@+id/create_account_email"
@@ -89,21 +89,31 @@
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/create_account_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect_spotify" />
+        app:layout_constraintTop_toBottomOf="@+id/connect_spotify"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/code_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/create_account_name"
-        app:layout_constraintEnd_toStartOf="@+id/token_text_view"
-        app:layout_constraintHorizontal_bias="0.605"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connect_spotify"
-        app:layout_constraintVertical_bias="0.53" />
+        app:layout_constraintTop_toBottomOf="@+id/token_text_view" />
+
+    <Button
+        android:id="@+id/get_data_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fetch Data"
+        app:layout_constraintBottom_toTopOf="@+id/connect_spotify"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--<fragment
         android:id="@+id/nav_host_fragment_activity_create_account"

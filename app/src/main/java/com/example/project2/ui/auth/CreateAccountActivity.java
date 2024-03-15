@@ -1,10 +1,7 @@
 package com.example.project2.ui.auth;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project2.MainActivity;
 import com.example.project2.R;
+import com.example.project2.SpotifyHandler;
 import com.example.project2.databinding.ActivityCreateAccountBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,37 +21,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.spotify.sdk.android.auth.AuthorizationClient;
-import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class CreateAccountActivity extends AppCompatActivity {
     // think about encapsulation also btw
 
     private ActivityCreateAccountBinding binding;
-    public static final String CLIENT_ID = "14c60e61b15243e3ad38b5dbcb57b6b2";
-    public static final String REDIRECT_URI = "project2://auth";
     public static final int AUTH_TOKEN_REQUEST_CODE = 0;
     public static final int AUTH_CODE_REQUEST_CODE = 1;
-    private final OkHttpClient mOkHttpClient = new OkHttpClient();
-    private String mAccessToken, mAccessCode;
-    private Call mCall;
+    private String accessToken, accessCode;//fetch token from firebase???
     private TextView tokenTextView, codeTextView;
     private FirebaseAuth mAuth;
+    private Call call;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,19 +52,27 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         Button connectSpotify = (Button) findViewById(R.id.connect_spotify);
         Button createAccount = (Button) findViewById(R.id.create_account_button);
+        Button getData = (Button) findViewById(R.id.get_data_test);
+
+        SpotifyHandler createAccountHandler = new SpotifyHandler(call);
 
         connectSpotify.setOnClickListener((v) -> {
-            getToken();
-            //getCode();
+            createAccountHandler.fetchToken(CreateAccountActivity.this);
         });
+
+        //for testing purposes
+        getData.setOnClickListener((v -> {
+            //note--we should make it so that it fetched access token from firebase, not as variable
+            createAccountHandler.getUserProfileData(this, SpotifyHandler.TOP_ARTISTS_URL,
+                    accessToken);
+            setTextAsync(createAccountHandler.getTopData().toString(), codeTextView);
+        }));
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
         createAccount.setOnClickListener((v) -> {
             //fetching spotify top data
-            //getUserProfileData("https://api.spotify.com/v1/me/top/artists");
-//            getUserProfileData("https://api.spotify.com/v1/me/top/tracks");
 
             EditText fullName = findViewById(R.id.create_account_name);
             EditText email = findViewById(R.id.create_account_email);
@@ -108,7 +101,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                                 newUser.put("name", fullName.getText().toString());
                                 newUser.put("email", email.getText().toString());
                                 newUser.put("password", password.getText().toString());
-                                newUser.put("spotifyToken", mAccessToken);
+                                newUser.put("spotifyToken", accessToken);
 
                                 // need checks for all the fields to be filled and for spotify account to be connected properly (i.e. the mAccessToken is some recognized value)
                                 // should probably show a toast for like "account created!"
@@ -138,28 +131,6 @@ public class CreateAccountActivity extends AppCompatActivity {
 //        }
 //    }
 
-    public void getToken() {
-        final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
-        AuthorizationClient.openLoginActivity(CreateAccountActivity.this, AUTH_TOKEN_REQUEST_CODE, request);
-    }
-
-    public void getCode() {
-        final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.CODE);
-        AuthorizationClient.openLoginActivity(CreateAccountActivity.this, AUTH_CODE_REQUEST_CODE, request);
-    }
-
-    private Uri getRedirectUri() {
-        return Uri.parse(REDIRECT_URI);
-    }
-
-    private AuthorizationRequest getAuthenticationRequest(AuthorizationResponse.Type type) {
-        return new AuthorizationRequest.Builder(CLIENT_ID, type, getRedirectUri().toString())
-                .setShowDialog(false)
-                .setScopes(new String[] { "user-read-email", "user-top-read" })
-                .setCampaign("your-campaign-token")
-                .build();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -167,12 +138,12 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         // Check which request code is present (if any)
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
-            mAccessToken = response.getAccessToken();
-            setTextAsync(mAccessToken, tokenTextView);
+            accessToken = response.getAccessToken();
+            //setTextAsync(accessToken, tokenTextView);
 
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
-            mAccessCode = response.getCode();
-            setTextAsync(mAccessCode, codeTextView);
+            accessCode = response.getCode();
+            //setTextAsync(accessCode, codeTextView);
         }
     }
 

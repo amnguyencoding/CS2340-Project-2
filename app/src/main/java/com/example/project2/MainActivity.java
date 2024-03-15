@@ -45,13 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private String mAccessToken;
-    private Call mCall;
-    private static ArrayList<String> topData = new ArrayList<>();
-    public static final String CLIENT_ID = "14c60e61b15243e3ad38b5dbcb57b6b2";
-    public static final String REDIRECT_URI = "project2://auth";
-    public static final int AUTH_TOKEN_REQUEST_CODE = 0;
-    public static final int AUTH_CODE_REQUEST_CODE = 1;
-    private final OkHttpClient mOkHttpClient = new OkHttpClient();
+    private ArrayList<String> topDataTest;
+    private Call call;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,65 +92,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-    }
-
-    public void getUserProfileData(String url) {
-        if (mAccessToken == null) {
-            Toast.makeText(this, "Connect to Spotify first!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //User profile request -- change URL to get different data
-        final Request request = new Request.Builder()
-                .url(url)
-                .addHeader("Authorization", "Bearer " + mAccessToken)
-                .build();
-
-        cancelCall();
-        mCall = mOkHttpClient.newCall(request);
-
-        //Log.i("request status", reque)
-
-        mCall.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("HTTP", "Failed to fetch data: " + e);
-                Log.i("ur a", "loser");
-//                Toast.makeText(MainActivity.this, "Failed to fetch data, watch Logcat for more details",
-//                        Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    final JSONObject jsonObject = new JSONObject(response.body().string());
-                    final JSONArray jsonArray = jsonObject.getJSONArray("items");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        topData.add(jsonArray.getJSONObject(i).getString("name"));
-                    }
-                } catch (JSONException e) {
-                    Log.d("JSON", "Failed to parse data: " + e);
-                    Toast.makeText(MainActivity.this, "Failed to parse data, watch Logcat for more details",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private void cancelCall() {
-        if (mCall != null) {
-            mCall.cancel();
-        }
+        //fetch data and store to arraylist -- figure out better way to store data later
+        SpotifyHandler mainActivityHandler = new SpotifyHandler(call);
+        mainActivityHandler.getUserProfileData(this, SpotifyHandler.TOP_ARTISTS_URL,
+                mAccessToken);//maybe make this method return an arraylist idk
+        topDataTest = mainActivityHandler.getTopData();
     }
 
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    public static ArrayList<String> getTopData(Context context) {
-        return topData;
     }
 }

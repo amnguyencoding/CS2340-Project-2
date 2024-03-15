@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.project2.MainActivity;
 import com.example.project2.R;
+import com.example.project2.SpotifyHandler;
 import com.example.project2.databinding.FragmentDashboardBinding;
 import com.example.project2.ui.auth.CreateAccountActivity;
 
@@ -31,9 +32,9 @@ public class DashboardFragment extends Fragment {
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         TextView dataTest = (TextView) root.findViewById(R.id.text_dashboard);
-        if (MainActivity.getTopData(this.getContext()) != null) {
-            dataTest.setText(MainActivity.getTopData(this.getContext()).toString());
-        }
+        /*if (SpotifyHandler.getTopData() != null) {
+            dataTest.setText(SpotifyHandler.getTopData().toString());
+        }*/
         return root;
     }
 
