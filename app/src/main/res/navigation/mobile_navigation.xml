@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--suppress NavigationFile -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,43 +18,8 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_notifications"
         android:name="com.example.project2.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
-
-<!--    <fragment-->
-<!--        android:id="@+id/navigation_authentication"-->
-<!--        android:name="com.example.project2.ui.auth.AuthenticationActivity"-->
-<!--        android:label="@string/title_authentication"-->
-<!--        tools:layout="@layout/activity_authentication">-->
-<!--        <action-->
-<!--            android:id="@+id/action_authFragment_to_createAccountFragment"-->
-<!--            app:destination="@id/navigation_create_account" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_authFragment_to_loginFragment"-->
-<!--            app:destination="@id/navigation_login" />-->
-<!--    </fragment>-->
-
-<!--    <activity-->
-<!--        android:id="@+id/navigation_create_account"-->
-<!--        android:name="com.example.project2.ui.auth.CreateAccountActivity"-->
-<!--        android:label="@string/create_account"-->
-<!--        tools:layout="@layout/activity_create_account" >-->
-<!--        &lt;!&ndash;<action-->
-<!--            android:id="@+id/action_createAccountFragment_to_authFragment"-->
-<!--            app:destination="@id/navigation_authentication" />&ndash;&gt;-->
-<!--    </activity>-->
-
-<!--    <activity-->
-<!--        android:id="@+id/navigation_login"-->
-<!--        android:name="com.example.project2.ui.auth.LoginActivity"-->
-<!--        android:label="@string/login"-->
-<!--        tools:layout="@layout/activity_login" >-->
-<!--        &lt;!&ndash;<action-->
-<!--            android:id="@+id/action_loginFragment_to_authFragment"-->
-<!--            app:destination="@id/navigation_authentication" />&ndash;&gt;-->
-<!--    </activity>-->
-
-
 </navigation>
