@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.project2.ui.auth.CreateAccountActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -80,8 +79,17 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        mAccessToken = (String) document.get("spotifyToken");
+                        mAccessToken = (String) document.get("spotifyToken".toString());
 
+                        //fetch data and store to arraylist -- figure out better way to store data later
+                        SpotifyHandler mainActivityHandler = new SpotifyHandler(call);
+                        mainActivityHandler.getUserProfileData(MainActivity.this, SpotifyHandler.TOP_ARTISTS_URL,
+                                mAccessToken);//maybe make this method return an arraylist idk
+
+                        // davis comments:
+                        // this runs too early, we will prob need to move it inside the if statement or pass the token in from auth activity
+                        // prob need to move this to a method for it to make more sense lol
+                        topDataTest = mainActivityHandler.getTopData();
                     } else {
                         // document does not exist (but we should never reach this point since we guaranteed the login
                         Log.i("lots of errors", "No such document");
@@ -92,11 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        //fetch data and store to arraylist -- figure out better way to store data later
-        SpotifyHandler mainActivityHandler = new SpotifyHandler(call);
-        mainActivityHandler.getUserProfileData(this, SpotifyHandler.TOP_ARTISTS_URL,
-                mAccessToken);//maybe make this method return an arraylist idk
-        topDataTest = mainActivityHandler.getTopData();
     }
 
     public boolean onSupportNavigateUp() {

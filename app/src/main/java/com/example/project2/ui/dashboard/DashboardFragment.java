@@ -14,7 +14,6 @@ import com.example.project2.MainActivity;
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
 import com.example.project2.databinding.FragmentDashboardBinding;
-import com.example.project2.ui.auth.CreateAccountActivity;
 
 public class DashboardFragment extends Fragment {
 
