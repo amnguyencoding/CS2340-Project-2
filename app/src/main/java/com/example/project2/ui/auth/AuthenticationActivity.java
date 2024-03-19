@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,18 +37,13 @@ import com.spotify.sdk.android.auth.AuthorizationResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-
 public class AuthenticationActivity extends AppCompatActivity {
 
     public static final String CLIENT_ID = "14c60e61b15243e3ad38b5dbcb57b6b2";
     public static final String REDIRECT_URI = "project2://auth";
     public static final int AUTH_TOKEN_REQUEST_CODE = 0;
     public static final int AUTH_CODE_REQUEST_CODE = 1;
-    private final OkHttpClient mOkHttpClient = new OkHttpClient();
     private String mAccessToken, mAccessCode;
-    private Call mCall;
     private TextView tokenTextView, codeTextView;
     private ActivityAuthenticationBinding binding;
     private FirebaseAuth mAuth;
@@ -67,13 +63,29 @@ public class AuthenticationActivity extends AppCompatActivity {
         Button connectSpotify = (Button) findViewById(R.id.connect_spotify);
         Button createAccount = (Button) findViewById(R.id.create_account_button);
 
+        Button createAccountText = (Button) findViewById(R.id.create_account_text);
+        Button loginText = (Button) findViewById(R.id.login_text);
+        LinearLayout createAccountLayout = (LinearLayout) findViewById(R.id.create_account_layout);
+        LinearLayout loginLayout = (LinearLayout) findViewById(R.id.login_layout);
+        loginLayout.setVisibility(View.GONE);
+
+        createAccountText.setOnClickListener((v) -> {
+            loginLayout.setVisibility(View.GONE);
+            createAccountLayout.setVisibility(View.VISIBLE);
+        });
+
+        loginText.setOnClickListener((v) -> {
+            createAccountLayout.setVisibility(View.GONE);
+            loginLayout.setVisibility(View.VISIBLE);
+        });
+
         connectSpotify.setOnClickListener((v) -> {
             getToken();
-            //getCode();
+            //getCode(); // doubt we need the code for anything so we dont need to store it prob
         });
 
         createAccount.setOnClickListener((v) -> {
-            //fetching spotify top data
+            //fetching spotify top data EDIT: do in spotifyHandler
             //getUserProfileData("https://api.spotify.com/v1/me/top/artists");
 //            getUserProfileData("https://api.spotify.com/v1/me/top/tracks");
 
@@ -84,93 +96,103 @@ public class AuthenticationActivity extends AppCompatActivity {
             // Firebase authentication
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-            // before this, also need to check if the spotify account is connected to another exisiting account already
-            // to do this, prob just try to read from firestore if the spotify token exists in one of the elements already, then throw error
-            mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                FirebaseUser user = mAuth.getCurrentUser();
+            if (fullName.getText().toString().isEmpty() || !fullName.getText().toString().contains(" ")) {
+                Toast.makeText(AuthenticationActivity.this, "Please enter your full name.",
+                        Toast.LENGTH_SHORT).show();
+            } else if (email.getText().toString().isEmpty()) {
+                Toast.makeText(AuthenticationActivity.this, "Please enter your email.",
+                        Toast.LENGTH_SHORT).show();
+            } else if (!email.getText().toString().contains("@") || !email.getText().toString().contains(".")) {
+                Toast.makeText(AuthenticationActivity.this, "Please enter a valid email.",
+                        Toast.LENGTH_SHORT).show();
+            } else if (password.getText().toString().isEmpty()) {
+                Toast.makeText(AuthenticationActivity.this, "Please enter your password.",
+                        Toast.LENGTH_SHORT).show();
+            } else if (password.getText().toString().length() < 6) {
+                Toast.makeText(AuthenticationActivity.this, "Please enter a password that is 6 characters or longer.",
+                        Toast.LENGTH_SHORT).show();
+            } else if (mAccessToken == null) {
+                Toast.makeText(AuthenticationActivity.this, "Please connect to Spotify.",
+                        Toast.LENGTH_SHORT).show();
+            } else { // all fields should be filled in if this condition hits
+                // ^^ also need to check if the spotify account is connected to another exisiting account already
+                // to do this, prob just try to read from firestore if the spotify token exists in one of the elements already, then throw error
+                // actually** this is really annoying and kind of a hassle to do so maybe wait till later or ask the ta if we actually have to do this check
 
-                                String uid = user.getUid();
-                                // honestly, i dont know whether to store the uid or the email/pw combo ig we'll see what to use later
+                mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    FirebaseUser user = mAuth.getCurrentUser();
 
-                                // Firestore
-                                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                Map<String, Object> newUser = new HashMap<>();
-                                newUser.put("uid", uid);
-                                newUser.put("name", fullName.getText().toString());
-                                newUser.put("email", email.getText().toString());
-                                newUser.put("password", password.getText().toString());
-                                newUser.put("spotifyToken", mAccessToken);
+                                    String uid = user.getUid();
+                                    // honestly, i dont know whether to store the uid or the email/pw combo ig we'll see what to use later
 
-                                // need checks for all the fields to be filled and for spotify account to be connected properly (i.e. the mAccessToken is some recognized value)
-                                // should probably show a toast for like "account created!"
+                                    // Firestore
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                    Map<String, Object> newUser = new HashMap<>();
+                                    newUser.put("uid", uid);
+                                    newUser.put("name", fullName.getText().toString());
+                                    newUser.put("email", email.getText().toString());
+                                    newUser.put("password", password.getText().toString());
+                                    newUser.put("spotifyToken", mAccessToken);
 
-                                db.collection("users").document(uid).set(newUser);
+                                    db.collection("users").document(uid).set(newUser);
 
-                                Intent i = new Intent(AuthenticationActivity.this, MainActivity.class);
-                                startActivity(i);
-                            } else { // user already exists, probably
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(AuthenticationActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AuthenticationActivity.this, "Account created!",
+                                            Toast.LENGTH_SHORT).show();
+
+                                    Intent i = new Intent(AuthenticationActivity.this, MainActivity.class);
+                                    startActivity(i);
+                                } else { // user already exists, probably
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(AuthenticationActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                    });
+                        });
+            }
+
         });
-
-
 
         Button loginButton = findViewById(R.id.login_button);
 
         loginButton.setOnClickListener(view1 -> {
             EditText email = findViewById(R.id.login_email);
             EditText password = findViewById(R.id.login_password);
-
-            mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Intent i = new Intent(AuthenticationActivity.this, MainActivity.class);
-                                startActivity(i);
-                            } else {
-                                Toast.makeText(AuthenticationActivity.this, "Username or password is invalid.",
-                                        Toast.LENGTH_SHORT).show();
+            
+            if (email.getText().toString().isEmpty()) {
+                Toast.makeText(AuthenticationActivity.this, "Please enter your email.",
+                        Toast.LENGTH_SHORT).show();
+            } else if (!email.getText().toString().contains("@") || !email.getText().toString().contains(".")) {
+                Toast.makeText(AuthenticationActivity.this, "Please enter a valid email.",
+                        Toast.LENGTH_SHORT).show();
+            } else if (password.getText().toString().isEmpty()) {
+                Toast.makeText(AuthenticationActivity.this, "Please enter your password.",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Intent i = new Intent(AuthenticationActivity.this, MainActivity.class);
+                                    startActivity(i);
+                                } else {
+                                    Toast.makeText(AuthenticationActivity.this, "Username or password is invalid.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                    });
+                        });
+            }
         });
-
-//        Button createAccountButton = findViewById(R.id.create_account_fragment_button);
-//        Button loginButton = findViewById(R.id.login_fragment_button);
-
-//        appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_create_account, R.id.navigation_login).build();
-
-//        createAccountButton.setOnClickListener(view1 -> {
-//            Intent i = new Intent(this, CreateAccountActivity.class);
-//            startActivity(i);
-//        });
-//
-//        loginButton.setOnClickListener(view1 -> {
-//            Intent i = new Intent(this, LoginActivity.class);
-//            startActivity(i);
-//        });
-
-
-
-//        final TextView textView = binding.textAuthentication;
-//        authenticationViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
     }
 
     public void getToken() {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
         AuthorizationClient.openLoginActivity(AuthenticationActivity.this, AUTH_TOKEN_REQUEST_CODE, request);
-        // wait wait wait what is the line above doing?
     }
 
     private AuthorizationRequest getAuthenticationRequest(AuthorizationResponse.Type type) {
@@ -204,31 +226,6 @@ public class AuthenticationActivity extends AppCompatActivity {
     private void setTextAsync(final String text, TextView textView) {
         runOnUiThread(() -> textView.setText(text));
     }
-
-//    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//
-//        Button createAccountButton = view.findViewById(R.id.create_account_fragment_button);
-//        Button loginButton = view.findViewById(R.id.login_fragment_button);
-//
-//        createAccountButton.setOnClickListener(view1 -> {
-//            NavController navController = Navigation.findNavController(view);
-//            navController.navigate(R.id.action_authFragment_to_createAccountFragment);
-//        });
-//
-//        loginButton.setOnClickListener(view1 -> {
-//            NavController navController = Navigation.findNavController(view);
-//            navController.navigate(R.id.action_authFragment_to_loginFragment);
-//        });
-//
-//    }
-
-
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-//        return NavigationUI.navigateUp(navController, appBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
 
     // do i even need this in activities?
 //    @Override
