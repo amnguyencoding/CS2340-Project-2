@@ -42,12 +42,12 @@ public class SpotifyHandler {
         this.call = call;
     }
 
-    public void fetchToken(Activity contextActivity) {
+    private void fetchToken(Activity contextActivity) {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
         AuthorizationClient.openLoginActivity(contextActivity, AUTH_TOKEN_REQUEST_CODE, request);
     }
 
-    public void fetchCode(Activity contextActivity) {
+    private void fetchCode(Activity contextActivity) {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.CODE);
         AuthorizationClient.openLoginActivity(contextActivity, AUTH_CODE_REQUEST_CODE, request);
     }

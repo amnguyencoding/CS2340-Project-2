@@ -27,9 +27,6 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
         TextView dataTest = (TextView) root.findViewById(R.id.text_dashboard);
         /*if (SpotifyHandler.getTopData() != null) {
             dataTest.setText(SpotifyHandler.getTopData().toString());

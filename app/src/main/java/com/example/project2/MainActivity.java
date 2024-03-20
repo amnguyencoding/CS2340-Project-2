@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // the problem is that I have to build the bottom nav bar after the user logs in, so i should move this to after the user logs in
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        mAccessToken = (String) document.get("spotifyToken".toString());
+                        mAccessToken = document.getString("spotifyToken");
 
                         //fetch data and store to arraylist -- figure out better way to store data later
                         SpotifyHandler mainActivityHandler = new SpotifyHandler(call);
@@ -87,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
                                 mAccessToken);//maybe make this method return an arraylist idk
 
                         // davis comments:
-                        // this runs too early, we will prob need to move it inside the if statement or pass the token in from auth activity
-                        // prob need to move this to a method for it to make more sense lol
+                        // move the above 2 lines inside the if statement cause it was running too early asynchronously
+                        // maybe move those lines to a method
                         topDataTest = mainActivityHandler.getTopData();
                     } else {
                         // document does not exist (but we should never reach this point since we guaranteed the login
@@ -100,11 +99,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 }
