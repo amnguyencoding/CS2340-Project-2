@@ -7,4 +7,24 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--Resource Colors-->
+    <color name="spotify_bright_green">#1bce60</color> <!--Critical icons and selected text-->
+    <color name="spotify_black">#080404</color> <!--Outlines, main headers & footers-->
+    <color name="spotify_gray_darker">#181414</color> <!--Interaction panes-->
+    <color name="spotify_gray_lighter">#6F6F6F</color> <!--Sub-panes, headers within panes-->
+    <color name="spotify_subtitle">#5A5A5A</color> <!--Subtitles & ancillary text-->
+    <color name="selected_icon">#504c4c</color> <!--You get the idea-->
+
+
+    <!--Changeables-->
+    <color name="lowest_background">@color/spotify_black</color> <!--Outlines and outer-edge backgrounds-->
+    <color name="pane_background">@color/spotify_gray_darker</color>
+    <color name="text_color">@color/white</color>
+    <color name="standard_button_color">@color/spotify_gray_lighter</color>
+    <color name="button_color_dark">@color/spotify_gray_darker</color> <!--For button edges-->
+    <color name="button_select">@color/selected_icon</color>
+    <color name="textbox_select">@color/spotify_bright_green</color>
+    <color name="banner">@color/spotify_bright_green</color>
+    <color name="navbar">@color/spotify_bright_green</color>
 </resources>
