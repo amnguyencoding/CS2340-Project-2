@@ -94,25 +94,8 @@ public class AuthenticationActivity extends AppCompatActivity {
         // Firebase authentication
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-        if (fullName.getText().toString().isEmpty() || !fullName.getText().toString().contains(" ")) {
-            Toast.makeText(AuthenticationActivity.this, "Please enter your full name",
-                    Toast.LENGTH_SHORT).show();
-        } else if (email.getText().toString().isEmpty()) {
-            Toast.makeText(AuthenticationActivity.this, "Please enter your email",
-                    Toast.LENGTH_SHORT).show();
-        } else if (!email.getText().toString().contains("@") || !email.getText().toString().contains(".")) {
-            Toast.makeText(AuthenticationActivity.this, "Please enter a valid email",
-                    Toast.LENGTH_SHORT).show();
-        } else if (password.getText().toString().isEmpty()) {
-            Toast.makeText(AuthenticationActivity.this, "Please enter your password",
-                    Toast.LENGTH_SHORT).show();
-        } else if (password.getText().toString().length() < 6) {
-            Toast.makeText(AuthenticationActivity.this, "Please enter a password that is 6 characters or longer",
-                    Toast.LENGTH_SHORT).show();
-        } else if (mAccessToken == null) {
-            Toast.makeText(AuthenticationActivity.this, "Please connect to Spotify",
-                    Toast.LENGTH_SHORT).show();
-        } else { // all fields should be filled in if this condition hits
+        if (checkNameValid(fullName) && checkEmailValid(email) && checkPassWordValid(password)) {
+         // all fields should be filled in if this condition hits
             // ^^ also need to check if the spotify account is connected to another exisiting account already
             // to do this, prob just try to read from firestore if the spotify token exists in one of the elements already, then throw error
             // actually** this is really annoying and kind of a hassle to do so maybe wait till later or ask the ta if we actually have to do this check
@@ -162,16 +145,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         EditText email = findViewById(R.id.login_email);
         EditText password = findViewById(R.id.login_password);
 
-        if (email.getText().toString().isEmpty()) {
-            Toast.makeText(AuthenticationActivity.this, "Please enter your email",
-                    Toast.LENGTH_SHORT).show();
-        } else if (!email.getText().toString().contains("@") || !email.getText().toString().contains(".")) {
-            Toast.makeText(AuthenticationActivity.this, "Please enter a valid email",
-                    Toast.LENGTH_SHORT).show();
-        } else if (password.getText().toString().isEmpty()) {
-            Toast.makeText(AuthenticationActivity.this, "Please enter your password",
-                    Toast.LENGTH_SHORT).show();
-        } else {
+        if (checkEmailValid(email) && checkPassWordValid(password)){
             firebaseAuthLogin(email, password);
         }
     }
@@ -210,7 +184,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     private AuthorizationRequest getAuthenticationRequest(AuthorizationResponse.Type type) {
         return new AuthorizationRequest.Builder(CLIENT_ID, type, getRedirectUri().toString())
                 .setShowDialog(false)
-                .setScopes(new String[] { "user-read-email", "user-top-read" })
+                .setScopes(new String[]{"user-read-email", "user-top-read"})
                 .setCampaign("your-campaign-token")
                 .build();
     }
@@ -239,4 +213,52 @@ public class AuthenticationActivity extends AppCompatActivity {
         runOnUiThread(() -> textView.setText(text));
     }
 
+    private boolean checkNameValid(EditText nameEditText) {
+        if (nameEditText.getText().toString().isEmpty()
+                || !nameEditText.getText().toString().contains(" ")) {
+            Toast.makeText(AuthenticationActivity.this, "Please enter your full name",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean checkEmailValid(EditText emailEditText) {
+        boolean emptyField = emailEditText.getText().toString().isEmpty();
+        boolean incorrectFormat = !emailEditText.getText().toString().contains("@")
+                || !emailEditText.getText().toString().contains(".");
+        if (emptyField) {
+            Toast.makeText(AuthenticationActivity.this, "Please enter your email",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (incorrectFormat) {
+            Toast.makeText(AuthenticationActivity.this, "Please enter a valid email",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean checkPassWordValid(EditText passwordEditText) {
+        boolean emptyField = passwordEditText.getText().toString().isEmpty();
+        boolean tooShort = passwordEditText.getText().toString().length() < 6;
+        boolean notConnectedToSpotify = mAccessToken == null;
+        if (emptyField) {
+            Toast.makeText(AuthenticationActivity.this, "Please enter your password",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (tooShort) {
+            Toast.makeText(AuthenticationActivity.this, "Please enter a password that is 6 characters or longer",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (notConnectedToSpotify) {
+            Toast.makeText(AuthenticationActivity.this, "Please connect to Spotify",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
