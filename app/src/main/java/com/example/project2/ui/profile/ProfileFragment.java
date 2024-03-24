@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -37,6 +38,9 @@ public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
     private static final int EMAIL_EDIT_DIALOG = 0;
     private static final int PASSWORD_EDIT_DIALOG = 1;
+    private String uid;
+    FirebaseAuth mAuth;
+    FirebaseFirestore db;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -52,10 +56,10 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String uid = user.getUid();
+        db = FirebaseFirestore.getInstance();
+        uid = user.getUid();
 
         db.collection("users").document(uid)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -79,31 +83,23 @@ public class ProfileFragment extends Fragment {
 
         // need a "change spotify account" button? prob not right
         Button changeEmailButton = view.findViewById(R.id.change_email);
-        changeEmailButton.setOnClickListener(view1 -> {
-            createEditProfileDialog(EMAIL_EDIT_DIALOG);
-
-        });
+        changeEmailButton.setOnClickListener(view1 -> createEditProfileDialog(EMAIL_EDIT_DIALOG));
 
         Button changePasswordButton = view.findViewById(R.id.change_password);
-        changePasswordButton.setOnClickListener(view1 -> {
-            createEditProfileDialog(PASSWORD_EDIT_DIALOG);
-        });
+        changePasswordButton.setOnClickListener(view1 -> createEditProfileDialog(PASSWORD_EDIT_DIALOG));
 
         Button logoutButton = view.findViewById(R.id.logout);
-        logoutButton.setOnClickListener(view1 -> {
-            logoutUser(mAuth);
-        });
+        logoutButton.setOnClickListener(view1 -> logoutUser());
 
         Button deleteAccountButton = view.findViewById(R.id.delete_account);
-        deleteAccountButton.setOnClickListener(view1 -> {
-            deleteUser(user, db, uid);
-        });
+        deleteAccountButton.setOnClickListener(view1 -> deleteUser(user));
 
     }
 
     private void createEditProfileDialog(int dialogType) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.DialogBoxTheme);
-        builder.setTitle("Edit Profile Field");
+        if (dialogType == 0) builder.setTitle("Edit Email");
+        else builder.setTitle("Edit Password");
 
         // set the custom layout
         View customLayout = this.getLayoutInflater().inflate(R.layout.edit_profile_field_dialog, null);
@@ -111,19 +107,27 @@ public class ProfileFragment extends Fragment {
 
         EditText profileFieldEdit = customLayout.findViewById(R.id.edit_profile_field);
 
-        //set editing window to have same inputs as the selected view -- have to fetch from database
-        //profileFieldEdit.setText("");
-
         // add a button
         builder.setPositiveButton("OK", (dialog, which) -> {
-            String fieldText;
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            FirebaseUser user = mAuth.getCurrentUser();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            String fieldText = profileFieldEdit.getText().toString();
 
             if (dialogType == 0 && checkEmailValid(profileFieldEdit)) {
-                fieldText = profileFieldEdit.getText().toString();
-                //reassign database info
+                user.verifyBeforeUpdateEmail(fieldText);
+
+                // if we dont store email and pass in firestore, we dont need this line below
+                db.collection("users").document(uid).update("email", fieldText);
+                Toast.makeText(this.getContext(), "Email updated. Check inbox for verification", Toast.LENGTH_LONG).show();
+
             } else if (dialogType == 1 && checkPassWordValid(profileFieldEdit)) {
-                fieldText = profileFieldEdit.getText().toString();
-                //reassign database info
+                user.updatePassword(fieldText);
+
+                // idem
+                db.collection("users").document(uid).update("password", fieldText);
+                Toast.makeText(this.getContext(), "Password updated successfully", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -137,13 +141,14 @@ public class ProfileFragment extends Fragment {
 
     private boolean checkEmailValid(EditText emailEditText) {
         boolean emptyField = emailEditText.getText().toString().isEmpty();
-        boolean incorrectFormat = !emailEditText.getText().toString().contains("@")
-                || !emailEditText.getText().toString().contains(".");
         if (emptyField) {
             Toast.makeText(this.getContext(), "Please enter your email",
                     Toast.LENGTH_SHORT).show();
             return false;
-        } else if (incorrectFormat) {
+        }
+        boolean incorrectFormat = !emailEditText.getText().toString().contains("@")
+                || !emailEditText.getText().toString().contains(".");
+        if (incorrectFormat) {
             Toast.makeText(this.getContext(), "Please enter a valid email",
                     Toast.LENGTH_SHORT).show();
             return false;
@@ -154,12 +159,13 @@ public class ProfileFragment extends Fragment {
 
     private boolean checkPassWordValid(EditText passwordEditText) {
         boolean emptyField = passwordEditText.getText().toString().isEmpty();
-        boolean tooShort = passwordEditText.getText().toString().length() < 6;
         if (emptyField) {
             Toast.makeText(this.getContext(), "Please enter your password",
                     Toast.LENGTH_SHORT).show();
             return false;
-        } else if (tooShort) {
+        }
+        boolean tooShort = passwordEditText.getText().toString().length() < 6;
+        if (tooShort) {
             Toast.makeText(this.getContext(), "Please enter a password that is 6 characters or longer",
                     Toast.LENGTH_SHORT).show();
             return false;
@@ -168,7 +174,7 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    private void logoutUser(FirebaseAuth mAuth) {
+    private void logoutUser() {
         mAuth.signOut();
 
         Toast.makeText(getContext(), "Logged out successfully", Toast.LENGTH_SHORT).show();
@@ -176,7 +182,7 @@ public class ProfileFragment extends Fragment {
         startActivity(i);
     }
 
-    private void deleteUser(FirebaseUser user, FirebaseFirestore db, String uid) {
+    private void deleteUser(FirebaseUser user) {
         user.delete();
         db.collection("users").document(uid).delete();
 

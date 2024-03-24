@@ -58,28 +58,18 @@ public class AuthenticationActivity extends AppCompatActivity {
         LinearLayout loginLayout = findViewById(R.id.login_layout);
         loginLayout.setVisibility(View.GONE);
 
-        createAccountText.setOnClickListener((v) -> {
-            showCreateAccount(createAccountLayout, loginLayout);
-        });
+        createAccountText.setOnClickListener((v) -> showCreateAccount(createAccountLayout, loginLayout));
 
-        loginText.setOnClickListener((v) -> {
-            showLogin(createAccountLayout, loginLayout);
-        });
+        loginText.setOnClickListener((v) -> showLogin(createAccountLayout, loginLayout));
 
-        connectSpotify.setOnClickListener((v) -> {
-            getToken();
+        connectSpotify.setOnClickListener((v) -> getToken());
             //getCode(); // doubt we need the code for anything so we dont need to store it prob
-        });
 
         Button createAccountButton = findViewById(R.id.create_account_button);
-        createAccountButton.setOnClickListener((v) -> {
-            createAccount();
-        });
+        createAccountButton.setOnClickListener(v -> createAccount());
 
         Button loginButton = findViewById(R.id.login_button);
-        loginButton.setOnClickListener(view1 -> {
-            login();
-        });
+        loginButton.setOnClickListener(v -> login());
     }
 
     private void createAccount() {
@@ -226,13 +216,14 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     private boolean checkEmailValid(EditText emailEditText) {
         boolean emptyField = emailEditText.getText().toString().isEmpty();
-        boolean incorrectFormat = !emailEditText.getText().toString().contains("@")
-                || !emailEditText.getText().toString().contains(".");
         if (emptyField) {
             Toast.makeText(AuthenticationActivity.this, "Please enter your email",
                     Toast.LENGTH_SHORT).show();
             return false;
-        } else if (incorrectFormat) {
+        }
+        boolean incorrectFormat = !emailEditText.getText().toString().contains("@")
+                || !emailEditText.getText().toString().contains(".");
+        if (incorrectFormat) {
             Toast.makeText(AuthenticationActivity.this, "Please enter a valid email",
                     Toast.LENGTH_SHORT).show();
             return false;
@@ -243,20 +234,22 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     private boolean checkPassWordValid(EditText passwordEditText) {
         boolean emptyField = passwordEditText.getText().toString().isEmpty();
-        boolean tooShort = passwordEditText.getText().toString().length() < 6;
-        boolean notConnectedToSpotify = mAccessToken == null;
         if (emptyField) {
             Toast.makeText(AuthenticationActivity.this, "Please enter your password",
                     Toast.LENGTH_SHORT).show();
             return false;
-        } else if (tooShort) {
+        }
+        boolean tooShort = passwordEditText.getText().toString().length() < 6;
+        boolean notConnectedToSpotify = mAccessToken == null;
+        if (tooShort) {
             Toast.makeText(AuthenticationActivity.this, "Please enter a password that is 6 characters or longer",
                     Toast.LENGTH_SHORT).show();
             return false;
-        } else if (notConnectedToSpotify) {
-            Toast.makeText(AuthenticationActivity.this, "Please connect to Spotify",
-                    Toast.LENGTH_SHORT).show();
-            return false;
+//        } else if (notConnectedToSpotify) {
+//            Toast.makeText(AuthenticationActivity.this, "Please connect to Spotify",
+//                    Toast.LENGTH_SHORT).show();
+//            return false;
+            // make this not run on login
         } else {
             return true;
         }
