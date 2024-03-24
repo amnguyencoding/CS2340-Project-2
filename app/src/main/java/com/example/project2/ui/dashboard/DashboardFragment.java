@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.project2.MainActivity;
+import com.example.project2.R;
+import com.example.project2.SpotifyHandler;
 import com.example.project2.databinding.FragmentDashboardBinding;
 
 public class DashboardFragment extends Fragment {
@@ -24,10 +27,13 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        TextView dataTest = (TextView) root.findViewById(R.id.text_dashboard);
+        /*if (SpotifyHandler.getTopData() != null) {
+            dataTest.setText(SpotifyHandler.getTopData().toString());
+        }*/
         return root;
     }
+
 
     @Override
     public void onDestroyView() {
