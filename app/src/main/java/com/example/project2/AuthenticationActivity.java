@@ -47,9 +47,6 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        tokenTextView = findViewById(R.id.token_text_view);
-        codeTextView = findViewById(R.id.code_text_view);
-
         Button connectSpotify = findViewById(R.id.connect_spotify);
 
         Button createAccountText = findViewById(R.id.create_account_text);
@@ -63,7 +60,8 @@ public class AuthenticationActivity extends AppCompatActivity {
         loginText.setOnClickListener((v) -> showLogin(createAccountLayout, loginLayout));
 
         connectSpotify.setOnClickListener((v) -> getToken());
-            //getCode(); // doubt we need the code for anything so we dont need to store it prob
+        // once the user is connected the text on the button would ideally change to something like "Spotify Connected" so that the user knows
+        // but im not sure how to wait till the spotify sign in is actually done to change the text
 
         Button createAccountButton = findViewById(R.id.create_account_button);
         createAccountButton.setOnClickListener(v -> createAccount());
@@ -123,9 +121,9 @@ public class AuthenticationActivity extends AppCompatActivity {
 
                             Intent i = new Intent(AuthenticationActivity.this, MainActivity.class);
                             startActivity(i);
-                        } else { // in case sign in fails
-                            Toast.makeText(AuthenticationActivity.this, "Authentication failed",
-                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(AuthenticationActivity.this, "Account creation failed. Check the email is not used already",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -191,17 +189,17 @@ public class AuthenticationActivity extends AppCompatActivity {
         // Check which request code is present (if any)
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
             mAccessToken = response.getAccessToken();
-            setTextAsync(mAccessToken, tokenTextView);
+//            setTextAsync(mAccessToken, tokenTextView);
 
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
             mAccessCode = response.getCode();
-            setTextAsync(mAccessCode, codeTextView);
+//            setTextAsync(mAccessCode, codeTextView);
         }
     }
 
-    private void setTextAsync(final String text, TextView textView) {
-        runOnUiThread(() -> textView.setText(text));
-    }
+//    private void setTextAsync(final String text, TextView textView) {
+//        runOnUiThread(() -> textView.setText(text));
+//    }
 
     private boolean checkNameValid(EditText nameEditText) {
         if (nameEditText.getText().toString().isEmpty()
