@@ -98,22 +98,6 @@
                     android:text="Connect to Spotify"
                     android:background="@drawable/rectangle_button"/>
 
-                <TextView
-                    android:textColor="@color/text_color"
-                    android:id="@+id/token_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="21dp"
-                    android:text="TextView" />
-
-                <TextView
-                    android:textColor="@color/text_color"
-                    android:id="@+id/code_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:textColor="@color/text_color"
                     android:id="@+id/create_account_button"
