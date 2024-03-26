@@ -1,9 +1,7 @@
 package com.example.project2;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,21 +20,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     // have to change this to build the authentication fragment not the other 3 fragments? then i have to move the building 3 main fragments/navbar after successful login
@@ -81,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
                         mAccessToken = document.getString("spotifyToken");
 
                         //fetch data and store to arraylist -- figure out better way to store data later
-                        SpotifyHandler mainActivityHandler = new SpotifyHandler(call);
-                        mainActivityHandler.getUserProfileData(MainActivity.this, SpotifyHandler.TOP_ARTISTS_URL,
+                        SpotifyHandler mainActivityHandler = new SpotifyHandler();
+                        mainActivityHandler.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
                                 mAccessToken);//maybe make this method return an arraylist idk
 
                         // davis comments:
