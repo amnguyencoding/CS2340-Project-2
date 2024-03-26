@@ -9,9 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:background="@color/pane_background"
         android:gravity="center"
-        android:background="@color/lowest_background"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,23 +24,40 @@
             android:orientation="horizontal">
 
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:textColor="@color/text_color"
-                android:id="@+id/create_account_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/create_account"
-                android:background="@drawable/rectangle_button"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:textColor="@color/text_color"
-                android:id="@+id/login_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/rectangle_button"
-                android:text="@string/login" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/login_text"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="60dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle_button"
+                    android:text="@string/login"
+                    android:textColor="@color/text_color"
+                    app:layout_constraintBottom_toTopOf="@+id/create_account_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/create_account_text"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="60dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rectangle_button"
+                    android:text="@string/create_account"
+                    android:textColor="@color/text_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
@@ -53,58 +70,84 @@
                 android:id="@+id/create_account_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/pane_background"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:background="@color/pane_background">
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:backgroundTint="@color/textbox_select"
-                    android:textColorHint="@color/spotify_subtitle"
-                    android:textCursorDrawable="@drawable/text_cursor"
                     android:id="@+id/create_account_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/textbox_select"
                     android:ems="10"
                     android:hint="@string/full_name"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/spotify_subtitle"
+                    android:textCursorDrawable="@drawable/text_cursor" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:backgroundTint="@color/textbox_select"
-                    android:textColorHint="@color/spotify_subtitle"
-                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textColor="@color/text_color"
                     android:id="@+id/create_account_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/textbox_select"
                     android:ems="10"
                     android:hint="@string/email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@color/spotify_subtitle"
+                    android:textCursorDrawable="@drawable/text_cursor" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:backgroundTint="@color/textbox_select"
-                    android:textColorHint="@color/spotify_subtitle"
-                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textColor="@color/text_color"
                     android:id="@+id/create_account_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/textbox_select"
                     android:ems="10"
                     android:hint="@string/password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/spotify_subtitle"
+                    android:textCursorDrawable="@drawable/text_cursor" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:textColor="@color/text_color"
-                    android:id="@+id/connect_spotify"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Connect to Spotify"
-                    android:background="@drawable/rectangle_button"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:textColor="@color/text_color"
-                    android:id="@+id/create_account_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/create_account"
-                    android:background="@drawable/rectangle_button"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/connect_spotify"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="106dp"
+                        android:layout_marginTop="76dp"
+                        android:layout_marginEnd="105dp"
+                        android:layout_marginBottom="40dp"
+                        android:background="@drawable/rectangle_button"
+                        android:text="Connect to Spotify"
+                        android:textColor="@color/text_color"
+                        app:layout_constraintBottom_toTopOf="@+id/create_account_button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/create_account_button"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="106dp"
+                        android:layout_marginEnd="105dp"
+                        android:layout_marginBottom="40dp"
+                        android:background="@drawable/rectangle_button"
+                        android:text="@string/create_account"
+                        android:textColor="@color/text_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
@@ -112,40 +155,53 @@
                 android:id="@+id/login_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/pane_background"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:background="@color/pane_background">
+                android:orientation="vertical">
 
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:backgroundTint="@color/textbox_select"
-                    android:textColorHint="@color/spotify_subtitle"
-                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textColor="@color/text_color"
                     android:id="@+id/login_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/textbox_select"
                     android:ems="10"
                     android:hint="@string/email"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@color/spotify_subtitle"
+                    android:textCursorDrawable="@drawable/text_cursor" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:backgroundTint="@color/textbox_select"
-                    android:textColorHint="@color/spotify_subtitle"
-                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:textColor="@color/text_color"
                     android:id="@+id/login_password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/textbox_select"
                     android:ems="10"
                     android:hint="@string/password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/spotify_subtitle"
+                    android:textCursorDrawable="@drawable/text_cursor" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:textColor="@color/text_color"
-                    android:id="@+id/login_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/login"
-                    android:background="@drawable/rectangle_button"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/login_button"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp"
+                        android:background="@drawable/rectangle_button"
+                        android:text="@string/login"
+                        android:textColor="@color/text_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
