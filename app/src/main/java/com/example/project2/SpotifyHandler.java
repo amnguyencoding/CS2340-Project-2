@@ -1,13 +1,8 @@
 package com.example.project2;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
@@ -35,12 +30,9 @@ public class SpotifyHandler {
     /*private static String accessToken;
     private String accessCode;*///fragments should pull from firebase for this info
     private Call call;
-    public ArrayList<String> topData = new ArrayList<>();
+    private ArrayList<String> topData = new ArrayList<>();
     public static final String TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists";
     public static final String TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
-    public SpotifyHandler(Call call) {
-        this.call = call;
-    }
 
     private void fetchToken(Activity contextActivity) {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
@@ -52,7 +44,7 @@ public class SpotifyHandler {
         AuthorizationClient.openLoginActivity(contextActivity, AUTH_CODE_REQUEST_CODE, request);
     }
 
-    public void getUserProfileData(Context context, String url, String accessToken) {
+    public void getUserProfileData(String url, String accessToken) {
         if (accessToken == null) {
 //            Toast.makeText(context, "Connect to Spotify first!", Toast.LENGTH_SHORT).show();
             return;
