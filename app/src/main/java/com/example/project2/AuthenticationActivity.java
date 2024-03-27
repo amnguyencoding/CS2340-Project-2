@@ -189,6 +189,13 @@ public class AuthenticationActivity extends AppCompatActivity {
         // Check which request code is present (if any)
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
             mAccessToken = response.getAccessToken();
+
+            // changes the text on the button to "Spotify Connected" and makes it unclickable
+            Button connectSpotify = findViewById(R.id.connect_spotify);
+            connectSpotify.setText("Spotify Connected");
+            connectSpotify.setClickable(false);
+            // just putting this here for now, it might need to be moved later. perhaps moving it outside of the if statement.
+                // but if we move it outside the if statement, the text should only change if the login is actually successful so amybe just be 100% sure on double checking all that
 //            setTextAsync(mAccessToken, tokenTextView);
 
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
