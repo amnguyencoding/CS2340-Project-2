@@ -24,6 +24,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 public class DashboardFragment extends Fragment {
     private String mAccessToken;
 
@@ -56,13 +58,12 @@ public class DashboardFragment extends Fragment {
 //                        SpotifyHandler mainActivityHandler = new SpotifyHandler(call);
 //                        mainActivityHandler.getUserProfileData(MainActivity.this, SpotifyHandler.TOP_ARTISTS_URL,
 //                                mAccessToken);//maybe make this method return an arraylist idk
-                        /*SpotifyHandler dashboardHandlerTest = new SpotifyHandler();
-                        dashboardHandlerTest.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
+                        SpotifyHandler dashboardHandlerTest = new SpotifyHandler();
+                        ArrayList<String> topArtists= dashboardHandlerTest.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
                                 mAccessToken);
                         TextView dataTest = (TextView) root.findViewById(R.id.text_dashboard);
-                        if (dashboardHandlerTest.getTopData() != null) {
-                            dataTest.setText(dashboardHandlerTest.getTopData().toString());
-                        }*/
+                        dataTest.setText(topArtists.toString());
+
                         // davis comments:
                         // move the above 2 lines inside the if statement cause it was running too early asynchronously
                         // maybe move those lines to a method
