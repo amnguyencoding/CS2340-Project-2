@@ -30,7 +30,7 @@ public class SpotifyHandler {
     /*private static String accessToken;
     private String accessCode;*///fragments should pull from firebase for this info
     private Call call;
-    private ArrayList<String> topData = new ArrayList<>();
+    private static ArrayList<String> topData = new ArrayList<>();
     public static final String TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists";
     public static final String TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
 
@@ -44,10 +44,11 @@ public class SpotifyHandler {
         AuthorizationClient.openLoginActivity(contextActivity, AUTH_CODE_REQUEST_CODE, request);
     }
 
-    public void getUserProfileData(String url, String accessToken) {
+    public ArrayList<String> getUserProfileData(String url, String accessToken) {
+        //ArrayList<String> topData = new ArrayList<>();
         if (accessToken == null) {
 //            Toast.makeText(context, "Connect to Spotify first!", Toast.LENGTH_SHORT).show();
-            return;
+            return topData;
         }
 
         //User profile request -- change URL to get different data
@@ -73,9 +74,11 @@ public class SpotifyHandler {
                 try {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
                     final JSONArray jsonArray = jsonObject.getJSONArray("items");
+                    topData.clear();
                     for (int i = 0; i < jsonArray.length(); i++) {
                         topData.add(jsonArray.getJSONObject(i).getString("name"));
                     }
+                    Log.i("Inner Test", topData.toString());
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
 //                    Toast.makeText(context, "Failed to parse data, watch Logcat for more details",
@@ -84,6 +87,8 @@ public class SpotifyHandler {
                 }
             }
         });
+        Log.i("Outer Test",topData.toString());
+        return topData;
     }
 
     private static Uri getRedirectUri() {
@@ -108,9 +113,9 @@ public class SpotifyHandler {
         this.call = call;
     }
 
-    public ArrayList<String> getTopData() {
-        return topData;
-    }
+    //public ArrayList<String> getTopData() {
+    //    return topData;
+    //}
 }
 
 
