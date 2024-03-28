@@ -21,7 +21,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
 
-    private String gptResponseText = "";
+    private String gptResponseText = "tempvalue,deletelater";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

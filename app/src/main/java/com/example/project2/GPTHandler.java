@@ -21,7 +21,7 @@ public class GPTHandler {
 
 
     private static final String OPENAI_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String dummyvarname = "secretkeyhere";
+    private static final String dummyvarname = "test";
     private static final OkHttpClient client = new OkHttpClient();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static String GPTResponse;
