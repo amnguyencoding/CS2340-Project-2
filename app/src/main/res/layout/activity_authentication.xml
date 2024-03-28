@@ -18,53 +18,47 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="400dp"
+            android:layout_height="128dp"
+            android:layout_weight="0.5">
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/create_account_text"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_button"
+                android:text="@string/create_account"
+                android:textColor="@color/text_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.814" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/login_text"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/rectangle_button"
+                android:text="@string/login"
+                android:textColor="@color/text_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/login_text"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="60dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rectangle_button"
-                    android:text="@string/login"
-                    android:textColor="@color/text_color"
-                    app:layout_constraintBottom_toTopOf="@+id/create_account_text"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/create_account_text"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="60dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rectangle_button"
-                    android:text="@string/create_account"
-                    android:textColor="@color/text_color"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/create_account_text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.814" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/authentication_card_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="500dp">
 
             <LinearLayout
                 android:id="@+id/create_account_layout"
@@ -138,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="106dp"
                         android:layout_marginEnd="105dp"
-                        android:layout_marginBottom="40dp"
+                        android:layout_marginBottom="156dp"
                         android:background="@drawable/rectangle_button"
                         android:text="@string/create_account"
                         android:textColor="@color/text_color"
@@ -193,6 +187,7 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="60dp"
+                        android:layout_marginBottom="200dp"
                         android:background="@drawable/rectangle_button"
                         android:text="@string/login"
                         android:textColor="@color/text_color"
