@@ -70,12 +70,8 @@ public class MainActivity extends AppCompatActivity {
                         //fetch data and store to arraylist -- figure out better way to store data later
                         SpotifyHandler mainActivityHandler = new SpotifyHandler();
                         topDataTest = mainActivityHandler.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
-                                mAccessToken);//maybe make this method return an arraylist idk
+                                mAccessToken);
 
-                        // davis comments:
-                        // move the above 2 lines inside the if statement cause it was running too early asynchronously
-                        // maybe move those lines to a method
-                        //topDataTest = mainActivityHandler.getTopData();
                     } else {
                         // document does not exist (but we should never reach this point since we guaranteed the login
                         Log.i("lots of errors", "No such document");

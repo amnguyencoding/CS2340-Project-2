@@ -64,10 +64,6 @@ public class DashboardFragment extends Fragment {
                         TextView dataTest = (TextView) root.findViewById(R.id.text_dashboard);
                         dataTest.setText(topArtists.toString());
 
-                        // davis comments:
-                        // move the above 2 lines inside the if statement cause it was running too early asynchronously
-                        // maybe move those lines to a method
-//                        topDataTest = mainActivityHandler.getTopData();
                     } else {
                         // document does not exist (but we should never reach this point since we guaranteed the login
                         Log.i("lots of errors", "No such document");

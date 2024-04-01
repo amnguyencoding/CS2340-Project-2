@@ -27,7 +27,7 @@ public class GPTHandler {
     private static String GPTResponse;
 
 
-    public CompletableFuture<String> makeRequest() {
+    public CompletableFuture<String> makeRequest(String artists) {
         CompletableFuture<String> future = new CompletableFuture<>();
 
         JSONObject jsonObject = new JSONObject();
@@ -42,7 +42,7 @@ public class GPTHandler {
 
             messageObject = new JSONObject();
             messageObject.put("role", "user");
-            messageObject.put("content", "Please describe how someone would think, dress, and act based on the fact that they listen to New Jeans and YOASOBI");
+            messageObject.put("content", "Please describe how someone would think, dress, and act based on the fact that they listen to " + artists);
             messagesArray.put(messageObject);
 
             jsonObject.put("messages", messagesArray);

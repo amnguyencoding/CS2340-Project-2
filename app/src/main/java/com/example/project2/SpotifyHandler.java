@@ -47,7 +47,6 @@ public class SpotifyHandler {
     public ArrayList<String> getUserProfileData(String url, String accessToken) {
         //ArrayList<String> topData = new ArrayList<>();
         if (accessToken == null) {
-//            Toast.makeText(context, "Connect to Spotify first!", Toast.LENGTH_SHORT).show();
             return topData;
         }
 
@@ -64,9 +63,6 @@ public class SpotifyHandler {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.d("HTTP", "Failed to fetch data: " + e);
-                Log.i("ur a", "loser");
-//                Toast.makeText(context, "Failed to fetch data, watch Logcat for more details",
-//                        Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -81,13 +77,17 @@ public class SpotifyHandler {
                     Log.i("Inner Test", topData.toString());
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
-//                    Toast.makeText(context, "Failed to parse data, watch Logcat for more details",
-//                            Toast.LENGTH_SHORT).show();
-                    // this toast crashes the app, something about u cant show toast on non-ui threads?
                 }
             }
         });
         Log.i("Outer Test",topData.toString());
+        while (topData.isEmpty()) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return topData;
     }
 
@@ -113,9 +113,6 @@ public class SpotifyHandler {
         this.call = call;
     }
 
-    //public ArrayList<String> getTopData() {
-    //    return topData;
-    //}
 }
 
 
