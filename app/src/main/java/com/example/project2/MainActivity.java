@@ -59,27 +59,24 @@ public class MainActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference docRef = db.collection("users").document(uid);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        mAccessToken = document.getString("spotifyToken");
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    mAccessToken = document.getString("spotifyToken");
 
-                        //fetch data and store to arraylist -- figure out better way to store data later
-                        SpotifyHandler mainActivityHandler = new SpotifyHandler();
-                        topDataTest = mainActivityHandler.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
-                                mAccessToken);
+                    //fetch data and store to arraylist -- figure out better way to store data later
+                    SpotifyHandler mainActivityHandler = new SpotifyHandler();
+                    topDataTest = mainActivityHandler.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
+                            mAccessToken);
 
-                    } else {
-                        // document does not exist (but we should never reach this point since we guaranteed the login
-                        Log.i("lots of errors", "No such document");
-                    }
                 } else {
-                    // could not get the document (some other error)
-                    Log.i("lots of ", "get failed with ", task.getException());
+                    // document does not exist (but we should never reach this point since we guaranteed the login
+                    Log.i("lots of errors", "No such document");
                 }
+            } else {
+                // could not get the document (some other error)
+                Log.i("lots of ", "get failed with ", task.getException());
             }
         });
     }
