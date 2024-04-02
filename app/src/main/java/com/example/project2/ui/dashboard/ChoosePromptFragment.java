@@ -48,24 +48,10 @@ public class ChoosePromptFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.navigation_loading, bundle);
         });
 
-        Button futureButton = root.findViewById(R.id.future_prompt_button);
-        futureButton.setOnClickListener((v)-> {
-            Bundle bundle = new Bundle();
-            bundle.putString("prompt", "future");
-            Navigation.findNavController(v).navigate(R.id.navigation_loading, bundle);
-        });
-
         Button recommendedArtistsButton = root.findViewById(R.id.recommended_artists_prompt_button);
         recommendedArtistsButton.setOnClickListener((v)-> {
             Bundle bundle = new Bundle();
             bundle.putString("prompt", "artists");
-            Navigation.findNavController(v).navigate(R.id.navigation_loading, bundle);
-        });
-
-        Button recommendedSongsButton = root.findViewById(R.id.recommended_songs_prompt_button);
-        recommendedSongsButton.setOnClickListener((v)-> {
-            Bundle bundle = new Bundle();
-            bundle.putString("prompt", "songs");
             Navigation.findNavController(v).navigate(R.id.navigation_loading, bundle);
         });
 
