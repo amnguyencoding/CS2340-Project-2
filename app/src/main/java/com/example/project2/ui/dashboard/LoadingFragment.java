@@ -74,13 +74,9 @@ public class LoadingFragment extends Fragment {
                         gptPrompt = gptPrompt + " Tell me in 2nd person point of view and in four sentences. Please sprinkle references to the artists in the prompt throughout your response.";
                         if (index == 3) gptPrompt = gptPrompt + " Do not suggest artists that are already in the list.";
 
-                        TextView gptResponse = root.findViewById(R.id.llm_response_text);
-
                         if (gptResponses[index] == null) {
                             gptResponses[index] = getGPTResponse(gptPrompt);
                         }
-                        gptResponse.setText(gptResponses[index]);
-
                     }
                 }
             }
