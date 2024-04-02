@@ -76,6 +76,7 @@ public class LoadingFragment extends Fragment {
 
                     if (gptResponses[index] == null) {
                         gptResponses[index] = getGPTResponse(gptPrompt);
+
                     }
                     continueButton.setVisibility(View.VISIBLE);
                 }

@@ -2,47 +2,65 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background='@color/lowest_background'
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <TextView
-        android:id="@+id/use_llm_title"
-        android:layout_width="329dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/roboto_mono"
-        android:text="Taste Wizard"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="345dp"
+        android:layout_height="600dp"
 
-    <TextView
-        android:id="@+id/use_llm_text"
-        android:layout_width="261dp"
-        android:layout_height="174dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_mono"
-        android:text="@string/use_llm_text_string"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/use_llm_title" />
-
-    <Button
-        android:id="@+id/use_llm_button"
-        android:layout_width="166dp"
-        android:layout_height="51dp"
-        android:fontFamily="@font/roboto_mono"
-        android:text="@string/use_ai_wizard_string"
+        android:background="@drawable/pane"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/use_llm_text"
-        app:layout_constraintVertical_bias="0.632" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.275">
+
+        <TextView
+            android:id="@+id/use_llm_title"
+            android:layout_width="300dp"
+            android:layout_height="83dp"
+            android:layout_marginBottom="52dp"
+            android:fontFamily="@font/roboto_mono"
+            android:text="Taste Wizard"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@+id/use_llm_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/use_llm_text"
+            android:layout_width="261dp"
+            android:layout_height="174dp"
+            android:layout_marginBottom="116dp"
+            android:fontFamily="@font/roboto_mono"
+            android:text="@string/use_llm_text_string"
+            android:textAlignment="center"
+            android:textColor="@color/spotify_subtitle"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/use_llm_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/use_llm_button"
+            android:layout_width="166dp"
+            android:layout_height="51dp"
+            android:layout_marginBottom="72dp"
+            android:background="@drawable/rectangle_button"
+            android:fontFamily="@font/roboto_mono"
+            android:text="@string/use_ai_wizard_string"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
