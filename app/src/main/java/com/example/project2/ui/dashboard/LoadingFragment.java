@@ -1,6 +1,7 @@
 package com.example.project2.ui.dashboard;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,14 @@ public class LoadingFragment extends Fragment {
         BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
         navBar.setVisibility(View.GONE);
 
+        String prompt = getArguments().getString("prompt");
+
         Button continueButton = root.findViewById(R.id.loading_screen_continue_button);
-        continueButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_llmresponse));
+        continueButton.setOnClickListener((v)-> {
+            Bundle bundle = new Bundle();
+            bundle.putString("prompt", prompt);
+            Navigation.findNavController(v).navigate(R.id.navigation_llmresponse, bundle);
+        });
 
         return root;
     }

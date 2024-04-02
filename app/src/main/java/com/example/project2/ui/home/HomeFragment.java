@@ -48,58 +48,6 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        String uid = user.getUid();
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        DocumentReference docRef = db.collection("users").document(uid);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        mAccessToken = document.getString("spotifyToken");
-
-                        //fetch data and store to arraylist -- figure out better way to store data later
-//                        SpotifyHandler mainActivityHandler = new SpotifyHandler(call);
-//                        mainActivityHandler.getUserProfileData(MainActivity.this, SpotifyHandler.TOP_ARTISTS_URL,
-//                                mAccessToken);//maybe make this method return an arraylist idk
-                        SpotifyHandler homeHandlerTest = new SpotifyHandler();
-                        topArtists = homeHandlerTest.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
-                                mAccessToken);
-                        Log.i("topArtists", topArtists.toString());
-                    } else {
-                        // document does not exist (but we should never reach this point since we guaranteed the login
-                        Log.i("lots of errors", "No such document");
-                    }
-                } else {
-                    // could not get the document (some other error)
-                    Log.i("lots of ", "get failed with ", task.getException());
-                }
-            }
-        });
-
-        TextView gptResponse = view.findViewById(R.id.gpt_response);
-
-        if (gptResponseText.isEmpty()) {
-            GPTHandler handler = new GPTHandler();
-            if (topArtists != null){ // remove this later when we figure out the issue
-                try {
-                    gptResponseText = handler.makeRequest(topArtists.toString()).get();
-                } catch (ExecutionException | InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            } else Log.i("oops!", "its null i guess");
-            Log.i("GPTHandler", gptResponseText);
-
-            gptResponse.setText(gptResponseText);
-        } else {
-            gptResponse.setText(gptResponseText);
-        }
-
     }
 
     @Override

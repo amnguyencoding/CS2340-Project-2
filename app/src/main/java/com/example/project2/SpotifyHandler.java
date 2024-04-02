@@ -80,7 +80,6 @@ public class SpotifyHandler {
                 }
             }
         });
-        Log.i("Outer Test",topData.toString());
         while (topData.isEmpty()) {
             try {
                 Thread.sleep(1000);
@@ -88,6 +87,7 @@ public class SpotifyHandler {
                 e.printStackTrace();
             }
         }
+        Log.i("Outer Test",topData.toString());
         return topData;
     }
 
