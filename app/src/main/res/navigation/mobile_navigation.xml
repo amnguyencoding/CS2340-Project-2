@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_chooseprompt" >
     </fragment>
     <fragment
+        android:id="@+id/navigation_guessgame"
+        android:name="com.example.project2.ui.dashboard.GuessGameFragment"
+        android:label="Guess Game"
+        tools:layout="@layout/fragment_guessgame" >
+    </fragment>
+    <fragment
         android:id="@+id/navigation_llmresponse"
         android:name="com.example.project2.ui.dashboard.LLMResponseFragment"
         android:label="Response"
