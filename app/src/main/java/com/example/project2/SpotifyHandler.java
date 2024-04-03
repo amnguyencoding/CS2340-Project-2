@@ -31,8 +31,12 @@ public class SpotifyHandler {
     private String accessCode;*///fragments should pull from firebase for this info
     private Call call;
     private static ArrayList<String> topData = new ArrayList<>();
+    private static ArrayList<String> topImages = new ArrayList<>();
     public static final String TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists";
     public static final String TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
+
+    public static final String NAME_DATA = "name";
+    public static final String IMAGE_DATA = "images";
 
     private void fetchToken(Activity contextActivity) {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
@@ -44,7 +48,7 @@ public class SpotifyHandler {
         AuthorizationClient.openLoginActivity(contextActivity, AUTH_CODE_REQUEST_CODE, request);
     }
 
-    public ArrayList<String> getUserProfileData(String url, String accessToken) {
+    public ArrayList<String> getUserProfileData(String url, String dataType, String accessToken) {
         //ArrayList<String> topData = new ArrayList<>();
         if (accessToken == null) {
             return topData;
@@ -71,10 +75,16 @@ public class SpotifyHandler {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
                     final JSONArray jsonArray = jsonObject.getJSONArray("items");
                     topData.clear();
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        topData.add(jsonArray.getJSONObject(i).getString("name"));
+                    if (dataType.equals(IMAGE_DATA)) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONArray imageArray = jsonArray.getJSONObject(i).getJSONArray("images");
+                            topImages.add(imageArray.get(1).toString());
+                        }
+                    } else {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            topData.add(jsonArray.getJSONObject(i).getString(dataType));
+                        }
                     }
-                    Log.i("Inner Test", topData.toString());
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
                 }
@@ -87,8 +97,14 @@ public class SpotifyHandler {
                 e.printStackTrace();
             }
         }
-        Log.i("Outer Test",topData.toString());
+        if (dataType.equals(IMAGE_DATA)) {
+            return topImages;
+        }
         return topData;
+    }
+
+    public ArrayList<String> getTopArtistImageData(String accessToken) {
+        return getUserProfileData(TOP_ARTISTS_URL, IMAGE_DATA, accessToken);
     }
 
     private static Uri getRedirectUri() {

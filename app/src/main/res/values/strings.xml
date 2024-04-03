@@ -15,6 +15,6 @@
     <string name="delete_account">Delete Account</string>
     <string name="logout">Logout</string>
     <string name="welcome_message">Welcome, %1$s!</string>
-    <string name="use_llm_text_string">Generate taste predictions and recommendations using our AI wizard...</string>
-    <string name="use_ai_wizard_string">Use AI Wizard</string>
+    <string name="use_llm_text_string">Generate taste predictions and recommendations using our AI wizard, or play games based on your tastes!</string>
+    <string name="use_ai_wizard_string">Play</string>
 </resources>

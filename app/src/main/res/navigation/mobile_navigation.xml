@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_chooseprompt" >
     </fragment>
     <fragment
-        android:id="@+id/navigation_guessgame"
-        android:name="com.example.project2.ui.dashboard.GuessGameFragment"
-        android:label="Guess Game"
-        tools:layout="@layout/fragment_guessgame" >
+        android:id="@+id/navigation_popularitygame"
+        android:name="com.example.project2.ui.dashboard.PopularityGameFragment"
+        android:label="Popularity Game"
+        tools:layout="@layout/fragment_popularitygame" >
     </fragment>
     <fragment
         android:id="@+id/navigation_llmresponse"
