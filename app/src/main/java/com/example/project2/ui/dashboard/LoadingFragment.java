@@ -70,13 +70,14 @@ public class LoadingFragment extends Fragment {
                     String gptPrompt = prompt.first;
                     index = prompt.second;
 
-                    gptPrompt = gptPrompt + " Tell me in 2nd person point of view and in three sentences. " +
+                    gptPrompt = gptPrompt + " Tell me in 2nd person point of view and in three short sentences. " +
                             "Please sprinkle references to the artists in the prompt throughout your response.";
                     if (index == 2) gptPrompt = gptPrompt + " Do not suggest artists that are already in the list.";
 
+                    Log.i("gptPrompt", gptPrompt);
                     if (gptResponses[index] == null) {
                         gptResponses[index] = getGPTResponse(gptPrompt);
-
+                        Log.i("gptPromptInner", gptPrompt);
                     }
                     continueButton.setVisibility(View.VISIBLE);
                 }
@@ -109,15 +110,15 @@ public class LoadingFragment extends Fragment {
         int index = 0;
         switch (prompt) {
             case "personality":
-                gptPrompt = "What kind of personality would a person who listens to " + topArtists + " have?";
+                gptPrompt = "I listen to " + topArtists + ". What kind of personality do I have?";
                 index = 0;
                 break;
             case "fashion":
-                gptPrompt = "What would a person who listens to " + topArtists + " wear?";
+                gptPrompt = "I listen to " + topArtists + ". What kind of fashion do I have?";
                 index = 1;
                 break;
             case "artists":
-                gptPrompt = "What kind of artists would a person who listens to " + topArtists + " like?";
+                gptPrompt = "I listen to " + topArtists + ". What other artists would I like?";
                 index = 2;
                 break;
         }
