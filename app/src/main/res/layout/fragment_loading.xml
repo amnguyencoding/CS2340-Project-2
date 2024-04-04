@@ -40,11 +40,12 @@
 
         <Button
             android:id="@+id/loading_screen_continue_button"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
             android:fontFamily="@font/roboto_mono"
             android:text="Continue"
+            android:background="@drawable/rounded_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"

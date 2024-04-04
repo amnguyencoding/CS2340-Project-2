@@ -52,10 +52,10 @@
 
         <Button
             android:id="@+id/use_llm_button"
-            android:layout_width="166dp"
+            android:layout_width="100dp"
             android:layout_height="51dp"
             android:layout_marginBottom="72dp"
-            android:background="@drawable/rectangle_button"
+            android:background="@drawable/rounded_button"
             android:fontFamily="@font/roboto_mono"
             android:text="@string/use_ai_wizard_string"
             app:layout_constraintBottom_toBottomOf="parent"
