@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_chooseprompt" >
     </fragment>
     <fragment
+        android:id="@+id/navigation_songreleasedate"
+        android:name="com.example.project2.ui.dashboard.SongReleaseDateFragment"
+        android:label="Song Release Date Game"
+        tools:layout="@layout/fragment_song_release_date" >
+    </fragment>
+    <fragment
         android:id="@+id/navigation_popularitygame"
         android:name="com.example.project2.ui.dashboard.PopularityGameFragment"
         android:label="Popularity Game"
