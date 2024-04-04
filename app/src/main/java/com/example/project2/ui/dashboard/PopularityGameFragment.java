@@ -50,6 +50,7 @@ public class PopularityGameFragment extends Fragment {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        // Fetching image URLS and other data
         DocumentReference docRef = db.collection("users").document(uid);
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -58,10 +59,9 @@ public class PopularityGameFragment extends Fragment {
                     mAccessToken = document.getString("spotifyToken");
 
                     SpotifyHandler PopularityGameHandler = new SpotifyHandler();
-                    ArrayList<String> topArtists = PopularityGameHandler.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
-                            SpotifyHandler.NAME_DATA, mAccessToken);
+                    ArrayList<String> topArtists = PopularityGameHandler.getTopArtistNameData(mAccessToken);
                     ArrayList<String> topArtistsImages = PopularityGameHandler.getTopArtistImageData(mAccessToken);
-                    Log.i("TopImagesUrls",topArtistsImages.toString());
+                    ArrayList<Integer> topArtistsFollowers = PopularityGameHandler.getTopArtistFollowerData(mAccessToken);
 
                     int index = (int)(Math.random() * topArtists.size());
                 }

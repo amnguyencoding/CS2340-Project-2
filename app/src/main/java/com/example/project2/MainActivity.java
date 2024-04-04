@@ -66,9 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     mAccessToken = document.getString("spotifyToken");
 
                     //fetch data and store to arraylist -- figure out better way to store data later
-                    SpotifyHandler mainActivityHandler = new SpotifyHandler();
-                    topDataTest = mainActivityHandler.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
-                            SpotifyHandler.NAME_DATA, mAccessToken);
+                    //SpotifyHandler mainActivityHandler = new SpotifyHandler();
+                    //topDataTest = mainActivityHandler.getTopArtistNameData(mAccessToken);
 
                 } else {
                     // document does not exist (but we should never reach this point since we guaranteed the login
