@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +55,7 @@ public class SongReleaseDateFragment extends Fragment {
                     mAccessToken = document.getString("spotifyToken");
 
                     SpotifyHandler SongGameHandler = new SpotifyHandler();
-                    ArrayList<String> topTracks = SongGameHandler.getUserProfileData(SpotifyHandler.TOP_TRACKS_URL,
-                            SpotifyHandler.NAME_DATA, mAccessToken);
+                    ArrayList<String> topTracks = SongGameHandler.getTopTrackNameData();
                     // this toptracks doesnt work get cause spotify handler hasn't adapted the new method but it will work soon once we change the getuserprofiledata method
 
                 }

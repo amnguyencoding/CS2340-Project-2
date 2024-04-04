@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,8 +16,6 @@ import com.example.project2.GPTHandler;
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
 import com.example.project2.databinding.FragmentLoadingBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,7 +57,7 @@ public class LoadingFragment extends Fragment {
                     mAccessToken = document.getString("spotifyToken");
 
                     SpotifyHandler LLMResponseHandler = new SpotifyHandler();
-                    ArrayList<String> topArtists = LLMResponseHandler.getTopArtistNameData(mAccessToken);
+                    ArrayList<String> topArtists = LLMResponseHandler.getTopArtistNameData();
 
                     String promptInput = getArguments().getString("prompt");
 

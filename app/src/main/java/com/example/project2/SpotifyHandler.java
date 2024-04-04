@@ -14,6 +14,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -29,12 +32,12 @@ public class SpotifyHandler {
     private static final OkHttpClient mOkHttpClient = new OkHttpClient();
     private Call call;
     private static ArrayList<String> topData = new ArrayList<>();
-    private static ArrayList<String> topImages = new ArrayList<>();
+    private static ArrayList<String> topArtistImageURLS = new ArrayList<>();
+    private static ArrayList<String> topTrackNames = new ArrayList<>();
+    private static ArrayList<String> topTrackReleaseDates = new ArrayList<>();
+    private static ArrayList<String> topArtistFollowers = new ArrayList<>();
     public static final String TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists";
     public static final String TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
-    public static final String NAME_DATA = "name";
-    public static final String IMAGE_DATA = "images";
-    public static final String FOLLOWER_DATA = "total";
 
     private void fetchToken(Activity contextActivity) {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
@@ -46,10 +49,10 @@ public class SpotifyHandler {
         AuthorizationClient.openLoginActivity(contextActivity, AUTH_CODE_REQUEST_CODE, request);
     }
 
-    private ArrayList<String> getUserProfileData(String url, String dataType, String accessToken) {
+    public void getUserProfileData(String url, String accessToken) {
         //ArrayList<String> topData = new ArrayList<>();
         if (accessToken == null) {
-            return topData;
+            return;
         }
 
         //User profile request -- change URL to get different data
@@ -72,56 +75,78 @@ public class SpotifyHandler {
                 try {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
                     final JSONArray jsonArray = jsonObject.getJSONArray("items");
-                    topData.clear();
-                    switch (dataType) {
-                        case IMAGE_DATA:
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONArray imageArray = jsonArray.getJSONObject(i).getJSONArray("images");
-                                String imageURL = imageArray.getJSONObject(1).getString("url");
-                                topImages.add(imageURL);
-                            }
-                            break;
-                        case NAME_DATA:
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                topData.add(jsonArray.getJSONObject(i).getString(dataType));
-                            }
-                            break;
-                        case FOLLOWER_DATA:
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject followerObject = jsonArray.getJSONObject(i).getJSONObject("followers");
-                                String followerCount = followerObject.getString("total");
-                                topData.add(followerCount);
-                            }
-                            break;
-                    }
+                    clearDataLists(url);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        //Log.i("THERES A NEW", "ENTRY HERE!!\n\n\n");
+                        JSONObject itemObject = jsonArray.getJSONObject(i);
 
-                    } catch (JSONException e) {
+                        // Create a Map to store the JSON data
+                        Map<String, Object> jsonMap = new HashMap<>();
+
+                        // Iterate over the keys in the JSON object
+                        Iterator<String> keys = itemObject.keys();
+                        while (keys.hasNext()) {
+                            String key = keys.next();
+                            Object value = itemObject.get(key);
+                            jsonMap.put(key, value);
+                        }
+                        //Log.i("song title",jsonMap.get("name").toString());
+                        //Log.i("song title",jsonMap.get("name").toString());
+                        if (jsonMap.containsKey("album")) {
+                            JSONObject album = (JSONObject) jsonMap.get("album");
+//                                Log.i("ALBUM", album.toString());
+//                                Log.i("name", album.getString("name"));
+                            Log.i("release date", album.getString("release_date"));
+                        }
+                        if (url.equals(TOP_ARTISTS_URL)) {
+                            topData.add(jsonMap.get("name").toString());
+                            topArtistFollowers.add(((JSONObject) jsonMap.get("followers")).getString("total"));
+                            topArtistImageURLS.add(((JSONArray) jsonMap.get("images")).getJSONObject(1).getString("url"));
+                        } else if (url.equals(TOP_TRACKS_URL)) {
+                            topTrackNames.add(((JSONObject) jsonMap.get("album")).getString("name"));
+                            topTrackReleaseDates.add(((JSONObject) jsonMap.get("album")).getString("release_date"));
+                        }
+                    }
+                } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
                 }
             }
         });
-        while (topData.isEmpty() && (dataType.equals(NAME_DATA) || dataType.equals(FOLLOWER_DATA))
-                || topImages.isEmpty() && dataType.equals(IMAGE_DATA)) {
+
+        while (topData.isEmpty() && url.equals(TOP_ARTISTS_URL)
+                || topTrackNames.isEmpty() && url.equals(TOP_TRACKS_URL)) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        if (dataType.equals(IMAGE_DATA)) {
-            return topImages;
-        }
-        return topData;
     }
 
-    public ArrayList<String> getTopArtistImageData(String accessToken) {
-        return getUserProfileData(TOP_ARTISTS_URL, IMAGE_DATA, accessToken);
+    private void clearDataLists(String url) {
+        if (url.equals(TOP_ARTISTS_URL)) {
+            topArtistImageURLS.clear();
+            topArtistFollowers.clear();
+            topData.clear();
+        } else if(url.equals(TOP_TRACKS_URL))
+            topTrackNames.clear();
+            topTrackReleaseDates.clear();
     }
-    public ArrayList<String> getTopArtistNameData(String accessToken) {
-        return getUserProfileData(TOP_ARTISTS_URL, NAME_DATA, accessToken);
+
+    public ArrayList<String> getTopArtistImageData() {
+        return topArtistImageURLS;
     }
-    public ArrayList<Integer> getTopArtistFollowerData(String accessToken) {
-        ArrayList<String> followers = getUserProfileData(TOP_ARTISTS_URL, FOLLOWER_DATA, accessToken);
+    public ArrayList<String> getTopArtistNameData() {
+        return topData;
+    }
+    public ArrayList<String> getTopTrackNameData() {
+        return topTrackNames;
+    }
+    public ArrayList<String> getTopTrackReleaseDateData() {
+        return topTrackReleaseDates;
+    }
+    public ArrayList<Integer> getTopArtistFollowerData() {
+        ArrayList<String> followers = topArtistFollowers;
         ArrayList<Integer> followersInt = new ArrayList<>();
         for (String s : followers) {
             followersInt.add(Integer.parseInt(s));
