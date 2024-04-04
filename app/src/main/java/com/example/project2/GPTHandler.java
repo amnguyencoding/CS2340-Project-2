@@ -21,13 +21,13 @@ public class GPTHandler {
 
 
     private static final String OPENAI_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String dummyvarname = "test";
+    private static final String dummyvarname = "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";
     private static final OkHttpClient client = new OkHttpClient();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private static String GPTResponse;
 
 
-    public CompletableFuture<String> makeRequest() {
+    public CompletableFuture<String> makeRequest(String prompt) {
         CompletableFuture<String> future = new CompletableFuture<>();
 
         JSONObject jsonObject = new JSONObject();
@@ -42,7 +42,7 @@ public class GPTHandler {
 
             messageObject = new JSONObject();
             messageObject.put("role", "user");
-            messageObject.put("content", "Please describe how someone would think, dress, and act based on the fact that they listen to New Jeans and YOASOBI");
+            messageObject.put("content", prompt);
             messagesArray.put(messageObject);
 
             jsonObject.put("messages", messagesArray);

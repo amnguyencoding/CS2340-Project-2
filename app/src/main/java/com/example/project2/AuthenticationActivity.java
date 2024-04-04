@@ -82,13 +82,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         // Firebase authentication
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-        if (checkNameValid(fullName) && checkEmailValid(email) && checkPassWordValid(password)) {
-         // all fields should be filled in if this condition hits
-            // ^^ also need to check if the spotify account is connected to another exisiting account already
-            // to do this, prob just try to read from firestore if the spotify token exists in one of the elements already, then throw error
-            // actually** this is really annoying and kind of a hassle to do so maybe wait till later or ask the ta if we actually have to do this check
-            // wait also what if the user puts in an email that already exists in the database? do we have to check for that too?
-
+        if (checkNameValid(fullName) && checkEmailValid(email) && checkPasswordValid(password)) {
             firebaseAuthCreateAccount(fullName, email, password, mAuth);
         }
     }
@@ -133,7 +127,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         EditText email = findViewById(R.id.login_email);
         EditText password = findViewById(R.id.login_password);
 
-        if (checkEmailValid(email) && checkPassWordValid(password)){
+        if (checkEmailValid(email) && checkPasswordValid(password)){
             firebaseAuthLogin(email, password);
         }
     }
@@ -237,7 +231,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         }
     }
 
-    private boolean checkPassWordValid(EditText passwordEditText) {
+    private boolean checkPasswordValid(EditText passwordEditText) {
         boolean emptyField = passwordEditText.getText().toString().isEmpty();
         if (emptyField) {
             Toast.makeText(AuthenticationActivity.this, "Please enter your password",

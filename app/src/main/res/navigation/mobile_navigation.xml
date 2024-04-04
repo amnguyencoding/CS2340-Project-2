@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress NavigationFile -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,12 +11,43 @@
         android:name="com.example.project2.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
-
+    <fragment
+        android:id="@+id/navigation_chooseprompt"
+        android:name="com.example.project2.ui.dashboard.ChoosePromptFragment"
+        android:label="Choose Prompt"
+        tools:layout="@layout/fragment_chooseprompt" >
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_popularitygame"
+        android:name="com.example.project2.ui.dashboard.PopularityGameFragment"
+        android:label="Popularity Game"
+        tools:layout="@layout/fragment_popularitygame" >
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_llmresponse"
+        android:name="com.example.project2.ui.dashboard.LLMResponseFragment"
+        android:label="Response"
+        tools:layout="@layout/fragment_llmresponse">
+        <argument
+            android:name="prompt"
+            app:argType="string"/>
+    </fragment>
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.project2.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_loading"
+        android:name="com.example.project2.ui.dashboard.LoadingFragment"
+        android:label="Loading"
+        tools:layout="@layout/fragment_loading" >
+        <argument
+            android:name="prompt"
+            app:argType="string"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
