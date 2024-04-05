@@ -50,6 +50,7 @@ public class PopularityGameFragment extends Fragment {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        // Fetching image URLS and other data
         DocumentReference docRef = db.collection("users").document(uid);
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -57,11 +58,20 @@ public class PopularityGameFragment extends Fragment {
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
 
-                    SpotifyHandler PopularityGameHandler = new SpotifyHandler();
-                    ArrayList<String> topArtists = PopularityGameHandler.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
-                            SpotifyHandler.NAME_DATA, mAccessToken);
-                    ArrayList<String> topArtistsImages = PopularityGameHandler.getTopArtistImageData(mAccessToken);
-                    Log.i("TopImagesUrls",topArtistsImages.toString());
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken);
+                    ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
+                    ArrayList<String> topArtistsImages = SpotifyHandler.getTopArtistImageData();
+                    ArrayList<String> topTrackImages = SpotifyHandler.getTopTrackImageData();
+                    ArrayList<Integer> topArtistsFollowers = SpotifyHandler.getTopArtistFollowerData();
+                    ArrayList<String> topTracks = SpotifyHandler.getTopTrackNameData();
+                    ArrayList<String> topTracksReleaseDates = SpotifyHandler.getTopTrackReleaseDateData();
+                    Log.i("Artists",topArtists.toString());
+                    Log.i("Images",topArtistsImages.toString());
+                    Log.i("Followers",topArtistsFollowers.toString());
+                    Log.i("Tracks",topTracks.toString());
+                    Log.i("Release Dates",topTracksReleaseDates.toString());
+                    Log.i("Track URLS",topTrackImages.toString());
+
 
                     int index = (int)(Math.random() * topArtists.size());
                 }

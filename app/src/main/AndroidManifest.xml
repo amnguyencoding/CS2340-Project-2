@@ -32,30 +32,12 @@
                 <data android:host="auth" android:scheme="project2"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.auth.LoginActivity"
-            android:exported="true"
-            android:label="@string/login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <data android:host="auth" android:scheme="project2"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.auth.CreateAccountActivity"
-            android:exported="true"
-            android:label="@string/create_account">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <data android:host="auth" android:scheme="project2"/>
-            </intent-filter>
-        </activity>
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
+<!--
+    for image loading from URL
+-->
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

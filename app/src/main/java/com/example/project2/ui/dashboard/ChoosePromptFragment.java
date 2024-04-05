@@ -55,10 +55,11 @@ public class ChoosePromptFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.navigation_loading, bundle);
         });
 
+        Button songReleaseGameButton = root.findViewById(R.id.play_song_release_date_button);
+        songReleaseGameButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_songreleasedate));
+
         Button popularityGameButton = root.findViewById(R.id.play_popularity_guess_button);
-        popularityGameButton.setOnClickListener((v)-> {
-            Navigation.findNavController(v).navigate(R.id.navigation_popularitygame);
-        });
+        popularityGameButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_popularitygame));
 
         return root;
     }

@@ -62,9 +62,7 @@ public class ProfileFragment extends Fragment {
         uid = user.getUid();
 
         db.collection("users").document(uid)
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                .get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
@@ -78,8 +76,7 @@ public class ProfileFragment extends Fragment {
                     } else {
                         Log.d("Firestore", "get failed with ", task.getException());
                     }
-                }
-            });
+                });
 
         // need a "change spotify account" button? prob not right
         Button changeEmailButton = view.findViewById(R.id.change_email);

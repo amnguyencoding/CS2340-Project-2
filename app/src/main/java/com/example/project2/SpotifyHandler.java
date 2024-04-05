@@ -14,6 +14,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -27,16 +30,15 @@ public class SpotifyHandler {
     public static final int AUTH_TOKEN_REQUEST_CODE = 0;
     public static final int AUTH_CODE_REQUEST_CODE = 1;
     private static final OkHttpClient mOkHttpClient = new OkHttpClient();
-    /*private static String accessToken;
-    private String accessCode;*///fragments should pull from firebase for this info
-    private Call call;
-    private static ArrayList<String> topData = new ArrayList<>();
-    private static ArrayList<String> topImages = new ArrayList<>();
+    private static Call call;
+    private static ArrayList<String> topArtistNames = new ArrayList<>();
+    private static ArrayList<String> topArtistImageURLS = new ArrayList<>();
+    private static ArrayList<String> topTrackNames = new ArrayList<>();
+    private static ArrayList<String> topTrackReleaseDates = new ArrayList<>();
+    private static ArrayList<String> topArtistFollowers = new ArrayList<>();
+    private static ArrayList<String> topTrackImageURLs = new ArrayList<>();
     public static final String TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists";
     public static final String TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
-
-    public static final String NAME_DATA = "name";
-    public static final String IMAGE_DATA = "images";
 
     private void fetchToken(Activity contextActivity) {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
@@ -48,10 +50,10 @@ public class SpotifyHandler {
         AuthorizationClient.openLoginActivity(contextActivity, AUTH_CODE_REQUEST_CODE, request);
     }
 
-    public ArrayList<String> getUserProfileData(String url, String dataType, String accessToken) {
-        //ArrayList<String> topData = new ArrayList<>();
+    private static void getUserProfileData(String url, String accessToken) {
+        //ArrayList<String> topArtistNames = new ArrayList<>();
         if (accessToken == null) {
-            return topData;
+            return;
         }
 
         //User profile request -- change URL to get different data
@@ -74,15 +76,31 @@ public class SpotifyHandler {
                 try {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
                     final JSONArray jsonArray = jsonObject.getJSONArray("items");
-                    topData.clear();
-                    if (dataType.equals(IMAGE_DATA)) {
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONArray imageArray = jsonArray.getJSONObject(i).getJSONArray("images");
-                            topImages.add(imageArray.get(1).toString());
+                    clearDataLists(url);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        //Log.i("THERES A NEW", "ENTRY HERE!!\n\n\n");
+                        JSONObject itemObject = jsonArray.getJSONObject(i);
+
+                        // Create a Map to store the JSON data
+                        Map<String, Object> jsonMap = new HashMap<>();
+
+                        // Iterate over the keys in the JSON object
+                        Iterator<String> keys = itemObject.keys();
+                        while (keys.hasNext()) {
+                            String key = keys.next();
+                            Object value = itemObject.get(key);
+                            jsonMap.put(key, value);
                         }
-                    } else {
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            topData.add(jsonArray.getJSONObject(i).getString(dataType));
+                        //Log.i("song title",jsonMap.get("name").toString());
+                        //Log.i("song title",jsonMap.get("name").toString());
+                        if (url.equals(TOP_ARTISTS_URL)) {
+                            topArtistNames.add(jsonMap.get("name").toString());
+                            topArtistFollowers.add(((JSONObject) jsonMap.get("followers")).getString("total"));
+                            topArtistImageURLS.add(((JSONArray) jsonMap.get("images")).getJSONObject(1).getString("url"));
+                        } else if (url.equals(TOP_TRACKS_URL)) {
+                            topTrackNames.add(jsonMap.get("name").toString());
+                            topTrackReleaseDates.add(((JSONObject) jsonMap.get("album")).getString("release_date"));
+                            topTrackImageURLs.add(((JSONArray)(((JSONObject) jsonMap.get("album")).get("images"))).getJSONObject(1).getString("url"));
                         }
                     }
                 } catch (JSONException e) {
@@ -90,21 +108,55 @@ public class SpotifyHandler {
                 }
             }
         });
-        while (topData.isEmpty()) {
+
+        while (topArtistNames.isEmpty() && url.equals(TOP_ARTISTS_URL)
+                || topTrackNames.isEmpty() && url.equals(TOP_TRACKS_URL)) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        if (dataType.equals(IMAGE_DATA)) {
-            return topImages;
-        }
-        return topData;
     }
 
-    public ArrayList<String> getTopArtistImageData(String accessToken) {
-        return getUserProfileData(TOP_ARTISTS_URL, IMAGE_DATA, accessToken);
+    private static void clearDataLists(String url) {
+        if (url.equals(TOP_ARTISTS_URL)) {
+            topArtistImageURLS.clear();
+            topArtistFollowers.clear();
+            topArtistNames.clear();
+        } else if (url.equals(TOP_TRACKS_URL)) {
+            topTrackNames.clear();
+            topTrackReleaseDates.clear();
+        }
+    }
+
+    public static void populateArtistAndTrackData(String accessToken) {
+        getUserProfileData(TOP_TRACKS_URL, accessToken);
+        getUserProfileData(TOP_ARTISTS_URL, accessToken);
+    }
+
+    public static ArrayList<String> getTopArtistImageData() {
+        return topArtistImageURLS;
+    }
+    public static ArrayList<String> getTopTrackImageData() {
+        return topTrackImageURLs;
+    }
+    public static ArrayList<String> getTopArtistNameData() {
+        return topArtistNames;
+    }
+    public static ArrayList<String> getTopTrackNameData() {
+        return topTrackNames;
+    }
+    public static ArrayList<String> getTopTrackReleaseDateData() {
+        return topTrackReleaseDates;
+    }
+    public static ArrayList<Integer> getTopArtistFollowerData() {
+        ArrayList<String> followers = topArtistFollowers;
+        ArrayList<Integer> followersInt = new ArrayList<>();
+        for (String s : followers) {
+            followersInt.add(Integer.parseInt(s));
+        }
+        return followersInt;
     }
 
     private static Uri getRedirectUri() {
@@ -119,7 +171,7 @@ public class SpotifyHandler {
                 .build();
     }
 
-    private void cancelCall() {
+    private static void cancelCall() {
         if (call != null) {
             call.cancel();
         }

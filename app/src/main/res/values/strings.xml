@@ -2,7 +2,7 @@
     <string name="app_name">Spotify Wrapped</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-<!--    were definitely changing "dashboard" btw-->
+    <!--    were definitely changing "dashboard" btw-->
     <string name="title_profile">Profile</string>
     <string name="title_authentication">Authentication</string>
     <string name="create_account">Create Account</string>
@@ -17,4 +17,6 @@
     <string name="welcome_message">Welcome, %1$s!</string>
     <string name="use_llm_text_string">Generate taste predictions and recommendations using our AI wizard, or play games based on your tastes!</string>
     <string name="use_ai_wizard_string">Play</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="return_to_dashboard">Return to Dashboard</string>
 </resources>
