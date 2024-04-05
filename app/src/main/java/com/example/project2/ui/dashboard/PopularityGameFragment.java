@@ -61,6 +61,7 @@ public class PopularityGameFragment extends Fragment {
                     SpotifyHandler.populateArtistAndTrackData(mAccessToken);
                     ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
                     ArrayList<String> topArtistsImages = SpotifyHandler.getTopArtistImageData();
+                    ArrayList<String> topTrackImages = SpotifyHandler.getTopTrackImageData();
                     ArrayList<Integer> topArtistsFollowers = SpotifyHandler.getTopArtistFollowerData();
                     ArrayList<String> topTracks = SpotifyHandler.getTopTrackNameData();
                     ArrayList<String> topTracksReleaseDates = SpotifyHandler.getTopTrackReleaseDateData();
@@ -69,6 +70,7 @@ public class PopularityGameFragment extends Fragment {
                     Log.i("Followers",topArtistsFollowers.toString());
                     Log.i("Tracks",topTracks.toString());
                     Log.i("Release Dates",topTracksReleaseDates.toString());
+                    Log.i("Track URLS",topTrackImages.toString());
 
 
                     int index = (int)(Math.random() * topArtists.size());
