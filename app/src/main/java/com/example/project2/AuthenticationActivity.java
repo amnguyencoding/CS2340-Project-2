@@ -85,6 +85,8 @@ public class AuthenticationActivity extends AppCompatActivity {
         if (checkNameValid(fullName) && checkEmailValid(email) && checkPasswordValid(password)) {
             firebaseAuthCreateAccount(fullName, email, password, mAuth);
         }
+
+        SpotifyHandler.populateArtistAndTrackData(mAccessToken);
     }
 
     private void firebaseAuthCreateAccount(EditText fullName, EditText email, EditText password, FirebaseAuth mAuth) {
@@ -130,6 +132,9 @@ public class AuthenticationActivity extends AppCompatActivity {
         if (checkEmailValid(email) && checkPasswordValid(password)){
             firebaseAuthLogin(email, password);
         }
+
+        //Need to implement the reconnect to Spotify for log in
+        //SpotifyHandler.populateArtistAndTrackData(mAccessToken);
     }
 
     private void firebaseAuthLogin(EditText email, EditText password) {
