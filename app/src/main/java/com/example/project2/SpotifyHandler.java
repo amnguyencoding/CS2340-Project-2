@@ -36,6 +36,7 @@ public class SpotifyHandler {
     private static ArrayList<String> topTrackNames = new ArrayList<>();
     private static ArrayList<String> topTrackReleaseDates = new ArrayList<>();
     private static ArrayList<String> topArtistFollowers = new ArrayList<>();
+    private static ArrayList<String> topTrackImageURLs = new ArrayList<>();
     public static final String TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists";
     public static final String TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
 
@@ -92,19 +93,14 @@ public class SpotifyHandler {
                         }
                         //Log.i("song title",jsonMap.get("name").toString());
                         //Log.i("song title",jsonMap.get("name").toString());
-                        if (jsonMap.containsKey("album")) {
-                            JSONObject album = (JSONObject) jsonMap.get("album");
-//                                Log.i("ALBUM", album.toString());
-//                                Log.i("name", album.getString("name"));
-                            Log.i("release date", album.getString("release_date"));
-                        }
                         if (url.equals(TOP_ARTISTS_URL)) {
                             topArtistNames.add(jsonMap.get("name").toString());
                             topArtistFollowers.add(((JSONObject) jsonMap.get("followers")).getString("total"));
                             topArtistImageURLS.add(((JSONArray) jsonMap.get("images")).getJSONObject(1).getString("url"));
                         } else if (url.equals(TOP_TRACKS_URL)) {
-                            topTrackNames.add(((JSONObject) jsonMap.get("album")).getString("name"));
+                            topTrackNames.add(jsonMap.get("name").toString());
                             topTrackReleaseDates.add(((JSONObject) jsonMap.get("album")).getString("release_date"));
+                            topTrackImageURLs.add(((JSONArray)(((JSONObject) jsonMap.get("album")).get("images"))).getJSONObject(1).getString("url"));
                         }
                     }
                 } catch (JSONException e) {
@@ -141,6 +137,9 @@ public class SpotifyHandler {
 
     public static ArrayList<String> getTopArtistImageData() {
         return topArtistImageURLS;
+    }
+    public static ArrayList<String> getTopTrackImageData() {
+        return topTrackImageURLs;
     }
     public static ArrayList<String> getTopArtistNameData() {
         return topArtistNames;
