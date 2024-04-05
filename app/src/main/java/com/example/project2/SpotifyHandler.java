@@ -30,7 +30,7 @@ public class SpotifyHandler {
     public static final int AUTH_TOKEN_REQUEST_CODE = 0;
     public static final int AUTH_CODE_REQUEST_CODE = 1;
     private static final OkHttpClient mOkHttpClient = new OkHttpClient();
-    private Call call;
+    private static Call call;
     private static ArrayList<String> topArtistNames = new ArrayList<>();
     private static ArrayList<String> topArtistImageURLS = new ArrayList<>();
     private static ArrayList<String> topTrackNames = new ArrayList<>();
@@ -49,7 +49,7 @@ public class SpotifyHandler {
         AuthorizationClient.openLoginActivity(contextActivity, AUTH_CODE_REQUEST_CODE, request);
     }
 
-    public void getUserProfileData(String url, String accessToken) {
+    private static void getUserProfileData(String url, String accessToken) {
         //ArrayList<String> topArtistNames = new ArrayList<>();
         if (accessToken == null) {
             return;
@@ -123,7 +123,7 @@ public class SpotifyHandler {
         }
     }
 
-    private void clearDataLists(String url) {
+    private static void clearDataLists(String url) {
         if (url.equals(TOP_ARTISTS_URL)) {
             topArtistImageURLS.clear();
             topArtistFollowers.clear();
@@ -134,20 +134,24 @@ public class SpotifyHandler {
         }
     }
 
+    public static void populateArtistAndTrackData(String accessToken) {
+        getUserProfileData(TOP_TRACKS_URL, accessToken);
+        getUserProfileData(TOP_ARTISTS_URL, accessToken);
+    }
 
-    public ArrayList<String> getTopArtistImageData() {
+    public static ArrayList<String> getTopArtistImageData() {
         return topArtistImageURLS;
     }
-    public ArrayList<String> getTopArtistNameData() {
+    public static ArrayList<String> getTopArtistNameData() {
         return topArtistNames;
     }
-    public ArrayList<String> getTopTrackNameData() {
+    public static ArrayList<String> getTopTrackNameData() {
         return topTrackNames;
     }
-    public ArrayList<String> getTopTrackReleaseDateData() {
+    public static ArrayList<String> getTopTrackReleaseDateData() {
         return topTrackReleaseDates;
     }
-    public ArrayList<Integer> getTopArtistFollowerData() {
+    public static ArrayList<Integer> getTopArtistFollowerData() {
         ArrayList<String> followers = topArtistFollowers;
         ArrayList<Integer> followersInt = new ArrayList<>();
         for (String s : followers) {
@@ -168,7 +172,7 @@ public class SpotifyHandler {
                 .build();
     }
 
-    private void cancelCall() {
+    private static void cancelCall() {
         if (call != null) {
             call.cancel();
         }

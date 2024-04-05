@@ -56,8 +56,7 @@ public class LoadingFragment extends Fragment {
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
 
-                    SpotifyHandler LLMResponseHandler = new SpotifyHandler();
-                    ArrayList<String> topArtists = LLMResponseHandler.getTopArtistNameData();
+                    ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
 
                     String promptInput = getArguments().getString("prompt");
 

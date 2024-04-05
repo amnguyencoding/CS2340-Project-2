@@ -63,15 +63,7 @@ public class DashboardFragment extends Fragment {
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
 
-                    //fetch data and store to arraylist -- figure out better way to store data later
-//                        SpotifyHandler mainActivityHandler = new SpotifyHandler(call);
-//                        mainActivityHandler.getUserProfileData(MainActivity.this, SpotifyHandler.TOP_ARTISTS_URL,
-//                                mAccessToken);//maybe make this method return an arraylist idk
-                    /*SpotifyHandler dashboardHandlerTest = new SpotifyHandler();
-                    ArrayList<String> topArtists= dashboardHandlerTest.getUserProfileData(SpotifyHandler.TOP_ARTISTS_URL,
-                            mAccessToken);*/
-                    //TextView dataTest = (TextView) root.findViewById(R.id.text_dashboard);
-                    //dataTest.setText(topArtists.toString());
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken);
 
                 } else {
                     // document does not exist (but we should never reach this point since we guaranteed the login
