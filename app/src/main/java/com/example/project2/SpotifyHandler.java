@@ -31,7 +31,7 @@ public class SpotifyHandler {
     public static final int AUTH_CODE_REQUEST_CODE = 1;
     private static final OkHttpClient mOkHttpClient = new OkHttpClient();
     private Call call;
-    private static ArrayList<String> topData = new ArrayList<>();
+    private static ArrayList<String> topArtistNames = new ArrayList<>();
     private static ArrayList<String> topArtistImageURLS = new ArrayList<>();
     private static ArrayList<String> topTrackNames = new ArrayList<>();
     private static ArrayList<String> topTrackReleaseDates = new ArrayList<>();
@@ -50,7 +50,7 @@ public class SpotifyHandler {
     }
 
     public void getUserProfileData(String url, String accessToken) {
-        //ArrayList<String> topData = new ArrayList<>();
+        //ArrayList<String> topArtistNames = new ArrayList<>();
         if (accessToken == null) {
             return;
         }
@@ -99,7 +99,7 @@ public class SpotifyHandler {
                             Log.i("release date", album.getString("release_date"));
                         }
                         if (url.equals(TOP_ARTISTS_URL)) {
-                            topData.add(jsonMap.get("name").toString());
+                            topArtistNames.add(jsonMap.get("name").toString());
                             topArtistFollowers.add(((JSONObject) jsonMap.get("followers")).getString("total"));
                             topArtistImageURLS.add(((JSONArray) jsonMap.get("images")).getJSONObject(1).getString("url"));
                         } else if (url.equals(TOP_TRACKS_URL)) {
@@ -113,7 +113,7 @@ public class SpotifyHandler {
             }
         });
 
-        while (topData.isEmpty() && url.equals(TOP_ARTISTS_URL)
+        while (topArtistNames.isEmpty() && url.equals(TOP_ARTISTS_URL)
                 || topTrackNames.isEmpty() && url.equals(TOP_TRACKS_URL)) {
             try {
                 Thread.sleep(1000);
@@ -127,17 +127,19 @@ public class SpotifyHandler {
         if (url.equals(TOP_ARTISTS_URL)) {
             topArtistImageURLS.clear();
             topArtistFollowers.clear();
-            topData.clear();
-        } else if(url.equals(TOP_TRACKS_URL))
+            topArtistNames.clear();
+        } else if (url.equals(TOP_TRACKS_URL)) {
             topTrackNames.clear();
             topTrackReleaseDates.clear();
+        }
     }
+
 
     public ArrayList<String> getTopArtistImageData() {
         return topArtistImageURLS;
     }
     public ArrayList<String> getTopArtistNameData() {
-        return topData;
+        return topArtistNames;
     }
     public ArrayList<String> getTopTrackNameData() {
         return topTrackNames;
