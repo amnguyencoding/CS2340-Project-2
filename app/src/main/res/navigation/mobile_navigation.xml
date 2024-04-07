@@ -18,6 +18,42 @@
         tools:layout="@layout/fragment_chooseprompt" >
     </fragment>
     <fragment
+        android:id="@+id/navigation_wrapped_intro"
+        android:name="com.example.project2.ui.home.WrappedFragment"
+        android:label="Wrapped"
+        tools:layout="@layout/fragment_wrapped_intro" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_wrapped_artists"
+        android:name="com.example.project2.ui.home.ArtistFragment"
+        android:label="Top Artists"
+        tools:layout="@layout/fragment_artist">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_wrapped_songs"
+        android:name="com.example.project2.ui.home.SongsFragment"
+        android:label="Top Songs"
+        tools:layout="@layout/fragment_songs">
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_wrapped_genres"
+        android:name="com.example.project2.ui.home.GenresFragment"
+        android:label="Top Genres"
+        tools:layout="@layout/fragment_genres">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_wrapped_summary"
+        android:name="com.example.project2.ui.home.SummaryFragment"
+        android:label="Summary"
+        tools:layout="@layout/fragment_summary">
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_songreleasedate"
         android:name="com.example.project2.ui.dashboard.SongReleaseDateFragment"
         android:label="Song Release Date Game"
