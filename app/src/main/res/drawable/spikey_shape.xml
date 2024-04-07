@@ -1,0 +1,33 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <corners
+        android:radius="20dp" />
+
+    <solid android:color="#FF4081" /> <!-- Main color, adjust as needed -->
+
+    <size
+        android:width="200dp"
+        android:height="200dp" />
+
+    <item
+        android:left="10dp"
+        android:right="10dp"
+        android:top="10dp"
+        android:bottom="10dp">
+
+        <rotate
+            android:fromDegrees="45"
+            android:pivotX="50%"
+            android:pivotY="50%">
+
+            <shape android:shape="rectangle">
+                <solid android:color="#FFFFFF" /> <!-- Color for the spike, adjust as needed -->
+                <size
+                    android:width="20dp"
+                    android:height="100dp" /> <!-- Adjust the size of the spike -->
+            </shape>
+        </rotate>
+    </item>
+</shape>
+
