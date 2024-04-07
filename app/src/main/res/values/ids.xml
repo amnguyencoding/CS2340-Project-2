@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="numberOneImage" type="id" />
+    <item name="numberOneName" type="id" />
+    <item name="numberTwoImage" type="id" />
+    <item name="numberTwoName" type="id" />
+    <item name="numberThreeImage" type="id" />
+    <item name="numberThreeName" type="id" />
+    <item name="numberFourImage" type="id" />
+    <item name="numberFourName" type="id" />
+    <item name="numberFiveImage" type="id" />
+    <item name="numberFiveName" type="id" />
+</resources>
