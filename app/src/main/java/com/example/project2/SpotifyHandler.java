@@ -37,6 +37,8 @@ public class SpotifyHandler {
     private static ArrayList<String> topTrackReleaseDates = new ArrayList<>();
     private static ArrayList<String> topArtistFollowers = new ArrayList<>();
     private static ArrayList<String> topTrackImageURLs = new ArrayList<>();
+    private static ArrayList<String> topGenres = new ArrayList<>();
+
     public static final String TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists";
     public static final String TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
 
@@ -97,6 +99,10 @@ public class SpotifyHandler {
                             topArtistNames.add(jsonMap.get("name").toString());
                             topArtistFollowers.add(((JSONObject) jsonMap.get("followers")).getString("total"));
                             topArtistImageURLS.add(((JSONArray) jsonMap.get("images")).getJSONObject(1).getString("url"));
+                            JSONArray genresArray = itemObject.getJSONArray("genres");
+                            for (int j = 0; j < genresArray.length(); j++) {
+                                topGenres.add(genresArray.getString(j));
+                            }
                         } else if (url.equals(TOP_TRACKS_URL)) {
                             topTrackNames.add(jsonMap.get("name").toString());
                             topTrackReleaseDates.add(((JSONObject) jsonMap.get("album")).getString("release_date"));
@@ -150,6 +156,8 @@ public class SpotifyHandler {
     public static ArrayList<String> getTopTrackReleaseDateData() {
         return topTrackReleaseDates;
     }
+    public static ArrayList<String> getTopGenres() {return new ArrayList<>(topGenres);}
+
     public static ArrayList<Integer> getTopArtistFollowerData() {
         ArrayList<String> followers = topArtistFollowers;
         ArrayList<Integer> followersInt = new ArrayList<>();
