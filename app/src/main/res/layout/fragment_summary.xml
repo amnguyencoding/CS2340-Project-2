@@ -227,28 +227,29 @@
 
             <Button
                 android:id="@+id/summaryWrappedRestartButton"
-                android:textColor="@color/white"
-                android:text="Restart"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp">
-            </Button>
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rounded_button"
+                android:text="Restart"
+                android:textColor="@color/white"></Button>
 
             <Button
                 android:id="@+id/summaryWrappedSaveButton"
                 android:layout_width="100dp"
-                android:textColor="@color/white"
-                android:text="Save"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
-            </Button>
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rounded_button"
+                android:text="Save"
+                android:textColor="@color/white"></Button>
 
             <Button
                 android:id="@+id/summaryWrappedHomeButton"
                 android:layout_width="100dp"
                 android:textColor="@color/white"
+                android:background="@drawable/rounded_button"
                 android:text="Home"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"

@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -38,9 +39,12 @@ public class SpotifyHandler {
     private static ArrayList<String> topArtistFollowers = new ArrayList<>();
     private static ArrayList<String> topTrackImageURLs = new ArrayList<>();
     private static ArrayList<String> topGenres = new ArrayList<>();
-
-    public static final String TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists";
-    public static final String TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
+    private static final String SHORT_TERM_TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists?time_range=short_term";
+    private static final String SHORT_TERM_TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks?time_range=short_term";
+    private static final String MEDIUM_TERM_TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists";
+    private static final String MEDIUM_TERM_TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
+    private static final String LONG_TERM_TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists?time_range=long_term";
+    private static final String LONG_TERM_TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks?time_range=long_term";
 
     private void fetchToken(Activity contextActivity) {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
@@ -95,7 +99,7 @@ public class SpotifyHandler {
                         }
                         //Log.i("song title",jsonMap.get("name").toString());
                         //Log.i("song title",jsonMap.get("name").toString());
-                        if (url.equals(TOP_ARTISTS_URL)) {
+                        if (equalsArtistURL(url)) {
                             topArtistNames.add(jsonMap.get("name").toString());
                             topArtistFollowers.add(((JSONObject) jsonMap.get("followers")).getString("total"));
                             topArtistImageURLS.add(((JSONArray) jsonMap.get("images")).getJSONObject(1).getString("url"));
@@ -103,7 +107,7 @@ public class SpotifyHandler {
                             for (int j = 0; j < genresArray.length(); j++) {
                                 topGenres.add(genresArray.getString(j));
                             }
-                        } else if (url.equals(TOP_TRACKS_URL)) {
+                        } else if (equalsTrackURL(url)) {
                             topTrackNames.add(jsonMap.get("name").toString());
                             topTrackReleaseDates.add(((JSONObject) jsonMap.get("album")).getString("release_date"));
                             topTrackImageURLs.add(((JSONArray)(((JSONObject) jsonMap.get("album")).get("images"))).getJSONObject(1).getString("url"));
@@ -115,8 +119,8 @@ public class SpotifyHandler {
             }
         });
 
-        while (topArtistNames.isEmpty() && url.equals(TOP_ARTISTS_URL)
-                || topTrackNames.isEmpty() && url.equals(TOP_TRACKS_URL)) {
+        while (topArtistNames.isEmpty() && equalsArtistURL(url)
+                || topTrackNames.isEmpty() && equalsTrackURL(url)) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -126,19 +130,44 @@ public class SpotifyHandler {
     }
 
     private static void clearDataLists(String url) {
-        if (url.equals(TOP_ARTISTS_URL)) {
+        if (equalsArtistURL(url)) {
             topArtistImageURLS.clear();
             topArtistFollowers.clear();
             topArtistNames.clear();
-        } else if (url.equals(TOP_TRACKS_URL)) {
+        } else if (equalsTrackURL(url)) {
             topTrackNames.clear();
             topTrackReleaseDates.clear();
         }
     }
 
-    public static void populateArtistAndTrackData(String accessToken) {
-        getUserProfileData(TOP_TRACKS_URL, accessToken);
-        getUserProfileData(TOP_ARTISTS_URL, accessToken);
+    private static boolean equalsArtistURL(String url) {
+        return url.equals(SHORT_TERM_TOP_ARTISTS_URL)
+                || url.equals(MEDIUM_TERM_TOP_ARTISTS_URL)
+                || url.equals(LONG_TERM_TOP_ARTISTS_URL);
+    }
+
+    private static boolean equalsTrackURL(String url) {
+        return url.equals(SHORT_TERM_TOP_TRACKS_URL)
+                || url.equals(MEDIUM_TERM_TOP_TRACKS_URL)
+                || url.equals(LONG_TERM_TOP_TRACKS_URL);
+    }
+
+    public static void populateArtistAndTrackData(String accessToken, TimeRange timeRange) {
+        switch (timeRange) {
+            case SHORT_TERM:
+                getUserProfileData(SHORT_TERM_TOP_ARTISTS_URL, accessToken);
+                getUserProfileData(SHORT_TERM_TOP_TRACKS_URL, accessToken);
+                break;
+            case MEDIUM_TERM:
+                getUserProfileData(MEDIUM_TERM_TOP_ARTISTS_URL, accessToken);
+                getUserProfileData(MEDIUM_TERM_TOP_TRACKS_URL, accessToken);
+                break;
+            case LONG_TERM:
+                getUserProfileData(LONG_TERM_TOP_ARTISTS_URL, accessToken);
+                getUserProfileData(LONG_TERM_TOP_TRACKS_URL, accessToken);
+                break;
+        }
+
     }
 
     public static ArrayList<String> getTopArtistImageData() {
