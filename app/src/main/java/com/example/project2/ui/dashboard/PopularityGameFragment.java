@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
+import com.example.project2.TimeRange;
 import com.example.project2.databinding.FragmentPopularitygameBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,7 +59,7 @@ public class PopularityGameFragment extends Fragment {
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
 
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken);
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
                     ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
                     ArrayList<String> topArtistsImages = SpotifyHandler.getTopArtistImageData();
                     ArrayList<String> topTrackImages = SpotifyHandler.getTopTrackImageData();

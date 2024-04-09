@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
+import com.example.project2.TimeRange;
 import com.example.project2.databinding.FragmentArtistBinding;
 import com.example.project2.databinding.FragmentSongsBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -100,7 +101,7 @@ public class SongsFragment extends Fragment {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken);
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
                     ArrayList<String> topSongs = SpotifyHandler.getTopTrackNameData();
                     ArrayList<String> topSongsImages = SpotifyHandler.getTopTrackImageData();
 

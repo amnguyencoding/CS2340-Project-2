@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
+import com.example.project2.TimeRange;
 import com.example.project2.databinding.FragmentArtistBinding;
 import com.example.project2.databinding.FragmentGenresBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -104,7 +105,7 @@ public class GenresFragment extends Fragment {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken);
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
                     ArrayList<String> topGenres = SpotifyHandler.getTopGenres();
 
                     TextView genre1 = root.findViewById(R.id.genre1);

@@ -29,7 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import com.example.project2.TimeRange;
 import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
@@ -63,7 +63,7 @@ public class DashboardFragment extends Fragment {
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
 
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken);
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
 
                 } else {
                     // document does not exist (but we should never reach this point since we guaranteed the login
