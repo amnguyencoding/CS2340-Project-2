@@ -2,13 +2,20 @@ package com.example.project2.ui.dashboard;
 
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
+
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
@@ -25,7 +32,6 @@ import java.util.ArrayList;
 
 public class SongReleaseDateFragment extends Fragment {
 
-    private String mAccessToken;
     private FragmentSongReleaseDateBinding binding;
 
     @Override
@@ -41,26 +47,46 @@ public class SongReleaseDateFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.navigation_dashboard);
         });
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        String uid = user.getUid();
+        ArrayList<String> names = SpotifyHandler.getTopTrackNameData();
+        ArrayList<String> dates = SpotifyHandler.getTopTrackReleaseDateData();
+        ArrayList<String> images = SpotifyHandler.getTopTrackImageData();
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        int index = (int) (Math.random() * names.size());
+        int dateAnswer = Integer.parseInt(dates.get(index).substring(0,4));
 
-        DocumentReference docRef = db.collection("users").document(uid);
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    mAccessToken = document.getString("spotifyToken");
+        TextView gameText = root.findViewById(R.id.song_game_text);
+        gameText.setText("What year was the song " + names.get(index) + " released?");
 
-                    ArrayList<String> topTracks = SpotifyHandler.getTopTrackNameData();
-                    // this toptracks doesnt work get cause spotify handler hasn't adapted the new method but it will work soon once we change the getuserprofiledata method
+        ImageView songImage = root.findViewById(R.id.song_image);
+        Glide.with(requireContext()).load(images.get(index)).into(songImage);
 
+        Button submitGuess = root.findViewById(R.id.song_submit_guess);
+        submitGuess.setOnClickListener((v) -> {
+            EditText guessEditText = root.findViewById(R.id.song_game_year_guess);
+            String guess = guessEditText.getText().toString();
+            if (guess.length() != 4 || !isNumeric(guess)) {
+                Log.i("guess length", String.valueOf(guess.length()));
+                Log.i("isnumeric", String.valueOf(isNumeric(guess)));
+                Toast.makeText(getContext(), "Please enter a valid guess", Toast.LENGTH_SHORT).show();
+            } else {
+                int dateGuess = Integer.parseInt(guess);
+                if (dateGuess == dateAnswer) {
+                    Toast.makeText(getContext(), "Correct guess!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Incorrect guess, try again!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         return root;
+    }
+
+    private boolean isNumeric(String str) {
+        try {
+            int num = Integer.parseInt(str);
+        } catch (NumberFormatException e){
+            return false;
+        }
+        return true;
     }
 }

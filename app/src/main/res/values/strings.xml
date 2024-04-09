@@ -21,4 +21,7 @@
     <string name="return_to_dashboard">Return to Dashboard</string>
     <string name="view_wrapped">View Wrapped</string>
     <string name="spikey_shape_description" />
+    <string name="submit_guess">Submit Guess!</string>
+    <string name="song_release_year_text">What year was song released?</string>
+    <string name="guess_year">Year...</string>
 </resources>
