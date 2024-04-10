@@ -12,9 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.project2.R;
+import com.example.project2.TimeRange;
 import com.example.project2.databinding.FragmentSongsBinding;
 
 public class WrappedFragment extends Fragment {
+    private static TimeRange selectedTimeRange;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,25 +30,44 @@ public class WrappedFragment extends Fragment {
         Button wrapped4Weeks = view.findViewById(R.id.wrapped4Weeks);
         Button wrapped6Months = view.findViewById(R.id.wrapped6Months);
         Button wrappedLastYear = view.findViewById(R.id.wrappedLastYear);
+        Button home = view.findViewById(R.id.returnToHome);
         wrapped4Weeks.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                selectedTimeRange = TimeRange.SHORT_TERM;
                 Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
             }
         });
         wrapped6Months.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedTimeRange = TimeRange.MEDIUM_TERM;
                 Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
             }
         });
         wrappedLastYear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedTimeRange = TimeRange.LONG_TERM;
                 Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
             }
         });
+
+        home.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                selectedTimeRange = TimeRange.SHORT_TERM;
+                Navigation.findNavController(v).navigate(R.id.navigation_home);
+            }
+        });
+    }
+
+    public static TimeRange getSelectedTimeRange() {
+        return selectedTimeRange;
     }
 }
+
 
 

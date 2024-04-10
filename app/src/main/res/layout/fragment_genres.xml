@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center_vertical"
     android:orientation="vertical"
-    tools:context=".ui.home.SongsFragment"
+    tools:context=".ui.home.GenresFragment"
     android:layout_marginTop="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +28,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/roboto_mono"
                     android:paddingTop="10dp"
-                    android:text="Your Top Songs"
+                    android:text="Your Top Genres"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="35dp"

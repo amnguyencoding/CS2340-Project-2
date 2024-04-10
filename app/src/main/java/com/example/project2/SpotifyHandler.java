@@ -152,6 +152,7 @@ public class SpotifyHandler {
                 || url.equals(LONG_TERM_TOP_TRACKS_URL);
     }
 
+
     public static void populateArtistAndTrackData(String accessToken, TimeRange timeRange) {
         switch (timeRange) {
             case SHORT_TERM:

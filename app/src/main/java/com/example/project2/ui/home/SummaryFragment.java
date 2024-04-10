@@ -32,6 +32,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -105,7 +107,8 @@ public class SummaryFragment extends Fragment {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
+                    TimeRange selectedTimeRange = WrappedFragment.getSelectedTimeRange();
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, selectedTimeRange);
                     ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
                     ArrayList<String> topSongs = SpotifyHandler.getTopTrackNameData();
 
@@ -115,19 +118,19 @@ public class SummaryFragment extends Fragment {
 
 
                     TextView artist2name = root.findViewById(R.id.summaryWrappedArtist2);
-                    artist2name.setText("2. " +topArtists.get(1));
+                    artist2name.setText("2. " + topArtists.get(1));
 
 
                     TextView artist3name = root.findViewById(R.id.summaryWrappedArtist3);
-                    artist3name.setText("3. " +topArtists.get(2));
+                    artist3name.setText("3. " + topArtists.get(2));
 
 
                     TextView artist4name = root.findViewById(R.id.summaryWrappedArtist4);
-                    artist4name.setText("4. " +topArtists.get(3));
+                    artist4name.setText("4. " + topArtists.get(3));
 
 
                     TextView artist5name = root.findViewById(R.id.summaryWrappedArtist5);
-                    artist5name.setText("5. " +topArtists.get(4));
+                    artist5name.setText("5. " + topArtists.get(4));
 
                     TextView song1name = root.findViewById(R.id.summaryWrappedSong1);
                     song1name.setText("1. " + topSongs.get(0));
@@ -154,12 +157,9 @@ public class SummaryFragment extends Fragment {
                     Glide.with(requireContext()).load(SpotifyHandler.getTopArtistImageData().get(0)).into(song1Image);
 
 
-
-
                 }
             }
         });
-
 
 
         return root;
@@ -170,7 +170,7 @@ public class SummaryFragment extends Fragment {
 
         Button home = view.findViewById(R.id.summaryWrappedHomeButton);
         Button restart = view.findViewById(R.id.summaryWrappedRestartButton);
-
+        Button save = view.findViewById(R.id.summaryWrappedSaveButton);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,5 +186,38 @@ public class SummaryFragment extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
             }
         });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveDataToFirebase();
+            }
+        });
+
+    }
+
+    private void saveDataToFirebase() {
+        ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
+        ArrayList<String> topSongs = SpotifyHandler.getTopTrackNameData();
+        String topGenre = SpotifyHandler.getTopGenres().get(0);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> summaryData = new HashMap<>();
+        summaryData.put("topArtists", topArtists);
+        summaryData.put("topSongs", topSongs);
+        summaryData.put("topGenre", topGenre);
+
+        db.collection("summaryData")
+                .add(summaryData)
+                .addOnSuccessListener(documentReference -> {
+                    // Show success message or navigate to another fragment/activity
+                    Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
+                })
+                .addOnFailureListener(e -> {
+                    Log.w("TAG", "Error adding document", e);
+                    // Show error message or handle failure
+                });
+
     }
 }

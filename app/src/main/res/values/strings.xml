@@ -24,4 +24,5 @@
     <string name="submit_guess">Submit Guess!</string>
     <string name="song_release_year_text">What year was song released?</string>
     <string name="guess_year">Year...</string>
+    <string name="view_past_wrapped">VIEW PAST WRAPPED</string>
 </resources>

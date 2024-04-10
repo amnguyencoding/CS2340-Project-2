@@ -105,7 +105,8 @@ public class GenresFragment extends Fragment {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
+                    TimeRange selectedTimeRange = WrappedFragment.getSelectedTimeRange();
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, selectedTimeRange);
                     ArrayList<String> topGenres = SpotifyHandler.getTopGenres();
 
                     TextView genre1 = root.findViewById(R.id.genre1);

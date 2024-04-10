@@ -96,12 +96,15 @@ public class SongsFragment extends Fragment {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference docRef = db.collection("users").document(uid);
+
+
         docRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
+                    TimeRange selectedTimeRange = WrappedFragment.getSelectedTimeRange();
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, selectedTimeRange);
                     ArrayList<String> topSongs = SpotifyHandler.getTopTrackNameData();
                     ArrayList<String> topSongsImages = SpotifyHandler.getTopTrackImageData();
 

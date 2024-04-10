@@ -104,7 +104,8 @@ public class ArtistFragment extends Fragment {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
+                    TimeRange selectedTimeRange = WrappedFragment.getSelectedTimeRange();
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, selectedTimeRange);
                     ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
                     ArrayList<String> topArtistImages = SpotifyHandler.getTopArtistImageData();
 
@@ -175,3 +176,4 @@ public class ArtistFragment extends Fragment {
         });
     }
 }
+
