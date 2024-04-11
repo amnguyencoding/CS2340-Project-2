@@ -39,7 +39,6 @@
     </fragment>
 
 
-
     <fragment
         android:id="@+id/navigation_wrapped_genres"
         android:name="com.example.project2.ui.home.GenresFragment"
