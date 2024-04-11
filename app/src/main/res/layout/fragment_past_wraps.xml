@@ -13,16 +13,19 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="You currently have x saved wraps\nWhich wrap would you like to see?"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/past_wrap_pick_digit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/show_past_wrap_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="166dp"
+        android:layout_height="46dp"
+        android:background="@drawable/rounded_button"
         android:text="Show my wrapped!"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -37,6 +40,9 @@
         android:layout_marginBottom="24dp"
         android:ems="10"
         android:inputType="number"
+        android:backgroundTint="@color/textbox_select"
+        android:textColorHint="@color/spotify_subtitle"
+        android:textCursorDrawable="@drawable/text_cursor"
         app:layout_constraintBottom_toTopOf="@+id/show_past_wrap_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
