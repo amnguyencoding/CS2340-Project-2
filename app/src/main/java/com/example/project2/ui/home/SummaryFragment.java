@@ -51,6 +51,8 @@ public class SummaryFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String mAccessToken;
+    private String uid;
 
     public SummaryFragment() {
         // Required empty public constructor
@@ -73,9 +75,6 @@ public class SummaryFragment extends Fragment {
         return fragment;
     }
 
-    private String mAccessToken;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +96,7 @@ public class SummaryFragment extends Fragment {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        String uid = user.getUid();
+        uid = user.getUid();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -197,27 +196,37 @@ public class SummaryFragment extends Fragment {
     }
 
     private void saveDataToFirebase() {
-        ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
-        ArrayList<String> topSongs = SpotifyHandler.getTopTrackNameData();
-        String topGenre = SpotifyHandler.getTopGenres().get(0);
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
+        while (topArtists.size() > 5) topArtists.remove(topArtists.size() - 1);
+        ArrayList<String> topSongs = SpotifyHandler.getTopTrackNameData();
+        while (topSongs.size() > 5) topSongs.remove(topSongs.size() - 1);
+        String topGenre = SpotifyHandler.getTopGenres().get(0);
+        String topArtistImage = SpotifyHandler.getTopArtistImageData().get(0);
 
         Map<String, Object> summaryData = new HashMap<>();
         summaryData.put("topArtists", topArtists);
         summaryData.put("topSongs", topSongs);
         summaryData.put("topGenre", topGenre);
+        summaryData.put("topArtistImage", topArtistImage);
 
-        db.collection("summaryData")
-                .add(summaryData)
-                .addOnSuccessListener(documentReference -> {
-                    // Show success message or navigate to another fragment/activity
-                    Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
-                })
-                .addOnFailureListener(e -> {
-                    Log.w("TAG", "Error adding document", e);
-                    // Show error message or handle failure
-                });
+        db.collection("users/"+uid+"/summaryData").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                int index = task.getResult().size()+1;
 
+                db.collection("users/"+uid+"/summaryData").document(index+"")
+                        .set(summaryData)
+                        .addOnSuccessListener(documentReference -> {
+                            // Show success message or navigate to another fragment/activity
+                            Log.d("TAG", "DocumentSnapshot added with ID: " + index);
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.w("TAG", "Error adding document", e);
+                            // Show error message or handle failure
+                        });
+
+            }
+        });
     }
 }
