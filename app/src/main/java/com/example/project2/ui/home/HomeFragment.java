@@ -48,13 +48,19 @@ public class HomeFragment extends Fragment {
             // Navigate to WrappedFragment when the button is clicked
             Navigation.findNavController(v).navigate(R.id.navigation_wrapped_intro);
         });
+      
+        Button viewPastWraps = view.findViewById(R.id.viewPastWrappedButton);
+        viewPastWraps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.navigation_past_wraps);
+            }
+        });
         return root;
     }
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
 
     }
 }

@@ -18,6 +18,17 @@
         tools:layout="@layout/fragment_chooseprompt" >
     </fragment>
     <fragment
+        android:id="@+id/navigation_past_wraps"
+        android:name="com.example.project2.ui.home.PastWrapFragment"
+        android:label="Past Wraps"
+        tools:layout="@layout/fragment_past_wraps" />
+    <fragment
+        android:id="@+id/navigation_display_past_wrap"
+        android:name="com.example.project2.ui.home.DisplayPastWrapFragment"
+        android:label="View Past Wrap"
+        tools:layout="@layout/fragment_display_past_wrap" />
+
+    <fragment
         android:id="@+id/navigation_wrapped_intro"
         android:name="com.example.project2.ui.home.WrappedFragment"
         android:label="Wrapped"
