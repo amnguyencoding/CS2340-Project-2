@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.navigation_wrapped_intro);
         });
       
-        Button viewPastWraps = view.findViewById(R.id.viewPastWrappedButton);
+        Button viewPastWraps = root.findViewById(R.id.viewPastWrappedButton);
         viewPastWraps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
