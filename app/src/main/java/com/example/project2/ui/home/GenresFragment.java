@@ -70,10 +70,7 @@ public class GenresFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     private String mAccessToken;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,43 +90,22 @@ public class GenresFragment extends Fragment {
         BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
         navBar.setVisibility(View.GONE);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        String uid = user.getUid();
+        ArrayList<String> topGenres = SpotifyHandler.getTopGenres();
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        TextView genre1 = root.findViewById(R.id.genre1);
+        genre1.setText(topGenres.get(0));
 
-        DocumentReference docRef = db.collection("users").document(uid);
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    mAccessToken = document.getString("spotifyToken");
-                    TimeRange selectedTimeRange = WrappedFragment.getSelectedTimeRange();
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, selectedTimeRange);
-                    ArrayList<String> topGenres = SpotifyHandler.getTopGenres();
+        TextView genre2 = root.findViewById(R.id.genre2);
+        genre2.setText(topGenres.get(1));
 
-                    TextView genre1 = root.findViewById(R.id.genre1);
-                    genre1.setText(topGenres.get(0));
+        TextView genre3 = root.findViewById(R.id.genre3);
+        genre3.setText(topGenres.get(2));
 
-                    TextView genre2 = root.findViewById(R.id.genre2);
-                    genre2.setText(topGenres.get(1));
+        TextView genre4 = root.findViewById(R.id.genre4);
+        genre4.setText(topGenres.get(3));
 
-                    TextView genre3 = root.findViewById(R.id.genre3);
-                    genre3.setText(topGenres.get(2));
-
-                    TextView genre4 = root.findViewById(R.id.genre4);
-                    genre4.setText(topGenres.get(3));
-
-                    TextView genre5 = root.findViewById(R.id.genre5);
-                    genre5.setText(topGenres.get(4));
-
-
-
-
-                }
-            }
-        });
+        TextView genre5 = root.findViewById(R.id.genre5);
+        genre5.setText(topGenres.get(4));
 
 
 
