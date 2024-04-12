@@ -50,12 +50,7 @@ public class HomeFragment extends Fragment {
         });
       
         Button viewPastWraps = root.findViewById(R.id.viewPastWrappedButton);
-        viewPastWraps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.navigation_past_wraps);
-            }
-        });
+        viewPastWraps.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_past_wraps));
         return root;
     }
 

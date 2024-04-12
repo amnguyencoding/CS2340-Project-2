@@ -18,6 +18,7 @@ import com.example.project2.SpotifyHandler;
 import com.example.project2.TimeRange;
 import com.example.project2.databinding.FragmentDisplayPastWrapBinding;
 import com.example.project2.databinding.FragmentSummaryBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -38,6 +39,9 @@ public class DisplayPastWrapFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentDisplayPastWrapBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+        navBar.setVisibility(View.GONE);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
