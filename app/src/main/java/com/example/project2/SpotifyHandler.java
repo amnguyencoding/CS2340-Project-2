@@ -46,6 +46,15 @@ public class SpotifyHandler {
     private static final String LONG_TERM_TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists?time_range=long_term";
     private static final String LONG_TERM_TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks?time_range=long_term";
 
+    private static final String SHORT_TERM_TOP_TRACK_IMAGES_URL = "https://api.spotify.com/v1/me/top/tracks/images?time_range=short_term";
+    private static final String MEDIUM_TERM_TOP_TRACK_IMAGES_URL = "https://api.spotify.com/v1/me/top/tracks/images?time_range=medium_term";
+    private static final String LONG_TERM_TOP_TRACK_IMAGES_URL = "https://api.spotify.com/v1/me/top/tracks/images?time_range=long_term";
+
+    private static final String SHORT_TERM_TOP_GENRES_URL = "https://api.spotify.com/v1/me/top/tracks/genres?time_range=short_term";
+    private static final String MEDIUM_TERM_TOP_GENRES_URL = "https://api.spotify.com/v1/me/top/tracks/genres?time_range=medium_term";
+    private static final String LONG_TERM_TOP_GENRES_URL = "https://api.spotify.com/v1/me/top/tracks/genres?time_range=long_term";
+
+
     private void fetchToken(Activity contextActivity) {
         final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
         AuthorizationClient.openLoginActivity(contextActivity, AUTH_TOKEN_REQUEST_CODE, request);
@@ -154,22 +163,41 @@ public class SpotifyHandler {
 
 
     public static void populateArtistAndTrackData(String accessToken, TimeRange timeRange) {
+        // Clear existing data before fetching new data
+        clearDataLists();
+
         switch (timeRange) {
             case SHORT_TERM:
                 getUserProfileData(SHORT_TERM_TOP_ARTISTS_URL, accessToken);
                 getUserProfileData(SHORT_TERM_TOP_TRACKS_URL, accessToken);
+                getUserProfileData(SHORT_TERM_TOP_TRACK_IMAGES_URL, accessToken); // Add URL for fetching track images
+                getUserProfileData(SHORT_TERM_TOP_GENRES_URL, accessToken); // Add URL for fetching genres
                 break;
             case MEDIUM_TERM:
                 getUserProfileData(MEDIUM_TERM_TOP_ARTISTS_URL, accessToken);
                 getUserProfileData(MEDIUM_TERM_TOP_TRACKS_URL, accessToken);
+                getUserProfileData(MEDIUM_TERM_TOP_TRACK_IMAGES_URL, accessToken); // Add URL for fetching track images
+                getUserProfileData(MEDIUM_TERM_TOP_GENRES_URL, accessToken); // Add URL for fetching genres
                 break;
             case LONG_TERM:
                 getUserProfileData(LONG_TERM_TOP_ARTISTS_URL, accessToken);
                 getUserProfileData(LONG_TERM_TOP_TRACKS_URL, accessToken);
+                getUserProfileData(LONG_TERM_TOP_TRACK_IMAGES_URL, accessToken); // Add URL for fetching track images
+                getUserProfileData(LONG_TERM_TOP_GENRES_URL, accessToken); // Add URL for fetching genres
                 break;
         }
-
     }
+
+    private static void clearDataLists() {
+        topArtistImageURLS.clear();
+        topArtistFollowers.clear();
+        topArtistNames.clear();
+        topTrackNames.clear();
+        topTrackReleaseDates.clear();
+        topTrackImageURLs.clear();
+        topGenres.clear();
+    }
+
 
     public static ArrayList<String> getTopArtistImageData() {
         return topArtistImageURLS;
