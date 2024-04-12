@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
+import com.example.project2.TimeRange;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,6 +33,9 @@ public class PastWrapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
+        navBar.setVisibility(View.GONE);
+
         return inflater.inflate(R.layout.fragment_past_wraps, container, false);
     }
 
@@ -68,6 +73,9 @@ public class PastWrapFragment extends Fragment {
                 });
             }}
         );
+
+        Button homeButton = view.findViewById(R.id.past_wrapped_intro_to_home_button);
+        homeButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_home));
 
     }
 }
