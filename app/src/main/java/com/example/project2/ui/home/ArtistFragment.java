@@ -70,9 +70,6 @@ public class ArtistFragment extends Fragment {
         return fragment;
     }
 
-    private String mAccessToken;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,62 +89,43 @@ public class ArtistFragment extends Fragment {
         BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
         navBar.setVisibility(View.GONE);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        String uid = user.getUid();
+        ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
+        ArrayList<String> topArtistImages = SpotifyHandler.getTopArtistImageData();
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        DocumentReference docRef = db.collection("users").document(uid);
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    mAccessToken = document.getString("spotifyToken");
-                    TimeRange selectedTimeRange = WrappedFragment.getSelectedTimeRange();
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, selectedTimeRange);
-                    ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
-                    ArrayList<String> topArtistImages = SpotifyHandler.getTopArtistImageData();
-
-                    TextView artist1name = root.findViewById(R.id.numberOneName);
-                    artist1name.setText(topArtists.get(0));
+        TextView artist1name = root.findViewById(R.id.numberOneName);
+        artist1name.setText(topArtists.get(0));
 
 
-                    TextView artist2name = root.findViewById(R.id.numberTwoName);
-                    artist2name.setText(topArtists.get(1));
+        TextView artist2name = root.findViewById(R.id.numberTwoName);
+        artist2name.setText(topArtists.get(1));
 
 
-                    TextView artist3name = root.findViewById(R.id.numberThreeName);
-                    artist3name.setText(topArtists.get(2));
+        TextView artist3name = root.findViewById(R.id.numberThreeName);
+        artist3name.setText(topArtists.get(2));
 
 
-                    TextView artist4name = root.findViewById(R.id.numberFourName);
-                    artist4name.setText(topArtists.get(3));
+        TextView artist4name = root.findViewById(R.id.numberFourName);
+        artist4name.setText(topArtists.get(3));
 
 
-                    TextView artist5name = root.findViewById(R.id.numberFiveName);
-                    artist5name.setText(topArtists.get(4));
+        TextView artist5name = root.findViewById(R.id.numberFiveName);
+        artist5name.setText(topArtists.get(4));
 
 
-                    ImageView artist1Image = root.findViewById(R.id.numberOneImage);
-                    Glide.with(requireContext()).load(topArtistImages.get(0)).into(artist1Image);
+        ImageView artist1Image = root.findViewById(R.id.numberOneImage);
+        Glide.with(requireContext()).load(topArtistImages.get(0)).into(artist1Image);
 
-                    ImageView artist2Image = root.findViewById(R.id.numberTwoImage);
-                    Glide.with(requireContext()).load(topArtistImages.get(1)).into(artist2Image);
+        ImageView artist2Image = root.findViewById(R.id.numberTwoImage);
+        Glide.with(requireContext()).load(topArtistImages.get(1)).into(artist2Image);
 
-                    ImageView artist3Image = root.findViewById(R.id.numberThreeImage);
-                    Glide.with(requireContext()).load(topArtistImages.get(2)).into(artist3Image);
+        ImageView artist3Image = root.findViewById(R.id.numberThreeImage);
+        Glide.with(requireContext()).load(topArtistImages.get(2)).into(artist3Image);
 
-                    ImageView artist4Image = root.findViewById(R.id.numberFourImage);
-                    Glide.with(requireContext()).load(topArtistImages.get(3)).into(artist4Image);
+        ImageView artist4Image = root.findViewById(R.id.numberFourImage);
+        Glide.with(requireContext()).load(topArtistImages.get(3)).into(artist4Image);
 
-                    ImageView artist5Image = root.findViewById(R.id.numberFiveImage);
-                    Glide.with(requireContext()).load(topArtistImages.get(4)).into(artist5Image);
-
-                }
-            }
-        });
-
+        ImageView artist5Image = root.findViewById(R.id.numberFiveImage);
+        Glide.with(requireContext()).load(topArtistImages.get(4)).into(artist5Image);
 
 
         return root;

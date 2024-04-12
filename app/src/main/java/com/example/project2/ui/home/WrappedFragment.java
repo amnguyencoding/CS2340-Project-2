@@ -12,11 +12,18 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.project2.R;
+import com.example.project2.SpotifyHandler;
 import com.example.project2.TimeRange;
 import com.example.project2.databinding.FragmentSongsBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class WrappedFragment extends Fragment {
     private static TimeRange selectedTimeRange;
+    private String mAccessToken;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,37 +38,49 @@ public class WrappedFragment extends Fragment {
         Button wrapped6Months = view.findViewById(R.id.wrapped6Months);
         Button wrappedLastYear = view.findViewById(R.id.wrappedLastYear);
         Button home = view.findViewById(R.id.returnToHome);
-        wrapped4Weeks.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                selectedTimeRange = TimeRange.SHORT_TERM;
-                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
-            }
-        });
-        wrapped6Months.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedTimeRange = TimeRange.MEDIUM_TERM;
-                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
-            }
-        });
-        wrappedLastYear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedTimeRange = TimeRange.LONG_TERM;
-                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = db.collection("users").document(uid);
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    mAccessToken = document.getString("spotifyToken");
+                }
             }
         });
 
-        home.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                selectedTimeRange = TimeRange.SHORT_TERM;
-                Navigation.findNavController(v).navigate(R.id.navigation_home);
-            }
+        wrapped4Weeks.setOnClickListener(v -> {
+            selectedTimeRange = TimeRange.SHORT_TERM;
+            populateDataBasedOnTimeRange();
+            Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
         });
+        wrapped6Months.setOnClickListener(v -> {
+            selectedTimeRange = TimeRange.MEDIUM_TERM;
+            populateDataBasedOnTimeRange();
+            Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
+        });
+        wrappedLastYear.setOnClickListener(v -> {
+            selectedTimeRange = TimeRange.LONG_TERM;
+            populateDataBasedOnTimeRange();
+            Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
+        });
+
+        home.setOnClickListener(v -> {
+            selectedTimeRange = TimeRange.MEDIUM_TERM;
+            populateDataBasedOnTimeRange();
+            Navigation.findNavController(v).navigate(R.id.navigation_home);
+        });
+    }
+    private void populateDataBasedOnTimeRange() {
+        if (mAccessToken != null) {
+            SpotifyHandler.populateArtistAndTrackData(mAccessToken, selectedTimeRange);
+        }
     }
 
     public static TimeRange getSelectedTimeRange() {

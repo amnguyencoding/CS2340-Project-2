@@ -40,75 +40,60 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="Top Artists"
+                    android:text="Top Artists:"
+                    android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white">
+                    android:textStyle="bold">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedArtist1"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_height="40dp"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:text="Top Artists">
+                    android:textSize="16dp">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedArtist2"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_height="40dp"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:text="Top Artists">
+                    android:textSize="16dp">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedArtist3"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_height="40dp"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:text="Top Artists">
+                    android:textSize="16dp">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedArtist4"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="Top Artists">
+                    android:textSize="16dp">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedArtist5"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="Top Artists">
-
-                </TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="Minutes Listened">
+                    android:textSize="16dp">
 
                 </TextView>
 
@@ -116,10 +101,10 @@
                     android:id="@+id/summaryMinutesListened"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
+                    android:text="Top Genre:"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="Top Artists">
+                    android:textStyle="bold">
 
                 </TextView>
 
@@ -134,76 +119,61 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:textColor="@color/white"
                     android:layout_height="35dp"
+                    android:text="Top Songs:"
+                    android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="Top Songs">
+                    android:textStyle="bold">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedSong1"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_height="40dp"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:text="Top Artists">
+                    android:textSize="16dp">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedSong2"
                     android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_height="35dp"
-                    android:text="Top Artists">
+                    android:textSize="16dp">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedSong3"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_height="40dp"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:text="Top Artists">
+                    android:textSize="16dp">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedSong4"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_height="40dp"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:text="Top Artists">
+                    android:textSize="16dp">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedSong5"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:layout_height="40dp"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:text="Top Artists">
-
-                </TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:text="Top Genre">
+                    android:textSize="16dp">
 
                 </TextView>
 
@@ -211,10 +181,9 @@
                     android:id="@+id/summaryWrappedTopGenre"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:text="Top Artists">
+                    android:textSize="16dp">
 
                 </TextView>
 

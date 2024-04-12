@@ -94,72 +94,52 @@ public class SummaryFragment extends Fragment {
         BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
         navBar.setVisibility(View.GONE);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        uid = user.getUid();
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        DocumentReference docRef = db.collection("users").document(uid);
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    mAccessToken = document.getString("spotifyToken");
-                    TimeRange selectedTimeRange = WrappedFragment.getSelectedTimeRange();
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, selectedTimeRange);
-                    ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
-                    ArrayList<String> topSongs = SpotifyHandler.getTopTrackNameData();
+        ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
+        ArrayList<String> topSongs = SpotifyHandler.getTopTrackNameData();
 
 
-                    TextView artist1name = root.findViewById(R.id.summaryWrappedArtist1);
-                    artist1name.setText("1. " + topArtists.get(0));
+        TextView artist1name = root.findViewById(R.id.summaryWrappedArtist1);
+        artist1name.setText("1. " + topArtists.get(0));
 
 
-                    TextView artist2name = root.findViewById(R.id.summaryWrappedArtist2);
-                    artist2name.setText("2. " + topArtists.get(1));
+        TextView artist2name = root.findViewById(R.id.summaryWrappedArtist2);
+        artist2name.setText("2. " + topArtists.get(1));
 
 
-                    TextView artist3name = root.findViewById(R.id.summaryWrappedArtist3);
-                    artist3name.setText("3. " + topArtists.get(2));
+        TextView artist3name = root.findViewById(R.id.summaryWrappedArtist3);
+        artist3name.setText("3. " + topArtists.get(2));
 
 
-                    TextView artist4name = root.findViewById(R.id.summaryWrappedArtist4);
-                    artist4name.setText("4. " + topArtists.get(3));
+        TextView artist4name = root.findViewById(R.id.summaryWrappedArtist4);
+        artist4name.setText("4. " + topArtists.get(3));
 
 
-                    TextView artist5name = root.findViewById(R.id.summaryWrappedArtist5);
-                    artist5name.setText("5. " + topArtists.get(4));
+        TextView artist5name = root.findViewById(R.id.summaryWrappedArtist5);
+        artist5name.setText("5. " + topArtists.get(4));
 
-                    TextView song1name = root.findViewById(R.id.summaryWrappedSong1);
-                    song1name.setText("1. " + topSongs.get(0));
+        TextView song1name = root.findViewById(R.id.summaryWrappedSong1);
+        song1name.setText("1. " + topSongs.get(0));
 
-                    TextView song2name = root.findViewById(R.id.summaryWrappedSong2);
-                    song2name.setText("2. " + topSongs.get(1));
-
-
-                    TextView song3name = root.findViewById(R.id.summaryWrappedSong3);
-                    song3name.setText("3. " + topSongs.get(2));
+        TextView song2name = root.findViewById(R.id.summaryWrappedSong2);
+        song2name.setText("2. " + topSongs.get(1));
 
 
-                    TextView song4name = root.findViewById(R.id.summaryWrappedSong4);
-                    song4name.setText("4. " + topSongs.get(3));
+        TextView song3name = root.findViewById(R.id.summaryWrappedSong3);
+        song3name.setText("3. " + topSongs.get(2));
 
 
-                    TextView song5name = root.findViewById(R.id.summaryWrappedSong5);
-                    song5name.setText("5. " + topSongs.get(4));
-
-                    TextView genre1 = root.findViewById(R.id.summaryWrappedTopGenre);
-                    genre1.setText(SpotifyHandler.getTopGenres().get(0));
-
-                    ImageView song1Image = root.findViewById(R.id.summaryWrappedImage);
-                    Glide.with(requireContext()).load(SpotifyHandler.getTopArtistImageData().get(0)).into(song1Image);
+        TextView song4name = root.findViewById(R.id.summaryWrappedSong4);
+        song4name.setText("4. " + topSongs.get(3));
 
 
-                }
-            }
-        });
+        TextView song5name = root.findViewById(R.id.summaryWrappedSong5);
+        song5name.setText("5. " + topSongs.get(4));
 
+        TextView genre1 = root.findViewById(R.id.summaryWrappedTopGenre);
+        genre1.setText(SpotifyHandler.getTopGenres().get(0));
+
+        ImageView song1Image = root.findViewById(R.id.summaryWrappedImage);
+        Glide.with(requireContext()).load(SpotifyHandler.getTopArtistImageData().get(0)).into(song1Image);
 
         return root;
     }
