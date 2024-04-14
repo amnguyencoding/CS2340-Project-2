@@ -3,6 +3,7 @@ package com.example.project2;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     private TextView tokenTextView, codeTextView;
     private ActivityAuthenticationBinding binding;
     private FirebaseAuth mAuth;
+    private boolean createAccountOrLogin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +49,35 @@ public class AuthenticationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        Button connectSpotify = findViewById(R.id.connect_spotify);
-
         Button createAccountText = findViewById(R.id.create_account_text);
         Button loginText = findViewById(R.id.login_text);
+        Button connectSpotifyCreateAccount = findViewById(R.id.connect_to_spotify_on_create_account_button);
+        Button connectSpotifyLogin = findViewById(R.id.connect_to_spotify_on_login_button);
         LinearLayout createAccountLayout = findViewById(R.id.create_account_layout);
         LinearLayout loginLayout = findViewById(R.id.login_layout);
         loginLayout.setVisibility(View.GONE);
 
-        createAccountText.setOnClickListener((v) -> showCreateAccount(createAccountLayout, loginLayout));
+        createAccountText.setOnClickListener((v) -> {
+            showCreateAccount(createAccountLayout, loginLayout);
+            connectSpotifyLogin.setText("Connect To Spotify");
+            connectSpotifyLogin.setClickable(true);
+        });
 
-        loginText.setOnClickListener((v) -> showLogin(createAccountLayout, loginLayout));
+        loginText.setOnClickListener((v) -> {
+            showLogin(createAccountLayout, loginLayout);
+            connectSpotifyCreateAccount.setText("Connect To Spotify");
+            connectSpotifyCreateAccount.setClickable(true);
+        });
 
-        connectSpotify.setOnClickListener((v) -> getToken());
-        // once the user is connected the text on the button would ideally change to something like "Spotify Connected" so that the user knows
-        // but im not sure how to wait till the spotify sign in is actually done to change the text
+        connectSpotifyCreateAccount.setOnClickListener((v) -> {
+            createAccountOrLogin = false;
+            getToken();
+        });
+
+        connectSpotifyLogin.setOnClickListener((v) -> {
+            createAccountOrLogin = true;
+            getToken();
+        });
 
         Button createAccountButton = findViewById(R.id.create_account_button);
         createAccountButton.setOnClickListener(v -> createAccount());
@@ -82,7 +98,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         // Firebase authentication
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-        if (checkNameValid(fullName) && checkEmailValid(email) && checkPasswordValid(password)) {
+        if (checkNameValid(fullName) && checkEmailValid(email) && checkPasswordValid(password) && checkSpotifyConnected()) {
             firebaseAuthCreateAccount(fullName, email, password, mAuth);
         }
 
@@ -97,7 +113,6 @@ public class AuthenticationActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-
                             String uid = user.getUid();
                             // honestly, i dont know whether to store the uid or the email/pw combo ig we'll see what to use later
 
@@ -129,7 +144,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         EditText email = findViewById(R.id.login_email);
         EditText password = findViewById(R.id.login_password);
 
-        if (checkEmailValid(email) && checkPasswordValid(password)){
+        if (checkEmailValid(email) && checkPasswordValid(password) && checkSpotifyConnected()){
             firebaseAuthLogin(email, password);
         }
 
@@ -141,6 +156,14 @@ public class AuthenticationActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        String uid = user.getUid();
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        db.collection("users").document(uid).update("spotifyToken", mAccessToken);
+
+                        Toast.makeText(AuthenticationActivity.this, "Logged in!",
+                                Toast.LENGTH_SHORT).show();
+
                         Intent i = new Intent(AuthenticationActivity.this, MainActivity.class);
                         startActivity(i);
                     } else {
@@ -186,13 +209,16 @@ public class AuthenticationActivity extends AppCompatActivity {
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
             mAccessToken = response.getAccessToken();
 
-            // changes the text on the button to "Spotify Connected" and makes it unclickable
-            Button connectSpotify = findViewById(R.id.connect_spotify);
-            connectSpotify.setText("Spotify Connected");
-            connectSpotify.setClickable(false);
-            // just putting this here for now, it might need to be moved later. perhaps moving it outside of the if statement.
-                // but if we move it outside the if statement, the text should only change if the login is actually successful so amybe just be 100% sure on double checking all that
-//            setTextAsync(mAccessToken, tokenTextView);
+            if (createAccountOrLogin == false) {
+                // changes the text on the button to "Spotify Connected" and makes it unclickable
+                Button connectSpotifyCreateAccount = findViewById(R.id.connect_to_spotify_on_create_account_button);
+                connectSpotifyCreateAccount.setText("Spotify Connected");
+                connectSpotifyCreateAccount.setClickable(false);
+            } else {
+                Button connectSpotifyLogin = findViewById(R.id.connect_to_spotify_on_login_button);
+                connectSpotifyLogin.setText("Spotify Connected");
+                connectSpotifyLogin.setClickable(false);
+            }
 
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
             mAccessCode = response.getCode();
@@ -241,18 +267,20 @@ public class AuthenticationActivity extends AppCompatActivity {
             return false;
         }
         boolean tooShort = passwordEditText.getText().toString().length() < 6;
-        boolean notConnectedToSpotify = mAccessToken == null;
         if (tooShort) {
             Toast.makeText(AuthenticationActivity.this, "Please enter a password that is 6 characters or longer",
                     Toast.LENGTH_SHORT).show();
             return false;
-//        } else if (notConnectedToSpotify) {
-//            Toast.makeText(AuthenticationActivity.this, "Please connect to Spotify",
-//                    Toast.LENGTH_SHORT).show();
-//            return false;
-            // make this not run on login
         } else {
             return true;
         }
+    }
+
+    private boolean checkSpotifyConnected() {
+        if (mAccessToken == null) {
+            Toast.makeText(AuthenticationActivity.this, "Please connect to Spotify first!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }
