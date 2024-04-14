@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
@@ -35,54 +36,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ArtistFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SummaryFragment extends Fragment {
     private FragmentSummaryBinding binding;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private String mAccessToken;
     private String uid;
-
-    public SummaryFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ArtistFragment.
-     */
-    public static ArtistFragment newInstance(String param1, String param2) {
-        ArtistFragment fragment = new ArtistFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -169,6 +126,7 @@ public class SummaryFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(), "Wrap Saved!", Toast.LENGTH_SHORT).show();
                 saveDataToFirebase();
             }
         });
@@ -176,6 +134,9 @@ public class SummaryFragment extends Fragment {
     }
 
     private void saveDataToFirebase() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        String uid = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
@@ -191,7 +152,7 @@ public class SummaryFragment extends Fragment {
         summaryData.put("topGenre", topGenre);
         summaryData.put("topArtistImage", topArtistImage);
 
-        db.collection("users/"+uid+"/summaryData").get().addOnCompleteListener(task -> {
+            db.collection("users/"+uid+"/summaryData").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 int index = task.getResult().size()+1;
 

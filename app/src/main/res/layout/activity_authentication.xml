@@ -109,7 +109,7 @@
                     android:layout_height="match_parent">
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/connect_spotify"
+                        android:id="@+id/connect_to_spotify_on_create_account_button"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="106dp"
@@ -181,6 +181,16 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/connect_to_spotify_on_login_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Connect to Spotify"
+                        app:layout_constraintBottom_toTopOf="@+id/login_button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/login_button"
