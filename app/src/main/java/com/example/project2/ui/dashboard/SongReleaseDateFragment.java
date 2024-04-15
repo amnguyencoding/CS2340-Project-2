@@ -48,6 +48,7 @@ public class SongReleaseDateFragment extends Fragment {
         });
 
         ArrayList<String> names = SpotifyHandler.getTopTrackNameData();
+        ArrayList<String> artists = SpotifyHandler.getTopTrackAuthors();
         ArrayList<String> dates = SpotifyHandler.getTopTrackReleaseDateData();
         ArrayList<String> images = SpotifyHandler.getTopTrackImageData();
 
@@ -55,7 +56,7 @@ public class SongReleaseDateFragment extends Fragment {
         int dateAnswer = Integer.parseInt(dates.get(index).substring(0,4));
 
         TextView gameText = root.findViewById(R.id.song_game_text);
-        gameText.setText("What year was the song " + names.get(index) + " released?");
+        gameText.setText("What year was the song " + names.get(index) + " by " + artists.get(index) + " released?");
 
         ImageView songImage = root.findViewById(R.id.song_image);
         Glide.with(requireContext()).load(images.get(index)).into(songImage);

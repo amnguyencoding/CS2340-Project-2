@@ -43,7 +43,8 @@
                     android:text="Top Artists:"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textStyle="bold"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -53,7 +54,8 @@
                     android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -63,7 +65,8 @@
                     android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -73,8 +76,8 @@
                     android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="16dp">
-
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
                 </TextView>
 
                 <TextView
@@ -83,7 +86,8 @@
                     android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -93,7 +97,8 @@
                     android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -104,7 +109,8 @@
                     android:text="Top Genre:"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textStyle="bold"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -123,7 +129,8 @@
                     android:text="Top Songs:"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textStyle="bold"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -143,7 +150,8 @@
                     android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -153,7 +161,8 @@
                     android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -163,7 +172,8 @@
                     android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -173,7 +183,8 @@
                     android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -183,7 +194,8 @@
                     android:layout_height="45dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="16dp">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -204,7 +216,8 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_button"
                 android:text="Restart"
-                android:textColor="@color/white"></Button>
+                android:textColor="@color/white">
+            </Button>
 
             <Button
                 android:id="@+id/summaryWrappedSaveButton"
@@ -214,7 +227,8 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_button"
                 android:text="Save"
-                android:textColor="@color/white"></Button>
+                android:textColor="@color/white">
+            </Button>
 
             <Button
                 android:id="@+id/summaryWrappedHomeButton"
@@ -224,7 +238,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/rounded_button"
                 android:text="Home"
-                android:textColor="@color/white"></Button>
+                android:textColor="@color/white">
+            </Button>
 
         </LinearLayout>
 

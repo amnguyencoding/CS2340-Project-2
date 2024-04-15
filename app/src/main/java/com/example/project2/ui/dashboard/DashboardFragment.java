@@ -50,31 +50,6 @@ public class DashboardFragment extends Fragment {
         BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
         navBar.setVisibility(View.VISIBLE);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        String uid = user.getUid();
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        DocumentReference docRef = db.collection("users").document(uid);
-        docRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    mAccessToken = document.getString("spotifyToken");
-
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
-
-                } else {
-                    // document does not exist (but we should never reach this point since we guaranteed the login
-                    Log.i("lots of errors", "No such document");
-                }
-            } else {
-                // could not get the document (some other error)
-                Log.i("lots of ", "get failed with ", task.getException());
-            }
-        });
-
         Button useLLMButton = root.findViewById(R.id.use_llm_button);
         useLLMButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_chooseprompt));
 

@@ -35,6 +35,7 @@ public class SpotifyHandler {
     private static ArrayList<String> topArtistNames = new ArrayList<>();
     private static ArrayList<String> topArtistImageURLS = new ArrayList<>();
     private static ArrayList<String> topTrackNames = new ArrayList<>();
+    private static ArrayList<String> topTrackAuthors = new ArrayList<>();
     private static ArrayList<String> topTrackReleaseDates = new ArrayList<>();
     private static ArrayList<String> topArtistFollowers = new ArrayList<>();
     private static ArrayList<String> topTrackImageURLs = new ArrayList<>();
@@ -118,6 +119,10 @@ public class SpotifyHandler {
                             }
                         } else if (equalsTrackURL(url)) {
                             topTrackNames.add(jsonMap.get("name").toString());
+                            JSONArray trackAuthors = ((JSONArray) jsonMap.get("artists"));
+                            for (int j = 0; j < trackAuthors.length(); j++) {
+                                topTrackAuthors.add(((JSONObject) trackAuthors.get(j)).getString("name"));
+                            }
                             topTrackReleaseDates.add(((JSONObject) jsonMap.get("album")).getString("release_date"));
                             topTrackImageURLs.add(((JSONArray)(((JSONObject) jsonMap.get("album")).get("images"))).getJSONObject(1).getString("url"));
                         }
@@ -145,6 +150,8 @@ public class SpotifyHandler {
             topArtistNames.clear();
         } else if (equalsTrackURL(url)) {
             topTrackNames.clear();
+            topTrackAuthors.clear();
+            topTrackImageURLs.clear();
             topTrackReleaseDates.clear();
         }
     }
@@ -194,6 +201,7 @@ public class SpotifyHandler {
         topArtistNames.clear();
         topTrackNames.clear();
         topTrackReleaseDates.clear();
+        topTrackAuthors.clear();
         topTrackImageURLs.clear();
         topGenres.clear();
     }
@@ -215,6 +223,7 @@ public class SpotifyHandler {
         return topTrackReleaseDates;
     }
     public static ArrayList<String> getTopGenres() {return new ArrayList<>(topGenres);}
+    public static ArrayList<String> getTopTrackAuthors() {return new ArrayList<>(topTrackAuthors);}
 
     public static ArrayList<Integer> getTopArtistFollowerData() {
         ArrayList<String> followers = topArtistFollowers;

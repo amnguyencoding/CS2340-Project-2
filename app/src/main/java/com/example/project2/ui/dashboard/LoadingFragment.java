@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import com.example.project2.GPTHandler;
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
+import com.example.project2.TimeRange;
 import com.example.project2.databinding.FragmentLoadingBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,6 +57,7 @@ public class LoadingFragment extends Fragment {
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
 
+                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
                     ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
 
                     String promptInput = getArguments().getString("prompt");
