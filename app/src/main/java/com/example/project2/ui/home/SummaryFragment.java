@@ -107,28 +107,19 @@ public class SummaryFragment extends Fragment {
         Button home = view.findViewById(R.id.summaryWrappedHomeButton);
         Button restart = view.findViewById(R.id.summaryWrappedRestartButton);
         Button save = view.findViewById(R.id.summaryWrappedSaveButton);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to WrappedFragment when the button is clicked
-                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_intro);
-            }
+        home.setOnClickListener(v -> {
+            // Navigate to WrappedFragment when the button is clicked
+            Navigation.findNavController(v).navigate(R.id.navigation_wrapped_intro);
         });
 
-        restart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to WrappedFragment when the button is clicked
-                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
-            }
+        restart.setOnClickListener(v -> {
+            // Navigate to WrappedFragment when the button is clicked
+            Navigation.findNavController(v).navigate(R.id.navigation_wrapped_artists);
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Wrap Saved!", Toast.LENGTH_SHORT).show();
-                saveDataToFirebase();
-            }
+        save.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Wrap Saved!", Toast.LENGTH_SHORT).show();
+            saveDataToFirebase();
         });
 
     }
