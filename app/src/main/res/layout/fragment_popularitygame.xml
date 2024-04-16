@@ -30,9 +30,9 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/return_to_dashboard_from_popularity_button"
             android:layout_width="174dp"
-            android:layout_height="47dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="44dp"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/wrapped_button"
             android:fontFamily="@font/roboto_mono"
             android:text="@string/return_to_dashboard"
             android:textColor="@color/white"
@@ -122,13 +122,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/popular_artist_one_text" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/play_popularity_game_again_button"
-            android:layout_width="wrap_content"
+            android:layout_width="174dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:background="@drawable/rounded_button"
             android:fontFamily="@font/roboto_mono"
             android:text="Play Again"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/return_to_dashboard_from_popularity_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"

@@ -219,17 +219,15 @@
                 android:textColor="@color/white">
             </Button>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/summaryWrappedSaveButton"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/wrapped_button"
                 android:text="Save"
-                android:textColor="@color/white">
-            </Button>
-
+                android:textColor="@color/white"/>
             <Button
                 android:id="@+id/summaryWrappedHomeButton"
                 android:layout_width="100dp"

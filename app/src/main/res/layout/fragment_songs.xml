@@ -218,23 +218,25 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/backToArtistsButton"
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
+                    android:background="@drawable/wrapped_button"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="70dp"
                     android:text="Back"
-                    android:layout_marginRight="35dp">
-                </Button>
+                    android:layout_marginRight="35dp"/>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/genresButton"
                     android:layout_width="100dp"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="70dp"
+                    android:background="@drawable/rounded_button"
+                    android:textColor="@color/white"
                     android:text="Next"
-                    android:layout_height="match_parent">
-                </Button>
+                    android:layout_height="match_parent"/>
             </LinearLayout>
 
         </LinearLayout>
