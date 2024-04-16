@@ -48,7 +48,9 @@ public class SongReleaseDateFragment extends Fragment {
         });
 
         ArrayList<String> names = SpotifyHandler.getTopTrackNameData();
+        Log.i("Tracks", names.toString());
         ArrayList<String> artists = SpotifyHandler.getTopTrackAuthors();
+        Log.i("Authors", artists.toString());
         ArrayList<String> dates = SpotifyHandler.getTopTrackReleaseDateData();
         ArrayList<String> images = SpotifyHandler.getTopTrackImageData();
 
