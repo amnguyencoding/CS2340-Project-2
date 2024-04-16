@@ -19,6 +19,8 @@ import androidx.navigation.Navigation;
 //import com.example.project2.LoginActivity;
 import com.example.project2.MainActivity;
 import com.example.project2.R;
+import com.example.project2.SpotifyHandler;
+import com.example.project2.TimeRange;
 import com.example.project2.databinding.ActivityLoginBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,9 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         Button connectToSpotify = findViewById(R.id.connect_to_spotify_login_button);
-        connectToSpotify.setOnClickListener(v -> {
-            getToken();
-        });
+        connectToSpotify.setOnClickListener(v -> getToken());
 
         Button loginButton = findViewById(R.id.login_button_new);
         loginButton.setOnClickListener(v -> login());
@@ -68,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
         if (checkEmailValid(email) && checkPasswordValid(password) && checkSpotifyConnected()){
             firebaseAuthLogin(email, password);
         }
+
+        SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
 
         //Need to implement the reconnect to Spotify for log in
         //SpotifyHandler.populateArtistAndTrackData(mAccessToken);
