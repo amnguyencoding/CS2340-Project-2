@@ -34,6 +34,7 @@ public class SpotifyHandler {
     public static final int AUTH_CODE_REQUEST_CODE = 1;
     private static final OkHttpClient mOkHttpClient = new OkHttpClient();
     private static Call call;
+    //Maybe use different data structure to store data?
     private static ArrayList<String> topArtistNames = new ArrayList<>();
     private static ArrayList<String> topArtistImageURLS = new ArrayList<>();
     private static ArrayList<String> topTrackNames = new ArrayList<>();
