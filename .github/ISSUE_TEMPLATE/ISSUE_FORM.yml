@@ -1,0 +1,39 @@
+name: Issue Form
+description: Outline your knowledge of the issue.
+title: "[Issue]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill out the following fields to the extent of your knowledge.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Issue outline
+      description: Describe the effects on functioanlity.
+      placeholder: Issue description
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Likely location
+      description: Where does the issue seem to be coming from?
+      options:
+        - Application code
+        - User Interface
+        - Database
+        - Host Machine
+        - Emulator
+      default: 0
+    validations:
+      required: true
+      
+  - type: textarea
+    id: location-specifics
+    attributes:
+      label: Location Specifics
+      description: Go into further detail if possible about the location of the issue.
+      placeholder: Specific file, fragment, or functionality.
+    validations:
+      required: false
