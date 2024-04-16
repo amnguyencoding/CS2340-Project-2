@@ -15,6 +15,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -115,17 +117,18 @@ public class SpotifyHandler {
                             topArtistImageURLS.add(((JSONArray) jsonMap.get("images")).getJSONObject(1).getString("url"));
                             JSONArray genresArray = itemObject.getJSONArray("genres");
                             for (int j = 0; j < genresArray.length(); j++) {
-                                topGenres.add(genresArray.getString(j));
+                                topGenres.add(genresArray.getString(j)); //duplicate genres from here
                             }
                         } else if (equalsTrackURL(url)) {
                             topTrackNames.add(jsonMap.get("name").toString());
                             JSONArray trackAuthors = ((JSONArray) jsonMap.get("artists"));
-                            for (int j = 0; j < trackAuthors.length(); j++) {
-                                topTrackAuthors.add(((JSONObject) trackAuthors.get(j)).getString("name"));
-                            }
+                            topTrackAuthors.add(((JSONObject) trackAuthors.get(0)).getString("name"));
                             topTrackReleaseDates.add(((JSONObject) jsonMap.get("album")).getString("release_date"));
                             topTrackImageURLs.add(((JSONArray)(((JSONObject) jsonMap.get("album")).get("images"))).getJSONObject(1).getString("url"));
                         }
+                    }
+                    if (equalsArtistURL(url)) {
+                        calculateTopGenres();
                     }
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
@@ -133,7 +136,7 @@ public class SpotifyHandler {
             }
         });
 
-        while (topArtistNames.isEmpty() && equalsArtistURL(url)
+        while (topArtistNames.isEmpty() && topGenres.isEmpty() && equalsArtistURL(url)
                 || topTrackNames.isEmpty() && equalsTrackURL(url)) {
             try {
                 Thread.sleep(1000);
@@ -154,6 +157,18 @@ public class SpotifyHandler {
             topTrackImageURLs.clear();
             topTrackReleaseDates.clear();
         }
+    }
+    private static void calculateTopGenres() {
+        ArrayList<String> temp = new ArrayList<>();
+        topGenres.sort(Comparator.comparing(i -> Collections.frequency(topGenres, i)).reversed());
+        int i = 0;
+        while (temp.size() != 5) {
+            if (!temp.contains(topGenres.get(i))) {
+                temp.add(topGenres.get(i));
+            }
+            i++;
+        }
+        topGenres = temp;
     }
 
     private static boolean equalsArtistURL(String url) {

@@ -116,11 +116,15 @@ public class PopularityGameFragment extends Fragment {
             resultText.setVisibility(View.VISIBLE);
             resultText.setText(winnerString);
             playAgainButton.setVisibility(View.VISIBLE);
+            loser.setClickable(false);
+            winner.setClickable(false);
         });
         loser.setOnClickListener(v -> {
             resultText.setVisibility(View.VISIBLE);
             resultText.setText(loserString);
             playAgainButton.setVisibility(View.VISIBLE);
+            loser.setClickable(false);
+            winner.setClickable(false);
         });
 
         return root;

@@ -1,35 +1,26 @@
 package com.example.project2.ui.profile;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.project2.AuthenticationActivity;
-import com.example.project2.MainActivity;
 import com.example.project2.R;
 import com.example.project2.databinding.FragmentProfileBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.project2.ui.authentication.IntroActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -175,7 +166,7 @@ public class ProfileFragment extends Fragment {
         mAuth.signOut();
 
         Toast.makeText(getContext(), "Logged out successfully", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(getActivity(), AuthenticationActivity.class);
+        Intent i = new Intent(getActivity(), IntroActivity.class);
         startActivity(i);
     }
 
@@ -184,7 +175,7 @@ public class ProfileFragment extends Fragment {
         db.collection("users").document(uid).delete();
 
         Toast.makeText(getContext(), "Account deleted successfully", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(getActivity(), AuthenticationActivity.class);
+        Intent i = new Intent(getActivity(), IntroActivity.class);
         startActivity(i);
     }
 
