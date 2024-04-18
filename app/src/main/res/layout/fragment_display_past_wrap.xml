@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.home.SummaryFragment"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/tri_color_background">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +22,8 @@
                 android:layout_width="225dp"
                 android:layout_height="225dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="91dp"/>
+                android:layout_marginLeft="91dp">
+            </ImageView>
 
         </LinearLayout>
 
@@ -37,86 +40,84 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="Top Artists"
+                    android:paddingLeft="10dp"
+                    android:text="Top Artists:"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textStyle="bold"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedArtist1"
+                    android:paddingLeft="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedArtist2"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:paddingLeft="10dp"
+                    android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedArtist3"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
-
+                    android:paddingLeft="10dp"
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedArtist4"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:text="Top Artists"
+                    android:paddingLeft="10dp"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedArtist5"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
-
-                </TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="Minutes Listened"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:paddingLeft="10dp"
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryMinutesListened"
                     android:layout_width="match_parent"
+                    android:paddingLeft="10dp"
                     android:layout_height="45dp"
-                    android:text="Top Artists"
+                    android:text="Top Genre:"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textStyle="bold"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -132,75 +133,65 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
-                    android:text="Top Songs"
+                    android:text="Top Songs:"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textStyle="bold"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedSong1"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textSize="16dp">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedSong2"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedSong3"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedSong4"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/summaryWrappedSong5"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
-
-                </TextView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:text="Top Genre"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -208,10 +199,10 @@
                     android:id="@+id/summaryWrappedTopGenre"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:text="Top Artists"
+                    android:text="Top Genre"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
+                    android:textSize="16dp"
+                    android:theme="@style/autoscroll">
 
                 </TextView>
 
@@ -219,15 +210,23 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/summaryWrappedHomeButton"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/rounded_button"
-            android:text="Home"
-            android:textColor="@color/white"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/summaryWrappedHomeButton"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="150dp"
+                android:background="@drawable/rounded_button"
+                android:text="Home"
+                android:textColor="@color/white"></Button>
+
+        </LinearLayout>
+
+
 
 
     </LinearLayout>

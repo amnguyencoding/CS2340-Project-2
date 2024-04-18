@@ -53,20 +53,14 @@
                     android:textColor="@color/white">
                 </TextView>
 
-                <ImageView
-                    android:id="@+id/genreImage1"
-                    android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
-
                 <TextView
                     android:id="@+id/genre1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/roboto_mono"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
-                    android:paddingTop="27dp"
+                    android:textSize="40dp"
+                    android:paddingTop="10dp"
                     android:textAlignment="center"
                     >
                 </TextView>
@@ -88,19 +82,13 @@
                     android:textColor="@color/white">
                 </TextView>
 
-                <ImageView
-                    android:id="@+id/genreImage2"
-                    android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
-
                 <TextView
                     android:id="@+id/genre2"
                     android:layout_width="match_parent"
                     android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textSize="25dp"
-                    android:paddingTop="27dp"
+                    android:textSize="40dp"
+                    android:paddingTop="10dp"
                     android:textAlignment="center"
                     android:textColor="@color/white">
 
@@ -123,20 +111,14 @@
                     android:textColor="@color/white">
                 </TextView>
 
-                <ImageView
-                    android:id="@+id/genreImage3"
-                    android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
-
                 <TextView
                     android:id="@+id/genre3"
                     android:layout_width="match_parent"
                     android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textSize="25dp"
+                    android:textSize="40dp"
                     android:textAlignment="center"
-                    android:paddingTop="27dp"
+                    android:paddingTop="10dp"
                     android:textColor="@color/white">
 
                 </TextView>
@@ -158,19 +140,13 @@
                     android:textColor="@color/white">
                 </TextView>
 
-                <ImageView
-                    android:id="@+id/genreImage4"
-                    android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
-
                 <TextView
                     android:id="@+id/genre4"
                     android:layout_width="match_parent"
                     android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textSize="25dp"
-                    android:paddingTop="27dp"
+                    android:textSize="40dp"
+                    android:paddingTop="10dp"
                     android:textAlignment="center"
 
                     android:textColor="@color/white">
@@ -194,20 +170,14 @@
                     android:textColor="@color/white">
                 </TextView>
 
-                <ImageView
-                    android:id="@+id/genreImage5"
-                    android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
-
                 <TextView
                     android:id="@+id/genre5"
                     android:fontFamily="@font/roboto_mono"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="25dp"
+                    android:textSize="40dp"
                     android:textAlignment="center"
-                    android:paddingTop="27dp"
+                    android:paddingTop="10dp"
                     android:textColor="@color/white">
 
                 </TextView>
