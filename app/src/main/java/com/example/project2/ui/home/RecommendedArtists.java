@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +18,9 @@ import android.widget.TextView;
 
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
-import com.example.project2.TimeRange;
 import com.example.project2.databinding.FragmentArtistBinding;
+import com.example.project2.databinding.FragmentRecommendedArtistsWrappedBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 
@@ -37,8 +29,8 @@ import java.util.ArrayList;
  * Use the {@link ArtistFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RecommenedArtists extends Fragment {
-    private FragmentArtistBinding binding;
+public class RecommendedArtists extends Fragment {
+    private FragmentRecommendedArtistsWrappedBinding binding;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,7 +41,7 @@ public class RecommenedArtists extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public RecommenedArtists() {
+    public RecommendedArtists() {
         // Required empty public constructor
     }
 
@@ -70,6 +62,8 @@ public class RecommenedArtists extends Fragment {
         return fragment;
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,49 +77,17 @@ public class RecommenedArtists extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentArtistBinding.inflate(inflater, container, false);
+        binding = FragmentRecommendedArtistsWrappedBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
         navBar.setVisibility(View.GONE);
 
-        ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
-        ArrayList<String> topArtistImages = SpotifyHandler.getTopArtistImageData();
+        ArrayList<String> rec = SpotifyHandler.getRecommendedArtistNames();
 
-        TextView artist1name = root.findViewById(R.id.numberOneName);
-        artist1name.setText(topArtists.get(0));
-
-
-        TextView artist2name = root.findViewById(R.id.numberTwoName);
-        artist2name.setText(topArtists.get(1));
-
-
-        TextView artist3name = root.findViewById(R.id.numberThreeName);
-        artist3name.setText(topArtists.get(2));
-
-
-        TextView artist4name = root.findViewById(R.id.numberFourName);
-        artist4name.setText(topArtists.get(3));
-
-
-        TextView artist5name = root.findViewById(R.id.numberFiveName);
-        artist5name.setText(topArtists.get(4));
-
-
-        ImageView artist1Image = root.findViewById(R.id.numberOneImage);
-        Glide.with(requireContext()).load(topArtistImages.get(0)).into(artist1Image);
-
-        ImageView artist2Image = root.findViewById(R.id.numberTwoImage);
-        Glide.with(requireContext()).load(topArtistImages.get(1)).into(artist2Image);
-
-        ImageView artist3Image = root.findViewById(R.id.numberThreeImage);
-        Glide.with(requireContext()).load(topArtistImages.get(2)).into(artist3Image);
-
-        ImageView artist4Image = root.findViewById(R.id.numberFourImage);
-        Glide.with(requireContext()).load(topArtistImages.get(3)).into(artist4Image);
-
-        ImageView artist5Image = root.findViewById(R.id.numberFiveImage);
-        Glide.with(requireContext()).load(topArtistImages.get(4)).into(artist5Image);
+        TextView rec1 = root.findViewById(R.id.recc);
+        rec1.setText("Hey there! Based on your diverse listening preferences, we've crafted a selection of recommended artists just for you. Delve into captivating music from " + rec.get(0) +
+                ", explore the unique sounds of " + rec.get(1) + ", vibe to the beats of " + rec.get(2)+ ", discover hidden gems with " + rec.get(3)+ ", and immerse yourself in the artistry of " + rec.get(4) +". Happy exploring! ");
 
 
         return root;
@@ -134,14 +96,14 @@ public class RecommenedArtists extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button songs = view.findViewById(R.id.songsButton);
-        Button wrapped = view.findViewById(R.id.backToWrappedIntroButton);
+        Button genres = view.findViewById(R.id.backtoGenresButton);
+        Button wrapped = view.findViewById(R.id.wrappedSummaryButton);
 
-        songs.setOnClickListener(new View.OnClickListener() {
+        genres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to WrappedFragment when the button is clicked
-                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_songs);
+                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_genres);
             }
         });
 
@@ -149,7 +111,7 @@ public class RecommenedArtists extends Fragment {
             @Override
             public void onClick(View v) {
                 // Navigate to WrappedFragment when the button is clicked
-                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_intro);
+                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_summary);
             }
         });
     }

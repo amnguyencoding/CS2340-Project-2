@@ -33,7 +33,8 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="35dp"
-                    android:textStyle="bold"></TextView>
+                    android:textStyle="bold">
+                </TextView>
             </LinearLayout>
 
             <LinearLayout

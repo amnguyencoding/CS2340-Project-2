@@ -115,14 +115,14 @@ public class GenresFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button summary = view.findViewById(R.id.summaryWrappedButton);
+        Button recommended = view.findViewById(R.id.recommendedArtistsButton);
         Button songs = view.findViewById(R.id.backToSongsButton);
 
-        summary.setOnClickListener(new View.OnClickListener() {
+        recommended.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to WrappedFragment when the button is clicked
-                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_summary);
+                Navigation.findNavController(v).navigate(R.id.navigation_recommendedArtists);
             }
         });
 

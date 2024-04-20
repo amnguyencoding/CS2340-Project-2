@@ -36,6 +36,8 @@ public class SpotifyHandler {
     private static Call call;
     //Maybe use different data structure to store data?
     private static ArrayList<String> topArtistNames = new ArrayList<>();
+    private static ArrayList<String> topArtistIDs = new ArrayList<>();
+    private static ArrayList<String> recommendedArtistNames = new ArrayList<>();
     private static ArrayList<String> topArtistImageURLS = new ArrayList<>();
     private static ArrayList<String> topTrackNames = new ArrayList<>();
     private static ArrayList<String> topTrackAuthors = new ArrayList<>();
@@ -49,6 +51,8 @@ public class SpotifyHandler {
     private static final String MEDIUM_TERM_TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
     private static final String LONG_TERM_TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists?time_range=long_term";
     private static final String LONG_TERM_TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks?time_range=long_term";
+
+    private static final String RECOMMENDED_ARTISTS_URL = "https://api.spotify.com/v1/artists/";
 
     private static final String SHORT_TERM_TOP_TRACK_IMAGES_URL = "https://api.spotify.com/v1/me/top/tracks/images?time_range=short_term";
     private static final String MEDIUM_TERM_TOP_TRACK_IMAGES_URL = "https://api.spotify.com/v1/me/top/tracks/images?time_range=medium_term";
@@ -93,43 +97,54 @@ public class SpotifyHandler {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
-                    final JSONObject jsonObject = new JSONObject(response.body().string());
-                    final JSONArray jsonArray = jsonObject.getJSONArray("items");
-                    clearDataLists(url);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        //Log.i("THERES A NEW", "ENTRY HERE!!\n\n\n");
-                        JSONObject itemObject = jsonArray.getJSONObject(i);
-
-                        // Create a Map to store the JSON data
-                        Map<String, Object> jsonMap = new HashMap<>();
-
-                        // Iterate over the keys in the JSON object
-                        Iterator<String> keys = itemObject.keys();
-                        while (keys.hasNext()) {
-                            String key = keys.next();
-                            Object value = itemObject.get(key);
-                            jsonMap.put(key, value);
+                    if (equalsREC(url)) {
+                        final JSONObject jsonObject = new JSONObject(response.body().string());
+                        final JSONArray jsonArray = jsonObject.getJSONArray("artists");
+                        for (int i = 0; i < 5; i++) {
+                            final JSONObject artist = jsonArray.getJSONObject(i);
+                            recommendedArtistNames.add(artist.getString("name"));
                         }
-                        //Log.i("song title",jsonMap.get("name").toString());
-                        //Log.i("song title",jsonMap.get("name").toString());
-                        if (equalsArtistURL(url)) {
-                            topArtistNames.add(jsonMap.get("name").toString());
-                            topArtistFollowers.add(((JSONObject) jsonMap.get("followers")).getString("total"));
-                            topArtistImageURLS.add(((JSONArray) jsonMap.get("images")).getJSONObject(1).getString("url"));
-                            JSONArray genresArray = itemObject.getJSONArray("genres");
-                            for (int j = 0; j < genresArray.length(); j++) {
-                                topGenres.add(genresArray.getString(j)); //duplicate genres from here
+                    } else {
+                        final JSONObject jsonObject = new JSONObject(response.body().string());
+                        final JSONArray jsonArray = jsonObject.getJSONArray("items");
+                        clearDataLists(url);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            //Log.i("THERES A NEW", "ENTRY HERE!!\n\n\n");
+                            JSONObject itemObject = jsonArray.getJSONObject(i);
+
+                            // Create a Map to store the JSON data
+                            Map<String, Object> jsonMap = new HashMap<>();
+
+                            // Iterate over the keys in the JSON object
+                            Iterator<String> keys = itemObject.keys();
+                            while (keys.hasNext()) {
+                                String key = keys.next();
+                                Object value = itemObject.get(key);
+                                jsonMap.put(key, value);
                             }
-                        } else if (equalsTrackURL(url)) {
-                            topTrackNames.add(jsonMap.get("name").toString());
-                            JSONArray trackAuthors = ((JSONArray) jsonMap.get("artists"));
-                            topTrackAuthors.add(((JSONObject) trackAuthors.get(0)).getString("name"));
-                            topTrackReleaseDates.add(((JSONObject) jsonMap.get("album")).getString("release_date"));
-                            topTrackImageURLs.add(((JSONArray)(((JSONObject) jsonMap.get("album")).get("images"))).getJSONObject(1).getString("url"));
+                            //Log.i("song title",jsonMap.get("name").toString());
+                            //Log.i("song title",jsonMap.get("name").toString());
+                            if (equalsArtistURL(url)) {
+                                topArtistNames.add(jsonMap.get("name").toString());
+                                topArtistIDs.add(jsonMap.get("id").toString());
+                                topArtistFollowers.add(((JSONObject) jsonMap.get("followers")).getString("total"));
+                                topArtistImageURLS.add(((JSONArray) jsonMap.get("images")).getJSONObject(1).getString("url"));
+                                JSONArray genresArray = itemObject.getJSONArray("genres");
+                                for (int j = 0; j < genresArray.length(); j++) {
+                                    topGenres.add(genresArray.getString(j)); //duplicate genres from here
+                                }
+
+                            } else if (equalsTrackURL(url)) {
+                                topTrackNames.add(jsonMap.get("name").toString());
+                                JSONArray trackAuthors = ((JSONArray) jsonMap.get("artists"));
+                                topTrackAuthors.add(((JSONObject) trackAuthors.get(0)).getString("name"));
+                                topTrackReleaseDates.add(((JSONObject) jsonMap.get("album")).getString("release_date"));
+                                topTrackImageURLs.add(((JSONArray)(((JSONObject) jsonMap.get("album")).get("images"))).getJSONObject(1).getString("url"));
+                            }
                         }
-                    }
-                    if (equalsArtistURL(url)) {
-                        calculateTopGenres();
+                        if (equalsArtistURL(url)) {
+                            calculateTopGenres();
+                        }
                     }
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
@@ -178,6 +193,11 @@ public class SpotifyHandler {
                 || url.equals(LONG_TERM_TOP_ARTISTS_URL);
     }
 
+    private static boolean equalsREC(String url) {
+        return url.startsWith(RECOMMENDED_ARTISTS_URL);
+    }
+
+
     private static boolean equalsTrackURL(String url) {
         return url.equals(SHORT_TERM_TOP_TRACKS_URL)
                 || url.equals(MEDIUM_TERM_TOP_TRACKS_URL)
@@ -194,25 +214,31 @@ public class SpotifyHandler {
                 getUserProfileData(SHORT_TERM_TOP_ARTISTS_URL, accessToken);
                 getUserProfileData(SHORT_TERM_TOP_TRACKS_URL, accessToken);
                 getUserProfileData(SHORT_TERM_TOP_TRACK_IMAGES_URL, accessToken); // Add URL for fetching track images
-                getUserProfileData(SHORT_TERM_TOP_GENRES_URL, accessToken); // Add URL for fetching genres
+                getUserProfileData(SHORT_TERM_TOP_GENRES_URL, accessToken); // Add URL for fetching genres\
+                getUserProfileData(RECOMMENDED_ARTISTS_URL + topArtistIDs.get(0) + "/related-artists", accessToken);
+
                 break;
             case MEDIUM_TERM:
                 getUserProfileData(MEDIUM_TERM_TOP_ARTISTS_URL, accessToken);
                 getUserProfileData(MEDIUM_TERM_TOP_TRACKS_URL, accessToken);
                 getUserProfileData(MEDIUM_TERM_TOP_TRACK_IMAGES_URL, accessToken); // Add URL for fetching track images
                 getUserProfileData(MEDIUM_TERM_TOP_GENRES_URL, accessToken); // Add URL for fetching genres
+                getUserProfileData(RECOMMENDED_ARTISTS_URL + topArtistIDs.get(0) + "/related-artists", accessToken);
                 break;
             case LONG_TERM:
                 getUserProfileData(LONG_TERM_TOP_ARTISTS_URL, accessToken);
                 getUserProfileData(LONG_TERM_TOP_TRACKS_URL, accessToken);
                 getUserProfileData(LONG_TERM_TOP_TRACK_IMAGES_URL, accessToken); // Add URL for fetching track images
                 getUserProfileData(LONG_TERM_TOP_GENRES_URL, accessToken); // Add URL for fetching genres
+                getUserProfileData(RECOMMENDED_ARTISTS_URL + topArtistIDs.get(0) + "/related-artists", accessToken);
                 break;
         }
     }
 
     private static void clearDataLists() {
         topArtistImageURLS.clear();
+        topArtistIDs.clear();
+        recommendedArtistNames.clear();
         topArtistFollowers.clear();
         topArtistNames.clear();
         topTrackNames.clear();
@@ -240,6 +266,8 @@ public class SpotifyHandler {
     }
     public static ArrayList<String> getTopGenres() {return new ArrayList<>(topGenres);}
     public static ArrayList<String> getTopTrackAuthors() {return new ArrayList<>(topTrackAuthors);}
+
+    public static ArrayList<String> getRecommendedArtistNames() {return new ArrayList<>(recommendedArtistNames);}
 
     public static ArrayList<Integer> getTopArtistFollowerData() {
         ArrayList<String> followers = topArtistFollowers;
