@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context=".ui.home.ArtistFragment"
+    android:layout_marginTop="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:background="@drawable/tri_color_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:fontFamily="@font/roboto_mono"
+                android:paddingTop="10dp"
+                android:text="Recommended Artists"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:paddingRight="30dp"
+                android:paddingLeft="30dp"
+                android:layout_height="570dp"
+                android:text="Hello"
+                android:textSize="22dp"
+                android:fontFamily="@font/roboto_mono"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:paddingTop="50dp"
+                android:id="@+id/recc">
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/backtoGenresButton"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="35dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/wrapped_button"
+                    android:text="Back"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/wrappedSummaryButton"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="70dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_button"
+                    android:text="Next"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>
