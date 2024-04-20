@@ -40,6 +40,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
+                    android:fontFamily="@font/roboto_mono"
                     android:paddingLeft="10dp"
                     android:text="Top Artists:"
                     android:textColor="@color/white"
@@ -52,6 +53,7 @@
                 <TextView
                     android:id="@+id/summaryWrappedArtist1"
                     android:paddingLeft="10dp"
+                    android:fontFamily="@font/roboto_mono"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Top Artists"
@@ -65,6 +67,7 @@
                     android:id="@+id/summaryWrappedArtist2"
                     android:layout_width="match_parent"
                     android:paddingLeft="10dp"
+                    android:fontFamily="@font/roboto_mono"
                     android:layout_height="40dp"
                     android:text="Top Artists"
                     android:textColor="@color/white"
@@ -78,6 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Top Artists"
+                    android:fontFamily="@font/roboto_mono"
                     android:textColor="@color/white"
                     android:paddingLeft="10dp"
                     android:textSize="16dp"
@@ -89,6 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Top Artists"
+                    android:fontFamily="@font/roboto_mono"
                     android:paddingLeft="10dp"
                     android:textColor="@color/white"
                     android:textSize="16dp"
@@ -101,6 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Top Artists"
+                    android:fontFamily="@font/roboto_mono"
                     android:textColor="@color/white"
                     android:paddingLeft="10dp"
                     android:textSize="16dp"
@@ -114,6 +120,7 @@
                     android:paddingLeft="10dp"
                     android:layout_height="45dp"
                     android:text="Top Genre:"
+                    android:fontFamily="@font/roboto_mono"
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     android:textStyle="bold"
@@ -133,6 +140,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
+                    android:fontFamily="@font/roboto_mono"
                     android:text="Top Songs:"
                     android:textColor="@color/white"
                     android:textSize="20dp"
@@ -146,6 +154,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Top Artists"
+                    android:fontFamily="@font/roboto_mono"
                     android:textColor="@color/white"
                     android:textSize="16dp">
 
@@ -156,6 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Top Artists"
+                    android:fontFamily="@font/roboto_mono"
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     android:theme="@style/autoscroll">
@@ -167,6 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Top Artists"
+                    android:fontFamily="@font/roboto_mono"
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     android:theme="@style/autoscroll">
@@ -178,6 +189,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Top Artists"
+                    android:fontFamily="@font/roboto_mono"
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     android:theme="@style/autoscroll">
@@ -189,6 +201,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Top Artists"
+                    android:fontFamily="@font/roboto_mono"
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     android:theme="@style/autoscroll">
@@ -200,6 +213,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:text="Top Genre"
+                    android:fontFamily="@font/roboto_mono"
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     android:theme="@style/autoscroll">
