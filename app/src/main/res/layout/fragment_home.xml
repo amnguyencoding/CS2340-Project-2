@@ -26,18 +26,15 @@
         android:id="@+id/viewPastWrappedButton"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/roboto_mono"
         android:text="Saved Wrappeds"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewWrappedButton"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintTop_toBottomOf="@+id/viewWrappedButton" />
 
     <TextView
         android:id="@+id/textView6"
@@ -100,10 +97,10 @@
         android:id="@+id/recap_layout"
         android:layout_width="329dp"
         android:layout_height="364dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top_artists_recap_button"></LinearLayout>
 

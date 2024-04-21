@@ -14,19 +14,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.project2.R;
-import com.example.project2.SpotifyHandler;
-import com.example.project2.TimeRange;
 import com.example.project2.databinding.FragmentDisplayPastWrapBinding;
-import com.example.project2.databinding.FragmentSummaryBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
 
 import java.util.ArrayList;
@@ -110,9 +103,9 @@ public class DisplayPastWrapFragment extends Fragment {
                     }
                 });
 
-        Button summaryToHomeButton = root.findViewById(R.id.summaryWrappedHomeButton);
+        Button summaryToHomeButton = root.findViewById(R.id.summaryWrappedReturnButton);
         summaryToHomeButton.setOnClickListener((v)-> {
-            Navigation.findNavController(v).navigate(R.id.navigation_home);
+            Navigation.findNavController(v).navigate(R.id.navigation_past_wraps);
         });
 
         return root;

@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (checkEmailValid(email) && checkPasswordValid(password) && checkSpotifyConnected()){
             firebaseAuthLogin(email, password);
-            SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
+            SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.SHORT_TERM);
         }
 
         //Need to implement the reconnect to Spotify for log in
