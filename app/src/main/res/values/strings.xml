@@ -25,4 +25,16 @@
     <string name="song_release_year_text">What year was song released?</string>
     <string name="guess_year">Year...</string>
     <string name="view_past_wrapped">VIEW PAST WRAPPED</string>
+    <string name="popularity_how_to_play">Guess which artist from your top 20 this month has more followers by clicking the image that represents them.</string>
+    <string name="popularity_button_text">Play the Popularity Game</string>
+    <string name="how_to_play">How to play:</string>
+    <string name="release_blurb">Test your knowledge of when your top tracks were released!</string>
+    <string name="release_how_to_play">Use the text box to input a guess for the release year of the given song, then submit it!</string>
+    <string name="play_the_dating_game_button">Play the Dating Game</string>
+    <string name="who_s_more_popular">Who\'s More Popular?</string>
+    <string name="the_release_dating_game">The (Release) Dating Game</string>
+    <string name="games_based_on_your_taste">Games Based on Your Taste</string>
+    <string name="popularity_blurb">How well do you know your top artists?</string>
+    <string name = "popularity_game_text">Which of these artists in your top 20 is more popular (by followers): %1$s or %2$s?</string>
+
 </resources>

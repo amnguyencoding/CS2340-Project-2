@@ -59,8 +59,9 @@ public class PopularityGameFragment extends Fragment {
         String artistTwoString = topArtists.get(indexTwo);
 
         TextView gameText = root.findViewById(R.id.popularity_game_text);
-        gameText.setText("Which of these artists in your top 20 is more popular (by followers): "
-                + topArtists.get(indexOne) + " or " + topArtists.get(indexTwo) + "?");
+        String text = String.format(getResources().getString(R.string.popularity_game_text),
+                topArtists.get(indexOne), topArtists.get(indexTwo));
+        gameText.setText(text);
 
         ImageButton artistOne = root.findViewById(R.id.popular_artist_image_one);
         Glide.with(requireContext()).load(topArtistsImages.get(indexOne)).into(artistOne);

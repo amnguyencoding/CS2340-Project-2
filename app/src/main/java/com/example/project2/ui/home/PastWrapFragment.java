@@ -24,11 +24,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PastWrapFragment extends Fragment {
+    private static ArrayList<String> pastWrappedSpinnerItems = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class PastWrapFragment extends Fragment {
         db.collection("users/"+uid+"/summaryData").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 int wrapCount = task.getResult().size();
+
+
                 pastWrapText.setText("You currently have " + wrapCount + " saved wraps\nWhich wrap would you like to see?");
 
                 Log.i("wrapCount", Integer.toString(wrapCount));
