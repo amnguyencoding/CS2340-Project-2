@@ -1,14 +1,12 @@
 package com.example.project2.ui.dashboard;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,14 +16,8 @@ import androidx.navigation.Navigation;
 import com.bumptech.glide.Glide;
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
-import com.example.project2.TimeRange;
 import com.example.project2.databinding.FragmentPopularitygameBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -46,7 +38,7 @@ public class PopularityGameFragment extends Fragment {
         navBar.setVisibility(View.GONE);
 
         Button returnButton = root.findViewById(R.id.return_to_dashboard_from_popularity_button);
-        returnButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_chooseprompt));
+        returnButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_game));
 
         Button playAgainButton = root.findViewById(R.id.play_popularity_game_again_button);
         playAgainButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_popularitygame));

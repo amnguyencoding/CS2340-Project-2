@@ -51,9 +51,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         });
 
         Button connectToSpotify = findViewById(R.id.connect_to_spotify_create_account_button);
-        connectToSpotify.setOnClickListener(v -> {
-            getToken();
-        });
+        connectToSpotify.setOnClickListener(v -> getToken());
 
         Button createAccountButton = findViewById(R.id.create_account_button_new);
         createAccountButton.setOnClickListener(v -> createAccount());
