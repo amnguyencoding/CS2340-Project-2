@@ -8,8 +8,8 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edit_profile_field"
-        android:layout_width="200dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -18,7 +18,7 @@
         android:layout_marginEnd="128dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/pane"
-        android:backgroundTint="@color/textbox_select"
+        android:backgroundTint="#F61067"
         android:ems="10"
         android:hint="Edit..."
         android:inputType="text"

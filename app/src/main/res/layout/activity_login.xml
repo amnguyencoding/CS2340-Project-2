@@ -12,13 +12,29 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="310dp"
-        android:layout_height="350dp"
-        android:layout_marginTop="37dp"
+        android:layout_width="309dp"
+        android:layout_height="546dp"
         android:background="@drawable/pane"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="124dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/pane"
+            android:fontFamily="@font/gugi"
+            android:text="Login"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="match_parent"
@@ -36,7 +52,8 @@
             android:id="@+id/connect_to_spotify_login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/roboto_mono"
             android:text="Connect to Spotify"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +63,7 @@
             android:id="@+id/login_email_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:backgroundTint="@color/textbox_select"
             android:ems="10"
             android:fontFamily="@font/roboto_mono"
@@ -56,15 +73,14 @@
             android:textColorHint="@color/white"
             android:textCursorDrawable="@drawable/text_cursor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/login_password_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/textbox_select"
             android:ems="10"
             android:fontFamily="@font/roboto_mono"
@@ -74,7 +90,7 @@
             android:textColorHint="@color/white"
             android:textCursorDrawable="@drawable/text_cursor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_email_new" />
 
@@ -82,54 +98,43 @@
             android:id="@+id/login_button_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/roboto_mono"
             android:text="Login"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/connect_to_spotify_login_button" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="226dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/pane"
+            android:fontFamily="@font/roboto_mono"
+            android:text="Don't have an account? Create one:"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_button_new" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/go_to_create_account_from_login_button"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/wrapped_button"
+            android:fontFamily="@font/roboto_mono"
+            android:text="Create Account"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/connect_to_spotify_login_button"
-            app:layout_constraintVertical_bias="0.618" />
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="304dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/roboto_mono"
-        android:text="Don't have an account? Create one:"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/go_to_create_account_from_login_button"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Create Account"
-        android:background="@drawable/wrapped_button"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/roboto_mono"
-        android:text="Login to Account:"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

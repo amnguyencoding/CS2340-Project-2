@@ -17,6 +17,7 @@ public class IntroActivity extends AppCompatActivity {
         binding = ActivityIntroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         Button goToLoginButton = findViewById(R.id.go_to_login_button);
         goToLoginButton.setOnClickListener(v -> {
             Intent i = new Intent(IntroActivity.this, LoginActivity.class);

@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lowest_background"
+    android:background="@drawable/dark_pattern_background"
     tools:context=".ui.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="388dp"
-        android:layout_height="650dp"
+        android:layout_width="312dp"
+        android:layout_height="621dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
@@ -19,15 +19,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.154">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/user_greeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/gugi"
             android:text="Welcome, User!"
             android:textColor="@color/text_color"
             android:textSize="30sp"
@@ -42,52 +42,28 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_button"
+            android:fontFamily="@font/roboto_mono"
             android:text="@string/change_email"
             android:textColor="@color/text_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.66"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_greeting"
-            app:layout_constraintVertical_bias="0.19" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="75dp"
-            android:layout_height="125dp"
-            android:src="@drawable/mail_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/change_email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.127"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/change_email"
-            app:layout_constraintVertical_bias="0.506" />
+            app:layout_constraintVertical_bias="0.172" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/change_password"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_button"
+            android:fontFamily="@font/roboto_mono"
             android:text="@string/change_password"
             android:textColor="@color/text_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.659"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/change_email"
-            app:layout_constraintVertical_bias="0.099" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="111dp"
-            android:layout_height="439dp"
-            android:src="@drawable/key_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/change_password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.093"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/change_password"
-            app:layout_constraintVertical_bias="0.501" />
+            app:layout_constraintVertical_bias="0.093" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/logout"
@@ -95,52 +71,28 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:background="@drawable/rectangle_button"
+            android:fontFamily="@font/roboto_mono"
             android:text="@string/logout"
             android:textColor="@color/text_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.659"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/change_password"
             app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="69dp"
-            android:layout_height="77dp"
-            android:src="@drawable/open_door"
-            app:layout_constraintBottom_toBottomOf="@+id/logout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.144"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/logout"
-            app:layout_constraintVertical_bias="0.482" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/delete_account"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_button"
+            android:fontFamily="@font/roboto_mono"
             android:text="@string/delete_account"
             android:textColor="@color/text_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.664"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logout"
-            app:layout_constraintVertical_bias="0.482" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="79dp"
-            android:layout_height="258dp"
-            android:src="@drawable/trashcan_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/delete_account"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.148"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/delete_account"
-            app:layout_constraintVertical_bias="0.519" />
+            app:layout_constraintVertical_bias="0.484" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

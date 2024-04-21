@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_wrapped_summary, R.id.navigation_past_wraps, R.id.navigation_display_past_wrap)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         // firebase user

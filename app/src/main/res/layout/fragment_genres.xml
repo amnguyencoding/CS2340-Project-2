@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
+    android:layout_marginTop="0dp"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".ui.home.GenresFragment"
-    android:layout_marginTop="0dp">
+    tools:context=".ui.home.GenresFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,19 +23,20 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="95dp">
+                android:layout_height="95dp"
+                android:gravity="center_horizontal|center_vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/roboto_mono"
+                    android:layout_width="307dp"
+                    android:layout_height="59dp"
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
                     android:paddingTop="10dp"
                     android:text="Your Top Genres"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="35dp"
-                    android:textStyle="bold">
-                </TextView>
+                    android:textStyle="bold"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -44,26 +46,26 @@
 
                 <TextView
                     android:layout_width="75dp"
-                    android:text="1."
-                    android:textSize="45dp"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="20dp"
-                    android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white">
-                </TextView>
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="1."
+                    android:textColor="@color/white"
+                    android:textSize="45dp"></TextView>
 
                 <TextView
                     android:id="@+id/genre1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/color_pane"
                     android:fontFamily="@font/roboto_mono"
-                    android:textColor="@color/white"
-                    android:textSize="40dp"
                     android:paddingTop="10dp"
                     android:textAlignment="center"
-                    >
-                </TextView>
+                    android:textColor="@color/white"
+                    android:textSize="40dp"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -73,24 +75,26 @@
 
                 <TextView
                     android:layout_width="75dp"
-                    android:text="2."
-                    android:fontFamily="@font/roboto_mono"
-                    android:textSize="45dp"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="20dp"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white">
-                </TextView>
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="2."
+                    android:textColor="@color/white"
+                    android:textSize="45dp"></TextView>
 
                 <TextView
                     android:id="@+id/genre2"
                     android:layout_width="match_parent"
-                    android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textSize="40dp"
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/roboto_mono"
                     android:paddingTop="10dp"
                     android:textAlignment="center"
-                    android:textColor="@color/white">
+                    android:textColor="@color/white"
+                    android:textSize="40dp">
 
                 </TextView>
             </LinearLayout>
@@ -102,24 +106,26 @@
 
                 <TextView
                     android:layout_width="75dp"
-                    android:text="3."
-                    android:fontFamily="@font/roboto_mono"
-                    android:paddingTop="10dp"
-                    android:textSize="45dp"
-                    android:paddingLeft="20dp"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white">
-                </TextView>
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="3."
+                    android:textColor="@color/white"
+                    android:textSize="45dp"></TextView>
 
                 <TextView
                     android:id="@+id/genre3"
                     android:layout_width="match_parent"
-                    android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textSize="40dp"
-                    android:textAlignment="center"
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/roboto_mono"
                     android:paddingTop="10dp"
-                    android:textColor="@color/white">
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="40dp">
 
                 </TextView>
             </LinearLayout>
@@ -131,25 +137,27 @@
 
                 <TextView
                     android:layout_width="75dp"
-                    android:text="4."
-                    android:fontFamily="@font/roboto_mono"
-                    android:paddingTop="10dp"
-                    android:textSize="45dp"
-                    android:paddingLeft="20dp"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white">
-                </TextView>
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="4."
+                    android:textColor="@color/white"
+                    android:textSize="45dp"></TextView>
 
                 <TextView
                     android:id="@+id/genre4"
                     android:layout_width="match_parent"
-                    android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textSize="40dp"
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/roboto_mono"
                     android:paddingTop="10dp"
                     android:textAlignment="center"
 
-                    android:textColor="@color/white">
+                    android:textColor="@color/white"
+                    android:textSize="40dp">
 
                 </TextView>
             </LinearLayout>
@@ -161,24 +169,26 @@
 
                 <TextView
                     android:layout_width="75dp"
-                    android:text="5."
-                    android:fontFamily="@font/roboto_mono"
-                    android:paddingTop="10dp"
-                    android:textSize="45dp"
-                    android:paddingLeft="20dp"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white">
-                </TextView>
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="5."
+                    android:textColor="@color/white"
+                    android:textSize="45dp"></TextView>
 
                 <TextView
                     android:id="@+id/genre5"
-                    android:fontFamily="@font/roboto_mono"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="40dp"
-                    android:textAlignment="center"
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/roboto_mono"
                     android:paddingTop="10dp"
-                    android:textColor="@color/white">
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="40dp">
 
                 </TextView>
             </LinearLayout>
@@ -193,26 +203,25 @@
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="70dp"
-                    android:text="Back"
+                    android:layout_marginRight="35dp"
                     android:background="@drawable/wrapped_button"
-                    android:textColor="@color/white"
-                    android:layout_marginRight="35dp"/>
+                    android:text="Back"
+                    android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/recommendedArtistsButton"
                     android:layout_width="100dp"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="70dp"
-                    android:text="Next"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@color/white"
-                    android:layout_height="match_parent"/>
+                    android:text="Next"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </LinearLayout>
