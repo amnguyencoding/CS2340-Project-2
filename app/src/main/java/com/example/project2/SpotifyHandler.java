@@ -3,6 +3,7 @@ package com.example.project2;
 import android.app.Activity;
 import android.net.Uri;
 import android.util.Log;
+import android.util.Pair;
 
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
@@ -15,11 +16,15 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -143,6 +148,7 @@ public class SpotifyHandler {
                             }
                         }
                         if (equalsArtistURL(url)) {
+                            Log.i("genres", topGenres.toString());
                             calculateTopGenres();
                         }
                     }
@@ -175,16 +181,26 @@ public class SpotifyHandler {
         }
     }
     private static void calculateTopGenres() {
-        ArrayList<String> temp = new ArrayList<>();
-        topGenres.sort(Comparator.comparing(i -> Collections.frequency(topGenres, i)).reversed());
+        Map<String, Integer> map = new HashMap<>();
+        for (String s : topGenres) {
+            if (map.containsKey(s)) {
+                map.put(s, map.get(s) + 1);
+            } else {
+                map.put(s, 1);
+            }
+        }
+        List<Map.Entry<String, Integer>> temp = new ArrayList<>(map.entrySet());
+        Comparator<Map.Entry<String, Integer>> comparator = Map.Entry.comparingByValue();
+        temp.sort(comparator.reversed());
+        topGenres.clear();
+
         int i = 0;
-        while (temp.size() != 5) {
-            if (!temp.contains(topGenres.get(i))) {
-                temp.add(topGenres.get(i));
+        while (topGenres.size() < 5) {
+            if (!topGenres.contains(temp.get(i).getKey())) {
+                topGenres.add(temp.get(i).getKey());
             }
             i++;
         }
-        topGenres = temp;
     }
 
     private static boolean equalsArtistURL(String url) {

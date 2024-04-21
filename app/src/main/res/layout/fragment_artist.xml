@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="0dp"
         android:background="@drawable/tri_color_background">
 
@@ -58,8 +58,7 @@
                 <ImageView
                     android:id="@+id/numberOneImage"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"></ImageView>
 
                 <TextView
                     android:id="@+id/numberOneName"
@@ -93,8 +92,7 @@
                 <ImageView
                     android:id="@+id/numberTwoImage"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"></ImageView>
 
                 <TextView
                     android:id="@+id/numberTwoName"
@@ -130,8 +128,7 @@
                 <ImageView
                     android:id="@+id/numberThreeImage"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"></ImageView>
 
                 <TextView
                     android:id="@+id/numberThreeName"
@@ -167,8 +164,7 @@
                 <ImageView
                     android:id="@+id/numberFourImage"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"></ImageView>
 
                 <TextView
                     android:id="@+id/numberFourName"
@@ -205,8 +201,7 @@
                 <ImageView
                     android:id="@+id/numberFiveImage"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"></ImageView>
 
                 <TextView
                     android:id="@+id/numberFiveName"
@@ -236,9 +231,9 @@
                     android:layout_marginLeft="70dp"
                     android:layout_marginTop="6dp"
                     android:layout_marginRight="35dp"
-                    android:textColor="@color/white"
                     android:background="@drawable/wrapped_button"
-                    android:text="Back"/>
+                    android:text="Back"
+                    android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/songsButton"
@@ -247,9 +242,9 @@
                     android:layout_marginLeft="35dp"
                     android:layout_marginTop="6dp"
                     android:layout_marginRight="70dp"
-                    android:textColor="@color/white"
                     android:background="@drawable/rounded_button"
-                    android:text="Next"/>
+                    android:text="Next"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </LinearLayout>

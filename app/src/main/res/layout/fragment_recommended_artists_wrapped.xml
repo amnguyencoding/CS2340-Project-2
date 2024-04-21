@@ -11,52 +11,54 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="0dp"
         android:background="@drawable/dark_pattern_background">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="700dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="344dp"
+                android:layout_width="262dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/pane"
                 android:fontFamily="@font/gugi"
                 android:paddingTop="10dp"
                 android:text="Recommended Artists"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="35dp"
-                android:textStyle="bold">
-
-            </TextView>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/recc"
-                android:layout_width="match_parent"
-                android:layout_height="570dp"
+                android:layout_width="327dp"
+                android:layout_height="465dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/pane"
                 android:fontFamily="@font/roboto_mono"
                 android:paddingLeft="30dp"
-                android:paddingTop="50dp"
+                android:paddingTop="30dp"
                 android:paddingRight="30dp"
                 android:text="Hello"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="22dp"
-                android:textStyle="bold">
-
-            </TextView>
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">
 
@@ -72,7 +74,7 @@
                     android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/LLMWrappedButton"
+                    android:id="@+id/wrappedSummaryButton"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="35dp"

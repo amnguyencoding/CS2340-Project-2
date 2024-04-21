@@ -12,10 +12,10 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/navigation_chooseprompt"
-        android:name="com.example.project2.ui.dashboard.ChoosePromptFragment"
+        android:id="@+id/navigation_game"
+        android:name="com.example.project2.ui.dashboard.GameFragment"
         android:label="Choose Prompt"
-        tools:layout="@layout/fragment_chooseprompt" >
+        tools:layout="@layout/fragment_game" >
     </fragment>
 
     <fragment
@@ -99,12 +99,6 @@
         <argument
             android:name="prompt"
             app:argType="string"/>
-    </fragment>
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.project2.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
     </fragment>
 
     <fragment
