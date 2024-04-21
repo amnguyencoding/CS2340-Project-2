@@ -22,19 +22,20 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="95dp">
+                android:layout_height="95dp"
+                android:gravity="center_horizontal|center_vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/roboto_mono"
+                    android:layout_width="316dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
                     android:paddingTop="10dp"
                     android:text="Your Top Songs"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="35dp"
-                    android:textStyle="bold">
-                </TextView>
+                    android:textStyle="bold"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -44,14 +45,15 @@
 
                 <TextView
                     android:layout_width="75dp"
-                    android:text="1."
-                    android:textSize="45dp"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="20dp"
-                    android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white">
-                </TextView>
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="1."
+                    android:textColor="@color/white"
+                    android:textSize="45dp"></TextView>
 
                 <ImageView
                     android:id="@+id/songOneImage"
@@ -63,13 +65,12 @@
                     android:id="@+id/songOneName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/color_pane"
                     android:fontFamily="@font/roboto_mono"
-                    android:textColor="@color/white"
-                    android:textSize="25dp"
-                    android:paddingTop="27dp"
+                    android:padding="20dp"
                     android:textAlignment="center"
-                    >
-                </TextView>
+                    android:textColor="@color/white"
+                    android:textSize="20sp"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -79,14 +80,15 @@
 
                 <TextView
                     android:layout_width="75dp"
-                    android:text="2."
-                    android:fontFamily="@font/roboto_mono"
-                    android:textSize="45dp"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="20dp"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white">
-                </TextView>
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="2."
+                    android:textColor="@color/white"
+                    android:textSize="45dp"></TextView>
 
                 <ImageView
                     android:id="@+id/songTwoImage"
@@ -97,12 +99,13 @@
                 <TextView
                     android:id="@+id/songTwoName"
                     android:layout_width="match_parent"
-                    android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textSize="25dp"
-                    android:paddingTop="27dp"
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/roboto_mono"
+                    android:padding="20dp"
                     android:textAlignment="center"
-                    android:textColor="@color/white">
+                    android:textColor="@color/white"
+                    android:textSize="20sp">
 
                 </TextView>
             </LinearLayout>
@@ -114,14 +117,15 @@
 
                 <TextView
                     android:layout_width="75dp"
-                    android:text="3."
-                    android:fontFamily="@font/roboto_mono"
-                    android:paddingTop="10dp"
-                    android:textSize="45dp"
-                    android:paddingLeft="20dp"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white">
-                </TextView>
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="3."
+                    android:textColor="@color/white"
+                    android:textSize="45dp"></TextView>
 
                 <ImageView
                     android:id="@+id/songThreeImage"
@@ -132,12 +136,13 @@
                 <TextView
                     android:id="@+id/songThreeName"
                     android:layout_width="match_parent"
-                    android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textSize="25dp"
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/roboto_mono"
+                    android:padding="20dp"
                     android:textAlignment="center"
-                    android:paddingTop="27dp"
-                    android:textColor="@color/white">
+                    android:textColor="@color/white"
+                    android:textSize="20sp">
 
                 </TextView>
             </LinearLayout>
@@ -149,14 +154,15 @@
 
                 <TextView
                     android:layout_width="75dp"
-                    android:text="4."
-                    android:fontFamily="@font/roboto_mono"
-                    android:paddingTop="10dp"
-                    android:textSize="45dp"
-                    android:paddingLeft="20dp"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white">
-                </TextView>
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="4."
+                    android:textColor="@color/white"
+                    android:textSize="45dp"></TextView>
 
                 <ImageView
                     android:id="@+id/songFourImage"
@@ -167,13 +173,14 @@
                 <TextView
                     android:id="@+id/songFourName"
                     android:layout_width="match_parent"
-                    android:fontFamily="@font/roboto_mono"
                     android:layout_height="match_parent"
-                    android:textSize="25dp"
-                    android:paddingTop="27dp"
-                    android:textAlignment="center"
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/roboto_mono"
+                    android:padding="20dp"
 
-                    android:textColor="@color/white">
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp">
 
                 </TextView>
             </LinearLayout>
@@ -185,14 +192,15 @@
 
                 <TextView
                     android:layout_width="75dp"
-                    android:text="5."
-                    android:fontFamily="@font/roboto_mono"
-                    android:paddingTop="10dp"
-                    android:textSize="45dp"
-                    android:paddingLeft="20dp"
                     android:layout_height="match_parent"
-                    android:textColor="@color/white">
-                </TextView>
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/gugi"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="5."
+                    android:textColor="@color/white"
+                    android:textSize="45dp"></TextView>
 
                 <ImageView
                     android:id="@+id/songFiveImage"
@@ -202,13 +210,14 @@
 
                 <TextView
                     android:id="@+id/songFiveName"
-                    android:fontFamily="@font/roboto_mono"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textSize="25dp"
+                    android:background="@drawable/color_pane"
+                    android:fontFamily="@font/roboto_mono"
+                    android:padding="20dp"
                     android:textAlignment="center"
-                    android:paddingTop="27dp"
-                    android:textColor="@color/white">
+                    android:textColor="@color/white"
+                    android:textSize="20sp">
 
                 </TextView>
             </LinearLayout>

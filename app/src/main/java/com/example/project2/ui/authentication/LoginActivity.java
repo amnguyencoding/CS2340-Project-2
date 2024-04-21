@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         mAuth = FirebaseAuth.getInstance();
 
         Button goToCreateAccountButton = findViewById(R.id.go_to_create_account_from_login_button);

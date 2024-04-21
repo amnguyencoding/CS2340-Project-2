@@ -13,39 +13,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="0dp"
-        android:background="@drawable/tri_color_background">
+        android:background="@drawable/dark_pattern_background">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="700dp"
-            android:orientation="vertical">
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:fontFamily="@font/roboto_mono"
+                android:layout_width="344dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/gugi"
                 android:paddingTop="10dp"
                 android:text="Recommended Artists"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="35dp"
-                android:textStyle="bold">
-            </TextView>
+                android:textStyle="bold"></TextView>
 
             <TextView
+                android:id="@+id/recc"
                 android:layout_width="match_parent"
-                android:paddingRight="30dp"
-                android:paddingLeft="30dp"
                 android:layout_height="570dp"
-                android:text="Hello"
-                android:textSize="22dp"
                 android:fontFamily="@font/roboto_mono"
-                android:textStyle="bold"
+                android:paddingLeft="30dp"
+                android:paddingTop="50dp"
+                android:paddingRight="30dp"
+                android:text="Hello"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:paddingTop="50dp"
-                android:id="@+id/recc">
-            </TextView>
+                android:textSize="22dp"
+                android:textStyle="bold"></TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,9 +63,9 @@
                     android:layout_marginLeft="70dp"
                     android:layout_marginTop="6dp"
                     android:layout_marginRight="35dp"
-                    android:textColor="@color/white"
                     android:background="@drawable/wrapped_button"
-                    android:text="Back"/>
+                    android:text="Back"
+                    android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/wrappedSummaryButton"
@@ -72,9 +74,9 @@
                     android:layout_marginLeft="35dp"
                     android:layout_marginTop="6dp"
                     android:layout_marginRight="70dp"
-                    android:textColor="@color/white"
                     android:background="@drawable/rounded_button"
-                    android:text="Next"/>
+                    android:text="Next"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </LinearLayout>
