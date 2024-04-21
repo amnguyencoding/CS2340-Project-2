@@ -67,7 +67,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         if (checkNameValid(fullName) && checkEmailValid(email) && checkPasswordValid(password) && checkSpotifyConnected()) {
             firebaseAuthCreateAccount(fullName, email, password, mAuth);
-            SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
+            SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.SHORT_TERM);
         }
     }
 

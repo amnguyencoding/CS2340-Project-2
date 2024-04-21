@@ -57,7 +57,6 @@ public class LoadingFragment extends Fragment {
                 if (document.exists()) {
                     mAccessToken = document.getString("spotifyToken");
 
-                    SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.MEDIUM_TERM);
                     ArrayList<String> topArtists = SpotifyHandler.getTopArtistNameData();
 
                     String promptInput = getArguments().getString("prompt");
@@ -72,10 +71,8 @@ public class LoadingFragment extends Fragment {
                     if (index == 2) gptPrompt = gptPrompt + " Do not suggest artists that are already in the list.";
 
                     Log.i("gptPrompt", gptPrompt);
-                    if (gptResponses[index] == null) {
-                        gptResponses[index] = getGPTResponse(gptPrompt);
-                        Log.i("gptPromptInner", gptPrompt);
-                    }
+                    gptResponses[index] = getGPTResponse(gptPrompt);
+                    Log.i("gptPromptInner", gptPrompt);
                     continueButton.setVisibility(View.VISIBLE);
                 }
             }

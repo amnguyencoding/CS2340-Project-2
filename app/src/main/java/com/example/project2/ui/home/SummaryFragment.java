@@ -20,17 +20,11 @@ import android.widget.Toast;
 
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
-import com.example.project2.TimeRange;
-import com.example.project2.databinding.FragmentArtistBinding;
 import com.example.project2.databinding.FragmentSummaryBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.checkerframework.checker.units.qual.A;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -107,7 +101,7 @@ public class SummaryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button home = view.findViewById(R.id.summaryWrappedHomeButton);
+        Button home = view.findViewById(R.id.summaryWrappedReturnButton);
         Button restart = view.findViewById(R.id.summaryWrappedRestartButton);
         Button save = view.findViewById(R.id.summaryWrappedSaveButton);
         home.setOnClickListener(v -> {

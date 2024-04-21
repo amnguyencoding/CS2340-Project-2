@@ -76,7 +76,7 @@ public class WrappedFragment extends Fragment {
         });
 
         home.setOnClickListener(v -> {
-            selectedTimeRange = TimeRange.MEDIUM_TERM;
+            selectedTimeRange = TimeRange.SHORT_TERM;
             populateDataBasedOnTimeRange();
             Navigation.findNavController(v).navigate(R.id.navigation_home);
         });

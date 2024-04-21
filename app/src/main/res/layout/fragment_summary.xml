@@ -250,7 +250,7 @@
                 android:text="Save"
                 android:textColor="@color/white"/>
             <Button
-                android:id="@+id/summaryWrappedHomeButton"
+                android:id="@+id/summaryWrappedReturnButton"
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
