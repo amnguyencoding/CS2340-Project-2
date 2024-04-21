@@ -35,10 +35,10 @@ public class ChoosePromptFragment extends Fragment {
         binding = FragmentChoosepromptBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
-        navBar.setVisibility(View.GONE);
+        navBar.setVisibility(View.VISIBLE);
 
         Button returnButton = root.findViewById(R.id.return_to_dashboard_button);
-        returnButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_dashboard));
+        returnButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_chooseprompt));
 
         // Note for later: use the click listeners to pass info about the prompt to the GPT thing
         // Also: should change loading text based on if it is a prediction or a recommendation

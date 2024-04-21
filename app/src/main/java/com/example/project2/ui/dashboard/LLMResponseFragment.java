@@ -32,7 +32,7 @@ public class LLMResponseFragment extends Fragment {
         responseText.setText(response);
 
         Button returnToDashButton = root.findViewById(R.id.return_to_dashboard_from_response_button);
-        returnToDashButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_dashboard));
+        returnToDashButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_chooseprompt));
 
         Button returnToPromptsButton = root.findViewById(R.id.return_to_prompts_from_response_button);
         returnToPromptsButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_chooseprompt));

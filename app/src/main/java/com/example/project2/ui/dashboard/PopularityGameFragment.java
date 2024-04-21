@@ -46,7 +46,7 @@ public class PopularityGameFragment extends Fragment {
         navBar.setVisibility(View.GONE);
 
         Button returnButton = root.findViewById(R.id.return_to_dashboard_from_popularity_button);
-        returnButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_dashboard));
+        returnButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_chooseprompt));
 
         Button playAgainButton = root.findViewById(R.id.play_popularity_game_again_button);
         playAgainButton.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_popularitygame));
