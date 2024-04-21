@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <Button
         android:id="@+id/return_to_dashboard_button"
         android:layout_width="330dp"
         android:layout_height="47dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="184dp"
         android:background="@drawable/rounded_button"
         android:fontFamily="@font/roboto_mono"
         android:text="@string/return_to_dashboard"
@@ -19,37 +20,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/play_popularity_guess_button" />
 
-    <Button
-        android:id="@+id/fashion_prompt_button"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rounded_button"
-        android:fontFamily="@font/roboto_mono"
-        android:text="Fashion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personality_prompt_button" />
-
-    <Button
-        android:id="@+id/personality_prompt_button"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/rounded_button"
-        android:fontFamily="@font/roboto_mono"
-        android:text="Personality"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prediction_text" />
-
     <TextView
         android:id="@+id/recommended_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:background="@drawable/pane"
         android:fontFamily="@font/gugi"
         android:text="Recommendations"
@@ -58,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.287"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fashion_prompt_button" />
+        tools:layout_editor_absoluteY="47dp" />
 
     <Button
         android:id="@+id/recommended_artists_prompt_button"
@@ -114,19 +88,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/play_song_release_date_button" />
 
-    <TextView
-        android:id="@+id/prediction_text"
-        android:background="@drawable/pane"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/gugi"
-        android:text="Get a Prediction:"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@ import androidx.navigation.Navigation;
 
 import com.example.project2.R;
 import com.example.project2.databinding.FragmentChooseLlmWrappedBinding;
-import com.example.project2.databinding.FragmentChoosepromptBinding;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ChooseLLMWrapped extends Fragment {

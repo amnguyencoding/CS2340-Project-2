@@ -74,7 +74,7 @@
                     android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/wrappedSummaryButton"
+                    android:id="@+id/LLMWrappedButton"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="35dp"
