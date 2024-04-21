@@ -32,8 +32,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.checkerframework.checker.units.qual.A;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class SummaryFragment extends Fragment {
@@ -142,6 +145,8 @@ public class SummaryFragment extends Fragment {
         summaryData.put("topSongs", topSongs);
         summaryData.put("topGenre", topGenre);
         summaryData.put("topArtistImage", topArtistImage);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        summaryData.put("date", sdf.format(new Date()));
 
             db.collection("users/"+uid+"/summaryData").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
