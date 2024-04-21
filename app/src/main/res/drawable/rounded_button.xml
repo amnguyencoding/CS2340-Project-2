@@ -10,8 +10,8 @@
     <item >
         <shape android:shape="rectangle"  >
             <corners android:radius="20dip" /> <!--Higher value will round the edges of the button-->
-            <stroke android:width="1dip" android:color="@color/spotify_bright_green" />
-            <gradient android:angle="-90" android:startColor="@color/spotify_bright_green" android:endColor="@color/spotify_bright_green" />
+            <stroke android:width="1dip" android:color="#5E239D" />
+            <gradient android:angle="-90" android:startColor="#5E239D" android:endColor="#5E239D" />
         </shape>
     </item>
 </selector>
