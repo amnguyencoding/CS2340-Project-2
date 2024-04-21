@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="354dp"
         android:layout_height="684dp"
-        android:background="@drawable/tri_color_pane"
+        android:background="@drawable/tri_color_pane_two"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
