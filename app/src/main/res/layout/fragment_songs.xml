@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="0dp"
         android:background="@drawable/tri_color_background">
 
@@ -58,8 +58,7 @@
                 <ImageView
                     android:id="@+id/songOneImage"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"></ImageView>
 
                 <TextView
                     android:id="@+id/songOneName"
@@ -93,8 +92,7 @@
                 <ImageView
                     android:id="@+id/songTwoImage"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"></ImageView>
 
                 <TextView
                     android:id="@+id/songTwoName"
@@ -130,8 +128,7 @@
                 <ImageView
                     android:id="@+id/songThreeImage"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"></ImageView>
 
                 <TextView
                     android:id="@+id/songThreeName"
@@ -167,8 +164,7 @@
                 <ImageView
                     android:id="@+id/songFourImage"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"></ImageView>
 
                 <TextView
                     android:id="@+id/songFourName"
@@ -205,8 +201,7 @@
                 <ImageView
                     android:id="@+id/songFiveImage"
                     android:layout_width="108dp"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"></ImageView>
 
                 <TextView
                     android:id="@+id/songFiveName"
@@ -230,22 +225,22 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/backToArtistsButton"
                     android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/wrapped_button"
-                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="70dp"
+                    android:layout_marginRight="35dp"
+                    android:background="@drawable/wrapped_button"
                     android:text="Back"
-                    android:layout_marginRight="35dp"/>
+                    android:textColor="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/genresButton"
                     android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="70dp"
                     android:background="@drawable/rounded_button"
-                    android:textColor="@color/white"
                     android:text="Next"
-                    android:layout_height="match_parent"/>
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </LinearLayout>

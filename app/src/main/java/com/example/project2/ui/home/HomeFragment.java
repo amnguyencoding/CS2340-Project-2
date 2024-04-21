@@ -39,7 +39,9 @@ public class HomeFragment extends Fragment {
 
         if (firstTimeVisited) {
             BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
-            navBar.setVisibility(View.VISIBLE);
+            if (navBar != null) {
+                navBar.setVisibility(View.VISIBLE);
+            }
         }
 
         if (!firstTimeVisited) {

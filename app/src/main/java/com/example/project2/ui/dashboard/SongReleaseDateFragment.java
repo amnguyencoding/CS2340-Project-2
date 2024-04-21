@@ -21,11 +21,6 @@ import com.example.project2.R;
 import com.example.project2.SpotifyHandler;
 import com.example.project2.databinding.FragmentSongReleaseDateBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -44,7 +39,7 @@ public class SongReleaseDateFragment extends Fragment {
 
         Button returnButton = root.findViewById(R.id.return_to_dashboard_from_song_game_button);
         returnButton.setOnClickListener((v)-> {
-            Navigation.findNavController(v).navigate(R.id.navigation_chooseprompt);
+            Navigation.findNavController(v).navigate(R.id.navigation_game);
         });
 
         ArrayList<String> names = SpotifyHandler.getTopTrackNameData();
