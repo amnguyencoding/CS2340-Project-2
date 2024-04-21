@@ -44,7 +44,7 @@ public class SongReleaseDateFragment extends Fragment {
 
         Button returnButton = root.findViewById(R.id.return_to_dashboard_from_song_game_button);
         returnButton.setOnClickListener((v)-> {
-            Navigation.findNavController(v).navigate(R.id.navigation_dashboard);
+            Navigation.findNavController(v).navigate(R.id.navigation_chooseprompt);
         });
 
         ArrayList<String> names = SpotifyHandler.getTopTrackNameData();
