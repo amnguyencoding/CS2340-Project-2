@@ -97,7 +97,7 @@ public class RecommendedArtists extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button genres = view.findViewById(R.id.backtoGenresButton);
-        Button wrapped = view.findViewById(R.id.wrappedSummaryButton);
+        Button llmWrapped = view.findViewById(R.id.LLMWrappedButton);
 
         genres.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,11 +107,11 @@ public class RecommendedArtists extends Fragment {
             }
         });
 
-        wrapped.setOnClickListener(new View.OnClickListener() {
+        llmWrapped.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to WrappedFragment when the button is clicked
-                Navigation.findNavController(v).navigate(R.id.navigation_wrapped_summary);
+                Navigation.findNavController(v).navigate(R.id.navigation_chooseLLMWrapped);
             }
         });
     }

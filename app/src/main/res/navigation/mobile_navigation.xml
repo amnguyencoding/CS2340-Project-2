@@ -19,6 +19,13 @@
     </fragment>
 
     <fragment
+        android:id="@+id/navigation_chooseLLMWrapped"
+        android:name="com.example.project2.ui.home.ChooseLLMWrapped"
+        android:label="Choose Prompt"
+        tools:layout="@layout/fragment_choose_llm_wrapped" >
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_recommendedArtists"
         android:name="com.example.project2.ui.home.RecommendedArtists"
         android:label="Recommended Artists"

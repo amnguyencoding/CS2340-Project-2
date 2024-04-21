@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/lowest_background"
+    android:background="@drawable/dark_pattern_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,41 +21,40 @@
             android:layout_width="336dp"
             android:layout_height="461dp"
             android:layout_marginTop="32dp"
-            android:fontFamily="@font/roboto_mono"
+            android:fontFamily="@font/gugi"
             android:padding="20dp"
             android:text="Text will go here"
             android:textAlignment="center"
             android:textColor="@color/text_color"
-            android:textSize="16sp"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.518"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/return_to_prompts_from_response_button"
+            android:id="@+id/returnToWrappedLLMChooseButton"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="@drawable/rounded_button"
-            android:text="Return to Wizard"
+            android:text="Back To Predictor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/llm_response_text" />
 
         <Button
-            android:id="@+id/return_to_dashboard_from_response_button"
+            android:id="@+id/wrappedSummaryButton"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="36dp"
             android:background="@drawable/rounded_button"
-            android:text="Return to Dashboard"
+            android:text="Next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/return_to_prompts_from_response_button"
             app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

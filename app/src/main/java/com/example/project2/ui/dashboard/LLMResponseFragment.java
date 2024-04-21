@@ -31,11 +31,11 @@ public class LLMResponseFragment extends Fragment {
         TextView responseText = root.findViewById(R.id.llm_response_text);
         responseText.setText(response);
 
-        Button returnToDashButton = root.findViewById(R.id.return_to_dashboard_from_response_button);
-        returnToDashButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_dashboard));
+        Button returnToWrapped = root.findViewById(R.id.returnToWrappedLLMChooseButton);
+        returnToWrapped.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_chooseLLMWrapped));
 
-        Button returnToPromptsButton = root.findViewById(R.id.return_to_prompts_from_response_button);
-        returnToPromptsButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_chooseprompt));
+        Button nextToWrappedSummary = root.findViewById(R.id.wrappedSummaryButton);
+        nextToWrappedSummary.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_wrapped_summary));
 
         return root;
     }
