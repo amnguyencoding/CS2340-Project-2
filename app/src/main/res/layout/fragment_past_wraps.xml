@@ -37,7 +37,7 @@
             android:id="@+id/show_past_wrap_button"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="312dp"
+            android:layout_marginTop="64dp"
             android:background="@drawable/rounded_button"
             android:fontFamily="@font/roboto_mono"
             android:text="Show my wrapped!"
@@ -45,13 +45,13 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/past_wrapped_spinner" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/past_wrapped_intro_to_home_button"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="36dp"
             android:background="@drawable/wrapped_button"
             android:fontFamily="@font/roboto_mono"
             android:text="Home"
@@ -65,10 +65,25 @@
             android:id="@+id/past_wrapped_spinner"
             android:layout_width="262dp"
             android:layout_height="44dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/tri_color_pane"
             android:popupBackground="@drawable/tri_color_pane"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_mono"
+            android:paddingStart="30dp"
+            android:paddingRight="30dp"
+            android:text="Use the dropdown box below to select a previously saved Wrapped based on the date!"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/past_wrap_count_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
