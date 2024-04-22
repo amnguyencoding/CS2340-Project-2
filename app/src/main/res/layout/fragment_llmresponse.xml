@@ -18,19 +18,19 @@
 
         <TextView
             android:id="@+id/llm_response_text"
-            android:layout_width="336dp"
-            android:layout_height="461dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/gugi"
+            android:layout_width="333dp"
+            android:layout_height="411dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_mono"
             android:padding="20dp"
             android:text="Text will go here"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
             android:textColor="@color/text_color"
-            android:textSize="20dp"
+            android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.518"
+            app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
         <Button
             android:id="@+id/returnToWrappedLLMChooseButton"
@@ -56,6 +56,20 @@
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/gugi"
+            android:text="Our AI says..."
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
