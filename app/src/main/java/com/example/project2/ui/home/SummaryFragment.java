@@ -149,12 +149,10 @@ public class SummaryFragment extends Fragment {
                 db.collection("users/"+uid+"/summaryData").document(index+"")
                         .set(summaryData)
                         .addOnSuccessListener(documentReference -> {
-                            // Show success message or navigate to another fragment/activity
                             Log.d("TAG", "DocumentSnapshot added with ID: " + index);
                         })
                         .addOnFailureListener(e -> {
                             Log.w("TAG", "Error adding document", e);
-                            // Show error message or handle failure
                         });
 
             }

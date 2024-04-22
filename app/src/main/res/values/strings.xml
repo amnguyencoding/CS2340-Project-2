@@ -35,6 +35,7 @@
     <string name="the_release_dating_game">The (Release) Dating Game</string>
     <string name="games_based_on_your_taste">Games Based on Your Taste</string>
     <string name="popularity_blurb">How well do you know your top artists?</string>
-    <string name = "popularity_game_text">Which of these artists in your top 20 is more popular (by followers): %1$s or %2$s?</string>
+    <string name ="popularity_game_text">Which of these artists in your top 20 is more popular (by followers): %1$s or %2$s?</string>
+    <string name="spotify_connected">Spotify Connected!</string>
 
 </resources>
