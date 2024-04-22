@@ -2,6 +2,8 @@
 <resources>
     <style name="DialogBoxTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">@color/spotify_bright_purple</item>
+        <item name="android:font">@font/gugi</item>
+        <item name="android:textColor">@color/white</item>
     </style>
     <style name="autoscroll">
         <item name="android:singleLine">true</item>

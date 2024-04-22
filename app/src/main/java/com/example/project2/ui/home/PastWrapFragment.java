@@ -70,8 +70,6 @@ public class PastWrapFragment extends Fragment {
                 adapter.setDropDownViewResource(R.layout.spinner_item);
                 spinner.setAdapter(adapter);
 
-                pastWrapText.setText("Which wrap would you like to see?");
-
                 Button showPastWrapButton = view.findViewById(R.id.show_past_wrap_button);
                 showPastWrapButton.setOnClickListener((v)-> {
                     //EditText wrapIndexText = view.findViewById(R.id.past_wrap_pick_digit);

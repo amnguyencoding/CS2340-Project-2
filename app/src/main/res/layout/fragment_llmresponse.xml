@@ -7,71 +7,59 @@
     android:layout_height="match_parent">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="364dp"
-        android:layout_height="688dp"
-        android:background="@drawable/pane"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/llm_response_text"
+        android:layout_width="332dp"
+        android:layout_height="455dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/tri_color_pane"
+        android:fontFamily="@font/roboto_mono"
+        android:padding="20dp"
+        android:text="Text will go here"
+        android:textAlignment="viewStart"
+        android:textColor="@color/text_color"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-        <TextView
-            android:id="@+id/llm_response_text"
-            android:layout_width="333dp"
-            android:layout_height="411dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/roboto_mono"
-            android:padding="20dp"
-            android:text="Text will go here"
-            android:textAlignment="viewStart"
-            android:textColor="@color/text_color"
-            android:textSize="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.516"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+    <Button
+        android:id="@+id/returnToWrappedLLMChooseButton"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_button"
+        android:text="Back To Predictor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llm_response_text" />
 
-        <Button
-            android:id="@+id/returnToWrappedLLMChooseButton"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/rounded_button"
-            android:text="Back To Predictor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/llm_response_text" />
+    <Button
+        android:id="@+id/wrappedSummaryButton"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="Next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/returnToWrappedLLMChooseButton" />
 
-        <Button
-            android:id="@+id/wrappedSummaryButton"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="36dp"
-            android:background="@drawable/rounded_button"
-            android:text="Next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:fontFamily="@font/gugi"
-            android:text="Our AI says..."
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/pane"
+        android:fontFamily="@font/gugi"
+        android:text="Our AI says..."
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
