@@ -28,7 +28,6 @@ import java.util.ArrayList;
 
 public class LoadingFragment extends Fragment {
     private String mAccessToken;
-
     private FragmentLoadingBinding binding;
     private static String[] gptResponses = new String[3];
     private int index;
@@ -70,9 +69,7 @@ public class LoadingFragment extends Fragment {
                             "Please sprinkle references to the artists in the prompt throughout your response.";
                     if (index == 2) gptPrompt = gptPrompt + " Do not suggest artists that are already in the list.";
 
-                    Log.i("gptPrompt", gptPrompt);
                     gptResponses[index] = getGPTResponse(gptPrompt);
-                    Log.i("gptPromptInner", gptPrompt);
                     continueButton.setVisibility(View.VISIBLE);
                 }
             }

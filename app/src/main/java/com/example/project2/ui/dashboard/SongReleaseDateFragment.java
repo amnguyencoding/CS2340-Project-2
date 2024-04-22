@@ -43,9 +43,7 @@ public class SongReleaseDateFragment extends Fragment {
         });
 
         ArrayList<String> names = SpotifyHandler.getTopTrackNameData();
-        Log.i("Tracks", names.toString());
         ArrayList<String> artists = SpotifyHandler.getTopTrackAuthors();
-        Log.i("Authors", artists.toString());
         ArrayList<String> dates = SpotifyHandler.getTopTrackReleaseDateData();
         ArrayList<String> images = SpotifyHandler.getTopTrackImageData();
 
@@ -63,8 +61,6 @@ public class SongReleaseDateFragment extends Fragment {
             EditText guessEditText = root.findViewById(R.id.song_game_year_guess);
             String guess = guessEditText.getText().toString();
             if (guess.length() != 4 || !isNumeric(guess)) {
-                Log.i("guess length", String.valueOf(guess.length()));
-                Log.i("isnumeric", String.valueOf(isNumeric(guess)));
                 Toast.makeText(getContext(), "Please enter a valid guess", Toast.LENGTH_SHORT).show();
             } else {
                 int dateGuess = Integer.parseInt(guess);

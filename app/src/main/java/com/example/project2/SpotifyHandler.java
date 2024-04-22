@@ -39,7 +39,6 @@ public class SpotifyHandler {
     public static final int AUTH_CODE_REQUEST_CODE = 1;
     private static final OkHttpClient mOkHttpClient = new OkHttpClient();
     private static Call call;
-    //Maybe use different data structure to store data?
     private static ArrayList<String> topArtistNames = new ArrayList<>();
     private static ArrayList<String> topArtistIDs = new ArrayList<>();
     private static ArrayList<String> recommendedArtistNames = new ArrayList<>();
@@ -56,13 +55,10 @@ public class SpotifyHandler {
     private static final String MEDIUM_TERM_TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks";
     private static final String LONG_TERM_TOP_ARTISTS_URL = "https://api.spotify.com/v1/me/top/artists?time_range=long_term";
     private static final String LONG_TERM_TOP_TRACKS_URL = "https://api.spotify.com/v1/me/top/tracks?time_range=long_term";
-
     private static final String RECOMMENDED_ARTISTS_URL = "https://api.spotify.com/v1/artists/";
-
     private static final String SHORT_TERM_TOP_TRACK_IMAGES_URL = "https://api.spotify.com/v1/me/top/tracks/images?time_range=short_term";
     private static final String MEDIUM_TERM_TOP_TRACK_IMAGES_URL = "https://api.spotify.com/v1/me/top/tracks/images?time_range=medium_term";
     private static final String LONG_TERM_TOP_TRACK_IMAGES_URL = "https://api.spotify.com/v1/me/top/tracks/images?time_range=long_term";
-
     private static final String SHORT_TERM_TOP_GENRES_URL = "https://api.spotify.com/v1/me/top/tracks/genres?time_range=short_term";
     private static final String MEDIUM_TERM_TOP_GENRES_URL = "https://api.spotify.com/v1/me/top/tracks/genres?time_range=medium_term";
     private static final String LONG_TERM_TOP_GENRES_URL = "https://api.spotify.com/v1/me/top/tracks/genres?time_range=long_term";
@@ -79,12 +75,10 @@ public class SpotifyHandler {
     }
 
     private static void getUserProfileData(String url, String accessToken) {
-        //ArrayList<String> topArtistNames = new ArrayList<>();
         if (accessToken == null) {
             return;
         }
 
-        //User profile request -- change URL to get different data
         final Request request = new Request.Builder()
                 .url(url)
                 .addHeader("Authorization", "Bearer " + accessToken)
@@ -114,21 +108,16 @@ public class SpotifyHandler {
                         final JSONArray jsonArray = jsonObject.getJSONArray("items");
                         clearDataLists(url);
                         for (int i = 0; i < jsonArray.length(); i++) {
-                            //Log.i("THERES A NEW", "ENTRY HERE!!\n\n\n");
                             JSONObject itemObject = jsonArray.getJSONObject(i);
 
                             // Create a Map to store the JSON data
                             Map<String, Object> jsonMap = new HashMap<>();
-
-                            // Iterate over the keys in the JSON object
                             Iterator<String> keys = itemObject.keys();
                             while (keys.hasNext()) {
                                 String key = keys.next();
                                 Object value = itemObject.get(key);
                                 jsonMap.put(key, value);
                             }
-                            //Log.i("song title",jsonMap.get("name").toString());
-                            //Log.i("song title",jsonMap.get("name").toString());
                             if (equalsArtistURL(url)) {
                                 topArtistNames.add(jsonMap.get("name").toString());
                                 topArtistIDs.add(jsonMap.get("id").toString());
@@ -136,7 +125,7 @@ public class SpotifyHandler {
                                 topArtistImageURLS.add(((JSONArray) jsonMap.get("images")).getJSONObject(1).getString("url"));
                                 JSONArray genresArray = itemObject.getJSONArray("genres");
                                 for (int j = 0; j < genresArray.length(); j++) {
-                                    topGenres.add(genresArray.getString(j)); //duplicate genres from here
+                                    topGenres.add(genresArray.getString(j));
                                 }
 
                             } else if (equalsTrackURL(url)) {
@@ -148,7 +137,6 @@ public class SpotifyHandler {
                             }
                         }
                         if (equalsArtistURL(url)) {
-                            Log.i("genres", topGenres.toString());
                             calculateTopGenres();
                         }
                     }
@@ -213,7 +201,6 @@ public class SpotifyHandler {
         return url.startsWith(RECOMMENDED_ARTISTS_URL);
     }
 
-
     private static boolean equalsTrackURL(String url) {
         return url.equals(SHORT_TERM_TOP_TRACKS_URL)
                 || url.equals(MEDIUM_TERM_TOP_TRACKS_URL)
@@ -229,23 +216,23 @@ public class SpotifyHandler {
             case SHORT_TERM:
                 getUserProfileData(SHORT_TERM_TOP_ARTISTS_URL, accessToken);
                 getUserProfileData(SHORT_TERM_TOP_TRACKS_URL, accessToken);
-                getUserProfileData(SHORT_TERM_TOP_TRACK_IMAGES_URL, accessToken); // Add URL for fetching track images
-                getUserProfileData(SHORT_TERM_TOP_GENRES_URL, accessToken); // Add URL for fetching genres\
+                getUserProfileData(SHORT_TERM_TOP_TRACK_IMAGES_URL, accessToken);
+                getUserProfileData(SHORT_TERM_TOP_GENRES_URL, accessToken);
                 getUserProfileData(RECOMMENDED_ARTISTS_URL + topArtistIDs.get(0) + "/related-artists", accessToken);
 
                 break;
             case MEDIUM_TERM:
                 getUserProfileData(MEDIUM_TERM_TOP_ARTISTS_URL, accessToken);
                 getUserProfileData(MEDIUM_TERM_TOP_TRACKS_URL, accessToken);
-                getUserProfileData(MEDIUM_TERM_TOP_TRACK_IMAGES_URL, accessToken); // Add URL for fetching track images
-                getUserProfileData(MEDIUM_TERM_TOP_GENRES_URL, accessToken); // Add URL for fetching genres
+                getUserProfileData(MEDIUM_TERM_TOP_TRACK_IMAGES_URL, accessToken);
+                getUserProfileData(MEDIUM_TERM_TOP_GENRES_URL, accessToken);
                 getUserProfileData(RECOMMENDED_ARTISTS_URL + topArtistIDs.get(0) + "/related-artists", accessToken);
                 break;
             case LONG_TERM:
                 getUserProfileData(LONG_TERM_TOP_ARTISTS_URL, accessToken);
                 getUserProfileData(LONG_TERM_TOP_TRACKS_URL, accessToken);
-                getUserProfileData(LONG_TERM_TOP_TRACK_IMAGES_URL, accessToken); // Add URL for fetching track images
-                getUserProfileData(LONG_TERM_TOP_GENRES_URL, accessToken); // Add URL for fetching genres
+                getUserProfileData(LONG_TERM_TOP_TRACK_IMAGES_URL, accessToken);
+                getUserProfileData(LONG_TERM_TOP_GENRES_URL, accessToken);
                 getUserProfileData(RECOMMENDED_ARTISTS_URL + topArtistIDs.get(0) + "/related-artists", accessToken);
                 break;
         }

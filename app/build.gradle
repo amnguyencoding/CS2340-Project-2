@@ -37,7 +37,6 @@ android {
 dependencies {
     //import firebase bom
     implementation platform('com.google.firebase:firebase-bom:32.7.4')
-    // import firebase auth (this is like 99% what we are gonna use, but not 100% sure yet)
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
 

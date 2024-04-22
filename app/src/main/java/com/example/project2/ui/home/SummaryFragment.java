@@ -36,12 +36,10 @@ import java.util.Map;
 public class SummaryFragment extends Fragment {
     private FragmentSummaryBinding binding;
     private String mAccessToken;
-    private String uid;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = FragmentSummaryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 

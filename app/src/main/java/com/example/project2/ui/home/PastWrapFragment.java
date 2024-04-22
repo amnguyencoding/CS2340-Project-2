@@ -39,7 +39,6 @@ public class PastWrapFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
         navBar.setVisibility(View.GONE);
 
@@ -48,8 +47,6 @@ public class PastWrapFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        TextView pastWrapText = view.findViewById(R.id.past_wrap_count_text);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -72,18 +69,13 @@ public class PastWrapFragment extends Fragment {
 
                 Button showPastWrapButton = view.findViewById(R.id.show_past_wrap_button);
                 showPastWrapButton.setOnClickListener((v)-> {
-                    //EditText wrapIndexText = view.findViewById(R.id.past_wrap_pick_digit);
-
-                    //if (wrapIndexText.getText().toString().isEmpty()) Toast.makeText(getContext(), "Please enter a number", Toast.LENGTH_LONG).show();
-                    //else {
-                        int wrapIndex = /*spinner.getAdapter().getCount() - */spinner.getSelectedItemPosition() + 1;
-                        if (wrapIndex < 1 || wrapIndex > task.getResult().size()) Toast.makeText(getContext(), "Please select a wrapped to view", Toast.LENGTH_LONG).show();
-                        else {
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("wrapIndex", wrapIndex);
-                            Navigation.findNavController(view).navigate(R.id.navigation_display_past_wrap, bundle);
-                        }
-                    //}
+                    int wrapIndex = spinner.getSelectedItemPosition() + 1;
+                    if (wrapIndex < 1 || wrapIndex > task.getResult().size()) Toast.makeText(getContext(), "Please select a wrapped to view", Toast.LENGTH_LONG).show();
+                    else {
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("wrapIndex", wrapIndex);
+                        Navigation.findNavController(view).navigate(R.id.navigation_display_past_wrap, bundle);
+                    }
                 });
             }}
         );

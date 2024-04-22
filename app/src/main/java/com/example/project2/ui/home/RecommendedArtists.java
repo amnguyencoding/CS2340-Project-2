@@ -35,7 +35,6 @@ public class RecommendedArtists extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = FragmentRecommendedArtistsWrappedBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -47,7 +46,6 @@ public class RecommendedArtists extends Fragment {
         TextView rec1 = root.findViewById(R.id.recc);
         rec1.setText("Hey there! Based on your diverse listening preferences, we've crafted a selection of recommended artists just for you. Delve into captivating music from " + rec.get(0) +
                 ", explore the unique sounds of " + rec.get(1) + ", vibe to the beats of " + rec.get(2)+ ", discover hidden gems with " + rec.get(3)+ ", and immerse yourself in the artistry of " + rec.get(4) +". Happy exploring! ");
-
 
         return root;
     }

@@ -69,7 +69,6 @@ public class ProfileFragment extends Fragment {
                     }
                 });
 
-        // need a "change spotify account" button? prob not right
         Button changeEmailButton = view.findViewById(R.id.change_email);
         changeEmailButton.setOnClickListener(view1 -> createEditProfileDialog(EMAIL_EDIT_DIALOG));
 
@@ -81,7 +80,6 @@ public class ProfileFragment extends Fragment {
 
         Button deleteAccountButton = view.findViewById(R.id.delete_account);
         deleteAccountButton.setOnClickListener(view1 -> deleteUser(user));
-
     }
 
     private void createEditProfileDialog(int dialogType) {
@@ -105,14 +103,12 @@ public class ProfileFragment extends Fragment {
             if (dialogType == 0 && checkEmailValid(profileFieldEdit)) {
                 user.verifyBeforeUpdateEmail(fieldText);
 
-                // if we dont store email and pass in firestore, we dont need this line below
                 db.collection("users").document(uid).update("email", fieldText);
                 Toast.makeText(this.getContext(), "Email updated. Check inbox for verification", Toast.LENGTH_LONG).show();
 
             } else if (dialogType == 1 && checkPassWordValid(profileFieldEdit)) {
                 user.updatePassword(fieldText);
 
-                // idem
                 db.collection("users").document(uid).update("password", fieldText);
                 Toast.makeText(this.getContext(), "Password updated successfully", Toast.LENGTH_SHORT).show();
 
@@ -121,7 +117,6 @@ public class ProfileFragment extends Fragment {
 
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
-        // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
 

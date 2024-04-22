@@ -32,51 +32,12 @@ import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ArtistFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ArtistFragment extends Fragment {
     private FragmentArtistBinding binding;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ArtistFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ArtistFragment.
-     */
-    public static ArtistFragment newInstance(String param1, String param2) {
-        ArtistFragment fragment = new ArtistFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -95,22 +56,17 @@ public class ArtistFragment extends Fragment {
         TextView artist1name = root.findViewById(R.id.numberOneName);
         artist1name.setText(topArtists.get(0));
 
-
         TextView artist2name = root.findViewById(R.id.numberTwoName);
         artist2name.setText(topArtists.get(1));
-
 
         TextView artist3name = root.findViewById(R.id.numberThreeName);
         artist3name.setText(topArtists.get(2));
 
-
         TextView artist4name = root.findViewById(R.id.numberFourName);
         artist4name.setText(topArtists.get(3));
 
-
         TextView artist5name = root.findViewById(R.id.numberFiveName);
         artist5name.setText(topArtists.get(4));
-
 
         ImageView artist1Image = root.findViewById(R.id.numberOneImage);
         Glide.with(requireContext()).load(topArtistImages.get(0)).into(artist1Image);
@@ -127,7 +83,6 @@ public class ArtistFragment extends Fragment {
         ImageView artist5Image = root.findViewById(R.id.numberFiveImage);
         Glide.with(requireContext()).load(topArtistImages.get(4)).into(artist5Image);
 
-
         return root;
     }
 
@@ -140,7 +95,6 @@ public class ArtistFragment extends Fragment {
         songs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to WrappedFragment when the button is clicked
                 Navigation.findNavController(v).navigate(R.id.navigation_wrapped_songs);
             }
         });
@@ -148,7 +102,6 @@ public class ArtistFragment extends Fragment {
         wrapped.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to WrappedFragment when the button is clicked
                 Navigation.findNavController(v).navigate(R.id.navigation_wrapped_intro);
             }
         });
