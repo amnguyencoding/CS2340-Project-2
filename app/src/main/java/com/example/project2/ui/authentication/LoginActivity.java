@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     public static final int AUTH_TOKEN_REQUEST_CODE = 0;
     public static final int AUTH_CODE_REQUEST_CODE = 1;
     private String mAccessToken, mAccessCode;
-    private TextView tokenTextView, codeTextView;
     private FirebaseAuth mAuth;
     private ActivityLoginBinding binding;
     
@@ -70,9 +69,6 @@ public class LoginActivity extends AppCompatActivity {
             firebaseAuthLogin(email, password);
             SpotifyHandler.populateArtistAndTrackData(mAccessToken, TimeRange.SHORT_TERM);
         }
-
-        //Need to implement the reconnect to Spotify for log in
-        //SpotifyHandler.populateArtistAndTrackData(mAccessToken);
     }
 
     private void firebaseAuthLogin(EditText email, EditText password) {
@@ -128,7 +124,6 @@ public class LoginActivity extends AppCompatActivity {
 
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
             mAccessCode = response.getCode();
-//            setTextAsync(mAccessCode, codeTextView);
         }
     }
 

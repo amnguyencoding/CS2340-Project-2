@@ -52,10 +52,6 @@ public class DisplayPastWrapFragment extends Fragment {
                         ArrayList<String> topSongs = (ArrayList<String>) wrapData.get("topSongs");
                         String topGenre = (String) wrapData.get("topGenre");
                         String topArtistImage = (String) wrapData.get("topArtistImage");
-                        Log.i("topArtists", topArtists.toString());
-                        Log.i("topSongs", topSongs.toString());
-                        Log.i("topGenre", topGenre);
-                        Log.i("topArtistImage", topArtistImage);
 
                         TextView artist1name = root.findViewById(R.id.summaryWrappedArtist1);
                         artist1name.setText("1. " + topArtists.get(0));

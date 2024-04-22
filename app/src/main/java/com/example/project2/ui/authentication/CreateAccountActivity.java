@@ -31,7 +31,6 @@ public class CreateAccountActivity extends AppCompatActivity {
     public static final int AUTH_TOKEN_REQUEST_CODE = 0;
     public static final int AUTH_CODE_REQUEST_CODE = 1;
     private String mAccessToken, mAccessCode;
-    private TextView tokenTextView, codeTextView;
     private FirebaseAuth mAuth;
     private ActivityCreateaccountBinding binding;
     
@@ -78,7 +77,6 @@ public class CreateAccountActivity extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
                         FirebaseUser user = mAuth.getCurrentUser();
                         String uid = user.getUid();
-                        // honestly, i dont know whether to store the uid or the email/pw combo ig we'll see what to use later
 
                         // Firestore
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -135,7 +133,6 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
             mAccessCode = response.getCode();
-//            setTextAsync(mAccessCode, codeTextView);
         }
     }
 
