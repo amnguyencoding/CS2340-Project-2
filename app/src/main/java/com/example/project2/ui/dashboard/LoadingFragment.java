@@ -66,7 +66,7 @@ public class LoadingFragment extends Fragment {
                     String gptPrompt = prompt.first;
                     index = prompt.second;
 
-                    gptPrompt = gptPrompt + " Tell me in 2nd person point of view and in three short sentences. " +
+                    gptPrompt = gptPrompt + " Tell me in 2nd person point of view and in three very short sentences. " +
                             "Please sprinkle references to the artists in the prompt throughout your response.";
                     if (index == 2) gptPrompt = gptPrompt + " Do not suggest artists that are already in the list.";
 
