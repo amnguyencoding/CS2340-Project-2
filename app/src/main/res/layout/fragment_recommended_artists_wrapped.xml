@@ -57,7 +57,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">
@@ -68,7 +67,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="70dp"
                     android:layout_marginTop="6dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginRight="30dp"
                     android:background="@drawable/wrapped_button"
                     android:text="Back"
                     android:textColor="@color/white" />
@@ -77,9 +76,9 @@
                     android:id="@+id/LLMWrappedButton"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="6dp"
-                    android:layout_marginRight="70dp"
+                    android:layout_marginRight="0dp"
                     android:background="@drawable/rounded_button"
                     android:text="Next"
                     android:textColor="@color/white" />
