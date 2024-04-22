@@ -46,9 +46,7 @@ public class HomeFragment extends Fragment {
 
         if (!firstTimeVisited) {
             firstTimeVisited = true;
-            // Necessary because Android Studio freaks out and
-            // makes navBar null cause it's dumb and can't find it
-            // the first time the home fragment is opened
+            // Necessary because Android Studio makes navBar null the first time the home fragment is opened
         }
 
         // Find the "View Wrapped" button and set an OnClickListener to navigate to WrappedFragment

@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-//import com.example.project2.LoginActivity;
 import com.example.project2.MainActivity;
 import com.example.project2.R;
 import com.example.project2.SpotifyHandler;

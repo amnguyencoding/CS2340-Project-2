@@ -30,8 +30,6 @@ public class ChooseLLMWrapped extends Fragment {
         Button backButton = root.findViewById(R.id.backToRecommendedArtistsButton);
         backButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_recommendedArtists));
 
-        // Note for later: use the click listeners to pass info about the prompt to the GPT thing
-        // Also: should change loading text based on if it is a prediction or a recommendation
         Button personalityButton = root.findViewById(R.id.personalityWrappedButton);
         personalityButton.setOnClickListener((v)-> {
             Bundle bundle = new Bundle();

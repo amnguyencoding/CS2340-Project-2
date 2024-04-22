@@ -27,9 +27,6 @@ public class GameFragment extends Fragment {
         BottomNavigationView navBar = getActivity().findViewById(R.id.nav_view);
         navBar.setVisibility(View.VISIBLE);
 
-        // Note for later: use the click listeners to pass info about the prompt to the GPT thing
-        // Also: should change loading text based on if it is a prediction or a recommendation
-
         Button songReleaseGameButton = root.findViewById(R.id.play_song_release_date_button);
         songReleaseGameButton.setOnClickListener((v)-> Navigation.findNavController(v).navigate(R.id.navigation_songreleasedate));
 
