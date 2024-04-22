@@ -86,32 +86,28 @@
 
         <Button
             android:id="@+id/create_account_button_new"
-            android:background="@drawable/rounded_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="196dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_button"
             android:fontFamily="@font/roboto_mono"
             android:text="Create Account"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/connect_to_spotify_on_create_account_button"
-            app:layout_constraintVertical_bias="0.355" />
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
         <TextView
+            android:id="@+id/textView19"
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginTop="20dp"
             android:background="#5E239D"
             android:gravity="center_horizontal"
             android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/create_account_button_new"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/connect_to_spotify_on_create_account_button" />
+            app:layout_constraintTop_toBottomOf="@+id/connect_to_spotify_create_account_button" />
 
         <TextView
             android:id="@+id/textView8"
@@ -146,7 +142,7 @@
             android:id="@+id/textView3"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/roboto_mono"
             android:text="Have an account already? Sign in here:"
             android:textAlignment="center"
